@@ -1,0 +1,22 @@
+{
+  "name": "MochaUtilities",
+  "version": "0.1.0",
+  "summary": "A short description of MochaUtilities.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/gregorysholl/MochaUtilities",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "gregorysholl": "gregorysholl@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/gregorysholl/MochaUtilities.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "MochaUtilities/Classes/**/*"
+}

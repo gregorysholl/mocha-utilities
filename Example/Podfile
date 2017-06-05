@@ -1,0 +1,6 @@
+use_frameworks!
+target 'MochaUtilities_Tests' do
+  pod 'MochaUtilities', :path => '../'
+  
+  
+end

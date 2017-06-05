@@ -1,0 +1,16 @@
+PODS:
+  - MochaUtilities (0.1.0)
+
+DEPENDENCIES:
+  - MochaUtilities (from `../`)
+
+EXTERNAL SOURCES:
+  MochaUtilities:
+    :path: ../
+
+SPEC CHECKSUMS:
+  MochaUtilities: 524c1359c9da2800141838505e720ed52cf26c15
+
+PODFILE CHECKSUM: f6731528982739e8c9c6aa90291a7dae19c0580d
+
+COCOAPODS: 1.2.1
