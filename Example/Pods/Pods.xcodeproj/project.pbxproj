@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0C91DD4D1EE5BFE900F9F19D /* MochaException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C91DD4B1EE5BFE900F9F19D /* MochaException.swift */; };
-		0C91DD4F1EE5BFF900F9F19D /* String+Basic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C91DD4E1EE5BFF900F9F19D /* String+Basic.swift */; };
-		0C91DD521EE5C1A400F9F19D /* MochaLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C91DD511EE5C1A400F9F19D /* MochaLogger.swift */; };
 		0C91DD561EE5C93100F9F19D /* HttpHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C91DD551EE5C93100F9F19D /* HttpHelper.swift */; };
 		0C91DD591EE5C99B00F9F19D /* BrowserUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C91DD581EE5C99B00F9F19D /* BrowserUtils.swift */; };
 		0C91DD5C1EE5D48500F9F19D /* UIColor+Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C91DD5B1EE5D48500F9F19D /* UIColor+Images.swift */; };
@@ -26,6 +23,9 @@
 		0C91DD751EE5DD4D00F9F19D /* OrientationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C91DD741EE5DD4D00F9F19D /* OrientationUtils.swift */; };
 		0C91DD781EE5DE3D00F9F19D /* ImageUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C91DD771EE5DE3D00F9F19D /* ImageUtils.swift */; };
 		0C91DD7A1EE5DE7400F9F19D /* PrintScreenUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C91DD791EE5DE7400F9F19D /* PrintScreenUtils.swift */; };
+		0C91DD831EE5E5E600F9F19D /* MochaException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C91DD7E1EE5E5E600F9F19D /* MochaException.swift */; };
+		0C91DD841EE5E5E600F9F19D /* String+Basic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C91DD801EE5E5E600F9F19D /* String+Basic.swift */; };
+		0C91DD851EE5E5E600F9F19D /* MochaLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C91DD821EE5E5E600F9F19D /* MochaLogger.swift */; };
 		121D64A1FB1B8D79200163EB08514B54 /* Pods-MochaUtilities_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 373DB977986D08763A35D7DA687BC9CA /* Pods-MochaUtilities_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		20D7285A6D1CC9F85DF54272FA98483D /* Pods-MochaUtilities_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B9D02925B12F2604F5EFD6C30BFA23 /* Pods-MochaUtilities_Tests-dummy.m */; };
 		4D9EC6355ECA3869F24600513076B85D /* MochaUtilities-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D8DD06E2F2F21D0AE84BF10F0FA05AC6 /* MochaUtilities-dummy.m */; };
@@ -45,9 +45,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0C91DD4B1EE5BFE900F9F19D /* MochaException.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MochaException.swift; sourceTree = "<group>"; };
-		0C91DD4E1EE5BFF900F9F19D /* String+Basic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Basic.swift"; sourceTree = "<group>"; };
-		0C91DD511EE5C1A400F9F19D /* MochaLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MochaLogger.swift; sourceTree = "<group>"; };
 		0C91DD551EE5C93100F9F19D /* HttpHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpHelper.swift; sourceTree = "<group>"; };
 		0C91DD581EE5C99B00F9F19D /* BrowserUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowserUtils.swift; sourceTree = "<group>"; };
 		0C91DD5B1EE5D48500F9F19D /* UIColor+Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Images.swift"; sourceTree = "<group>"; };
@@ -64,6 +61,9 @@
 		0C91DD741EE5DD4D00F9F19D /* OrientationUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrientationUtils.swift; sourceTree = "<group>"; };
 		0C91DD771EE5DE3D00F9F19D /* ImageUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUtils.swift; sourceTree = "<group>"; };
 		0C91DD791EE5DE7400F9F19D /* PrintScreenUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintScreenUtils.swift; sourceTree = "<group>"; };
+		0C91DD7E1EE5E5E600F9F19D /* MochaException.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MochaException.swift; sourceTree = "<group>"; };
+		0C91DD801EE5E5E600F9F19D /* String+Basic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Basic.swift"; sourceTree = "<group>"; };
+		0C91DD821EE5E5E600F9F19D /* MochaLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MochaLogger.swift; sourceTree = "<group>"; };
 		0F96334356FCF1149347B27E303F99C5 /* Pods-MochaUtilities_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-MochaUtilities_Tests.modulemap"; sourceTree = "<group>"; };
 		19EBE152D41E0927ABAC5723B78C327E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1AE3B2C1A12D347089BA5AB9CB7E79F5 /* MochaUtilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MochaUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,17 +106,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0C91DD411EE5BB8500F9F19D /* Basic */ = {
-			isa = PBXGroup;
-			children = (
-				0C91DD4A1EE5BFE900F9F19D /* Enums */,
-				0C91DD4C1EE5BFE900F9F19D /* Extensions */,
-				0C91DD501EE5C18800F9F19D /* Helpers */,
-			);
-			name = Basic;
-			path = Base;
-			sourceTree = "<group>";
-		};
 		0C91DD421EE5BB8500F9F19D /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -143,30 +132,6 @@
 				0C91DD571EE5C98B00F9F19D /* Utils */,
 			);
 			path = Network;
-			sourceTree = "<group>";
-		};
-		0C91DD4A1EE5BFE900F9F19D /* Enums */ = {
-			isa = PBXGroup;
-			children = (
-				0C91DD4B1EE5BFE900F9F19D /* MochaException.swift */,
-			);
-			path = Enums;
-			sourceTree = "<group>";
-		};
-		0C91DD4C1EE5BFE900F9F19D /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				0C91DD4E1EE5BFF900F9F19D /* String+Basic.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		0C91DD501EE5C18800F9F19D /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				0C91DD511EE5C1A400F9F19D /* MochaLogger.swift */,
-			);
-			path = Helpers;
 			sourceTree = "<group>";
 		};
 		0C91DD541EE5C93100F9F19D /* Helpers */ = {
@@ -241,6 +206,40 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		0C91DD7C1EE5E5E600F9F19D /* Basic */ = {
+			isa = PBXGroup;
+			children = (
+				0C91DD7D1EE5E5E600F9F19D /* Enums */,
+				0C91DD7F1EE5E5E600F9F19D /* Extensions */,
+				0C91DD811EE5E5E600F9F19D /* Helpers */,
+			);
+			path = Basic;
+			sourceTree = "<group>";
+		};
+		0C91DD7D1EE5E5E600F9F19D /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				0C91DD7E1EE5E5E600F9F19D /* MochaException.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		0C91DD7F1EE5E5E600F9F19D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0C91DD801EE5E5E600F9F19D /* String+Basic.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0C91DD811EE5E5E600F9F19D /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				0C91DD821EE5E5E600F9F19D /* MochaLogger.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		2B97752282393BDA33BB5C5E967A49FF /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -276,7 +275,7 @@
 		6FBAD999031D226740E3C7C7E51123A5 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				0C91DD411EE5BB8500F9F19D /* Basic */,
+				0C91DD7C1EE5E5E600F9F19D /* Basic */,
 				0C91DD421EE5BB8500F9F19D /* Core */,
 				0C91DD431EE5BB8500F9F19D /* Images */,
 				0C91DD441EE5BB8500F9F19D /* Network */,
@@ -444,23 +443,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C91DD831EE5E5E600F9F19D /* MochaException.swift in Sources */,
 				0C91DD6F1EE5DBA600F9F19D /* KeyboardUtils.swift in Sources */,
 				0C91DD6D1EE5DACD00F9F19D /* AppUtils.swift in Sources */,
-				0C91DD521EE5C1A400F9F19D /* MochaLogger.swift in Sources */,
 				0C91DD781EE5DE3D00F9F19D /* ImageUtils.swift in Sources */,
+				0C91DD851EE5E5E600F9F19D /* MochaLogger.swift in Sources */,
 				0C91DD661EE5D7DD00F9F19D /* DeviceUtils.swift in Sources */,
 				0C91DD6B1EE5DA4100F9F19D /* NumberUtils.swift in Sources */,
+				0C91DD841EE5E5E600F9F19D /* String+Basic.swift in Sources */,
 				0C91DD691EE5D8C700F9F19D /* String+Core.swift in Sources */,
 				0C91DD731EE5DC6A00F9F19D /* NotificationUtils.swift in Sources */,
 				4D9EC6355ECA3869F24600513076B85D /* MochaUtilities-dummy.m in Sources */,
 				0C91DD561EE5C93100F9F19D /* HttpHelper.swift in Sources */,
 				0C91DD641EE5D7C200F9F19D /* StatusBarUtils.swift in Sources */,
 				0C91DD621EE5D71400F9F19D /* TabBarUtils.swift in Sources */,
-				0C91DD4D1EE5BFE900F9F19D /* MochaException.swift in Sources */,
 				0C91DD751EE5DD4D00F9F19D /* OrientationUtils.swift in Sources */,
 				0C91DD591EE5C99B00F9F19D /* BrowserUtils.swift in Sources */,
 				0C91DD5C1EE5D48500F9F19D /* UIColor+Images.swift in Sources */,
-				0C91DD4F1EE5BFF900F9F19D /* String+Basic.swift in Sources */,
 				0C91DD7A1EE5DE7400F9F19D /* PrintScreenUtils.swift in Sources */,
 				0C91DD711EE5DC0F00F9F19D /* NavigationBarUtils.swift in Sources */,
 				0C91DD601EE5D5FD00F9F19D /* Preferences.swift in Sources */,
