@@ -29,7 +29,7 @@ MochaUtilities is divided in subpods which are listed bellow:
 
 ### Basic
 
-The Basic pod contains, as the name implies, the most basic classes and extensions that not only help the users as well as those building the library. This specific pod can but should not be used alone since it does not provide much to users.
+The Basic pod contains, as the name implies, the most basic classes and extensions that not only help the users as well as those building the library. This specific pod can but should not be used on its own since it does not provide much to users.
 
 #### MochaException
 
@@ -79,7 +79,7 @@ The Network pod contains classes aimed to help with Internet related processes, 
 
 #### Http Helper
 
-The HttpHelper class assists with handling HTTP/HTTPS requests and responses. It is constructed under the Builder pattern. The following code demonstrates how to make a simple GET request.
+`HttpHelper` assists with handling HTTP/HTTPS requests and responses. It is constructed under the Builder pattern. The following code demonstrates how to make a simple GET request.
 
 ```swift
 import MochaUtilities
@@ -93,15 +93,28 @@ func getSomeData() {
 }
 ```
 
+The following should be taken into consideration before usage:
+
+- The Builder methods `setUrl(_: String)` and `setCompletionHandler(_: @escaping HttpCompletionHandler)` are **mandatory**. If not set, the request will fail or will not return the received response.
+- The type `HttpCompletionHandler` is defined as the closure `(_ data: Data?, _ error: Error?) -> Void`.
+- The request's `contentType` defaults to `"application/x-www-form-urlencoded"`.
+- The request's `timeout` defaults to 60 seconds.
+- Other possible configurations are `setParameters(_: [String: Any])`, `setContentType(_: String)`, `setTimeout(_: TimeInterval)`, `setEncoding(_: String.Encoding)`, `setHeader(_: [String: String])`, `setBasicAuth(username: String, password: String)`, `setCertificate(_: Data?, with: String?)`, `setTrustAll(_: Bool)` and `setHostDomain(_: String)`.
+
+More examples will be included as the documentation grows.
+
 #### Browser Utils
 
-To open the default browser of the device, use the following method.
+To open the default browser of the device, use the `openUrl(_: String?)`. If the given String is nil or is not a valid, no action is taken.
 
 ```swift
-BrowserUtils.openUrl(_: String?)
-```
+import MochaUtilities
 
-Other possible configurations are `setParameters(_: [String: Any])`, `setContentType(_: String)`, `setTimeout(_: TimeInterval)`, `setEncoding(_: String.Encoding)`, `setHeader(_: [String: String])`, `setBasicAuth(username: String, password: String)`, `setCertificate(_: Data?, with: String?)`, `setTrustAll(_: Bool)` and `setHostDomain(_: String)`. More examples will be included as the documentation grows.
+@IBAction func onClickOpenBrowser(sender: Any?) {
+  let url = "http..."
+  BrowserUtils.openUrl(url)
+}
+```
 
 ## Requirements
 
@@ -121,7 +134,7 @@ pod "MochaUtilities"
 In case only one specific module is needed, add the following line to your Podfile:
 
 ```ruby
-pod "MochaUtilities/<NAME_OF_MODULE>
+pod "MochaUtilities/<NAME_OF_MODULE>"
 ```
 
 For more information about the available modules, check the [Features](#features) section.
@@ -134,7 +147,8 @@ This library follows the [Swift Style Guide](https://github.com/raywenderlich/sw
 
 ## Author
 
-Gregory Sholl e Santos, gregorysholl@gmail.com
+Gregory Sholl e Santos
+gregorysholl@gmail.com
 
 ## License
 
