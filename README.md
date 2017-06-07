@@ -10,8 +10,8 @@ MochaUtilities is library written in Swift intended to help iOS developers durin
 **This README is still in progress and therefore does not fully documents all classes and methods available.**
 
 - [Features](#features)
-- [Component Libraries](#component-libraries)
 - [Requirements](#requirements)
+- [Installation](#installation)
 - [Contribution](#contribution)
 - [Author](#author)
 - [License](#license)
