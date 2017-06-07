@@ -293,7 +293,7 @@ public extension HttpHelper {
         
         private var helper : HttpHelper
         
-        public init(completion: @escaping HttpCompletionHandler) {
+        public init() {
             helper = HttpHelper()
         }
         
