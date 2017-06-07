@@ -31,13 +31,47 @@ MochaUtilities is divided in subpods which are listed bellow:
 
 The Basic pod contains, as the name implies, the most basic classes and extensions that not only help the users as well as those building the library. This specific pod can but should not be used alone since it does not provide much to users.
 
+#### MochaException
+
+#### String+Basic
+
+#### MochaLogger
+
 ### Core
 
 The Core pod provides access to the most used features during iOS programming.
 
+#### String+Core
+
+#### Preferences
+
+#### AppUtils
+
+#### DeviceUtils
+
+#### KeyboardUtils
+
+#### NavigationBarUtils
+
+#### NumberUtils
+
+#### OrientationUtils
+
+#### StatusBarUtils
+
+#### TabBarUtils
+
+#### NotificationUtils
+
 ### Images
 
 The Images pod helps with a few image related methods.
+
+#### UIColor+Images
+
+#### ImageUtils
+
+#### PrintScreenUtils
 
 ### Network
 
