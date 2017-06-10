@@ -173,11 +173,11 @@
 				0C91DD651EE5D7DD00F9F19D /* DeviceUtils.swift */,
 				0C91DD6E1EE5DBA600F9F19D /* KeyboardUtils.swift */,
 				0C91DD701EE5DC0F00F9F19D /* NavigationBarUtils.swift */,
+				0C91DD721EE5DC6A00F9F19D /* NotificationUtils.swift */,
 				0C91DD6A1EE5DA4100F9F19D /* NumberUtils.swift */,
 				0C91DD741EE5DD4D00F9F19D /* OrientationUtils.swift */,
 				0C91DD631EE5D7C200F9F19D /* StatusBarUtils.swift */,
 				0C91DD611EE5D71400F9F19D /* TabBarUtils.swift */,
-				0C91DD721EE5DC6A00F9F19D /* NotificationUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";

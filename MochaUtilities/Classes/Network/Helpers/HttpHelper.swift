@@ -10,30 +10,23 @@ import UIKit
 
 public typealias HttpCompletionHandler = (_ data: Data?, _ error: Error?) -> Void
 
-public enum CertificateMode {
-    case none
-    case publicKey
-}
-
 public class HttpHelper: NSObject {
     
-    //MARK: Variables
+    // MARK: Variables
     
-    //Basic Properties
+    //Http Properties
     
-    fileprivate var url         : String?
     fileprivate var contentType : String!
     fileprivate var timeout     : TimeInterval!
     fileprivate var encoding    : String.Encoding!
     
-    fileprivate var parameters  : [String: Any]!
-    
     fileprivate var header      : [String: String]!
+    fileprivate var parameters  : [String: Any]!
     
     //Basic Authorization
     
-    fileprivate var username    : String!
-    fileprivate var password    : String!
+    fileprivate var username    : String?
+    fileprivate var password    : String?
     
     //Certificates
     
@@ -46,30 +39,37 @@ public class HttpHelper: NSObject {
     
     fileprivate var hostDomain          : String?
     
+    //Request Type
+    
+//    fileprivate var synchronous : Bool = false
+    
+    //Request
+    
+    fileprivate var url : String?
+    
     //Response
     
     fileprivate var completionHandler   : HttpCompletionHandler?
     
-    //MARK: Inits
+    // MARK: Inits
     
     fileprivate override init() {
         super.init()
         
-        self.contentType = "application/x-www-form-urlencoded"
-        self.timeout = 60
-        self.encoding = .utf8
+        contentType = "application/json"
+        timeout = 60
+        encoding = .utf8
         
-        self.header = [:]
-        
-        self.parameters = [:]
+        header = [:]
+        parameters = [:]
     }
     
-    //MARK: Conversions
+    // MARK: Conversions
     
     private func convertBasicAuthToBase64(username: String, password: String) throws -> String {
         let credentials = "\(username):\(password)"
         
-        guard let data = credentials.data(using: .utf8) else {
+        guard let data = credentials.data(using: encoding) else {
             throw MochaException.domainException(message: "Error formatting the basic authentication provided.")
         }
         
@@ -78,7 +78,7 @@ public class HttpHelper: NSObject {
         return authValue
     }
     
-    private func getString(fromDictionary dictionary: [String: Any]) -> String {
+    private func string(fromDictionary dictionary: [String: Any]) -> String {
         var resource = ""
         
         for (key, value) in dictionary {
@@ -89,29 +89,29 @@ public class HttpHelper: NSObject {
         return resource
     }
     
-    //MARK: Requests
+    // MARK: Requests
     
     public func get() {
-        send(httpRequest: "get")
+        send(httpMethod: "get")
     }
     
     public func delete() {
-        send(httpRequest: "delete")
+        send(httpMethod: "delete")
     }
     
     public func post() {
-        send(httpRequest: "post")
+        send(httpMethod: "post")
     }
     
     public func update() {
-        send(httpRequest: "update")
+        send(httpMethod: "update")
     }
     
     private func handleDomainException(_ message: String) {
         completionHandler?(nil, MochaException.domainException(message: message))
     }
     
-    private func send(httpRequest method: String) {
+    private func send(httpMethod: String) {
         
         guard let url = self.url else {
             handleDomainException("URL cannot be `nil`")
@@ -124,7 +124,7 @@ public class HttpHelper: NSObject {
         }
         
         var request = URLRequest(url: nsurl, cachePolicy: .useProtocolCachePolicy, timeoutInterval: timeout)
-        request.httpMethod = method
+        request.httpMethod = httpMethod
         
         if let username = self.username, username.isNotEmpty, let password = self.password, password.isNotEmpty {
             do {
@@ -141,9 +141,9 @@ public class HttpHelper: NSObject {
             }
         }
         
-        if method.equalsIgnoreCase("post") || method.equalsIgnoreCase("update") {
+        if httpMethod.equalsIgnoreCase("post") || httpMethod.equalsIgnoreCase("update") {
             if parameters.isEmpty {
-                handleDomainException("Http request (\(method.lowercased()) without parameters.")
+                handleDomainException("Http request (\(httpMethod.lowercased()) without parameters.")
                 return
             }
             
@@ -152,11 +152,11 @@ public class HttpHelper: NSObject {
             }
             
             if contentType == "application/x-www-form-urlencoded" {
-                let formString = getString(fromDictionary: parameters)
+                let formString = string(fromDictionary: parameters)
                 let length = "\(formString.length)"
                 
                 request.setValue(length, forHTTPHeaderField: "Content-Length")
-                request.httpBody = formString.data(using: .utf8)
+                request.httpBody = formString.data(using: encoding)
             } else {
                 do {
                     let data = try JSONSerialization.data(withJSONObject: parameters, options: [])
@@ -179,7 +179,7 @@ public class HttpHelper: NSObject {
                     self.completionHandler?(nil, MochaException.appSecurityTransportException)
                 } else if httpResponse.statusCode != 200 {
                     self.completionHandler?(nil, error)
-                    //                    throw Exception.ioException
+//                    throw Exception.ioException
                 }
             }
             
@@ -198,7 +198,7 @@ public class HttpHelper: NSObject {
         session.finishTasksAndInvalidate()
     }
     
-    //MARK: Certificate Handlers
+    // MARK: Certificate Handlers
     
     fileprivate func shoultTrustProtectionSpace(_ protectionSpace: URLProtectionSpace) -> Bool {
         
@@ -285,7 +285,17 @@ public class HttpHelper: NSObject {
     }
 }
 
-//MARK: - Builder
+// MARK: - Enums
+
+public extension HttpHelper {
+    
+    public enum CertificateMode {
+        case none
+        case publicKey
+    }
+}
+
+// MARK: - Builder
 
 public extension HttpHelper {
     
@@ -306,6 +316,11 @@ public extension HttpHelper {
             helper.completionHandler = handler
             return self
         }
+        
+//        public func setSynchronous(_ synchronous: Bool) -> Builder {
+//            helper.synchronous = synchronous
+//            return self
+//        }
         
         public func setParameters(_ parameters: [String: Any]) -> Builder {
             helper.parameters = parameters
@@ -364,7 +379,7 @@ public extension HttpHelper {
     }
 }
 
-//MARK: - URL Session Delegate
+// MARK: - URL Session Delegate
 
 extension HttpHelper: URLSessionDelegate {
     

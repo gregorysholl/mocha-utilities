@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class AppUtils: NSObject {
+public class AppUtils {
     
     //MARK: - Information
     

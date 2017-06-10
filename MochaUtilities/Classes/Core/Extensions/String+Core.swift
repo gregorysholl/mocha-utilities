@@ -8,11 +8,11 @@
 
 import Foundation
 
-//MARK: - String Operations
+// MARK: - String Operations
 
 public extension String {
     
-    //MARK: Contains
+    // MARK: Contains
     
     public func contains(insensitiveString other: String) -> Bool {
         return uppercased().contains(other.uppercased())
@@ -34,7 +34,7 @@ public extension String {
         return range.lowerBound == startIndex
     }
     
-    //MARK: Replace
+    // MARK: Replace
     
     public func replacingFirstOccurrence(of target: String, with newString: String) -> String {
         if let range = range(of: target) {
@@ -43,7 +43,7 @@ public extension String {
         return self
     }
     
-    //MARK: Substring
+    // MARK: Substring
     
     public func substring(from index: Int) -> String {
         return substring(from: self.index(startIndex, offsetBy: index))
@@ -61,7 +61,7 @@ public extension String {
         return self.substring(with: self.index(self.startIndex, offsetBy: startIndex) ..< self.index(self.startIndex, offsetBy: endIndex + 1))
     }
     
-    //MARK: Insert
+    // MARK: Insert
     
     public mutating func insert(str: String, at index: Int) {
         if (length - index) < 0 {
@@ -74,7 +74,7 @@ public extension String {
         self = String(prefix) + str + String(suffix)
     }
     
-    //MARK: Trim
+    // MARK: Trim
     
     public func trim() -> String {
         return trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
@@ -88,18 +88,18 @@ public extension String {
         return filtered.joined(separator: " ")
     }
     
-    //MARK: Split
+    // MARK: Split
     
     public func split(with separator: String) -> [String] {
         return components(separatedBy: separator)
     }
 }
 
-//MARK: - Numbers Operations
+// MARK: - Numbers Operations
 
 public extension String {
     
-    //MARK: Check
+    // MARK: Check
     
     public var isNumber: Bool {
         guard isNotEmpty else {
@@ -115,11 +115,11 @@ public extension String {
     }
 }
 
-//MARK: - Conversions
+// MARK: - Conversions
 
 public extension String {
     
-    //MARK: UTF-8
+    // MARK: UTF-8
     
     public var utf8String: UnsafePointer<Int8>? {
         if self.isEmpty {
@@ -128,13 +128,13 @@ public extension String {
         return (self as NSString).utf8String
     }
     
-    //MARK: Data
+    // MARK: Data
     
     public func toData() -> Data? {
         return data(using: .utf8)
     }
     
-    //MARK: Json Object
+    // MARK: Json Object
     
     public func toJsonObject() -> [NSObject: Any] {
         guard let data = toData() else {
@@ -148,5 +148,14 @@ public extension String {
         }
         
         return jsonObject!
+    }
+}
+
+// MARK: - File Accessors
+
+public extension String {
+    
+    public func appendingPathComponent(_ str: String) -> String {
+        return (self as NSString).appendingPathComponent(str)
     }
 }

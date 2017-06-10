@@ -8,7 +8,7 @@
 
 import UIKit
 
-public final class MochaLogger: NSObject {
+public final class MochaLogger {
     
     //MARK: - Variables
     
@@ -18,9 +18,7 @@ public final class MochaLogger: NSObject {
     
     //MARK: - Inits
     
-    private override init() {
-        super.init()
-        
+    private init() {
         tag = "Mocha"
     }
     

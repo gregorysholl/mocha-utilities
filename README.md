@@ -97,15 +97,16 @@ The following should be taken into consideration before usage:
 
 - The Builder methods `setUrl(_: String)` and `setCompletionHandler(_: @escaping HttpCompletionHandler)` are **mandatory**. If not set, the request will fail or will not return the received response.
 - The type `HttpCompletionHandler` is defined as the closure `(_ data: Data?, _ error: Error?) -> Void`.
-- The request's `contentType` defaults to `"application/x-www-form-urlencoded"`.
+- The request's `contentType` defaults to `application/json`.
 - The request's `timeout` defaults to 60 seconds.
+- The request's `encoding` defaults to UTF-8.
 - Other possible configurations are `setParameters(_: [String: Any])`, `setContentType(_: String)`, `setTimeout(_: TimeInterval)`, `setEncoding(_: String.Encoding)`, `setHeader(_: [String: String])`, `setBasicAuth(username: String, password: String)`, `setCertificate(_: Data?, with: String?)`, `setTrustAll(_: Bool)` and `setHostDomain(_: String)`.
 
 More examples will be included as the documentation grows.
 
 #### Browser Utils
 
-To open the default browser of the device, use the `openUrl(_: String?)`. If the given String is nil or is not a valid, no action is taken.
+To open the default browser of the device, use the `openUrl(_: String?)`. If the given String is nil or is not valid, no action is taken.
 
 ```swift
 import MochaUtilities
@@ -145,9 +146,12 @@ If you have suggestions, improvements or issues to submit (whether about the cod
 
 This library follows the [Swift Style Guide](https://github.com/raywenderlich/swift-style-guide). Before submitting any code, verify if it also follows this guideline. In case you find any code already submitted that does not follow the guideline, also feel free to contact me or send a pull request.
 
+Only commits in English are accepted.
+
 ## Author
 
 Gregory Sholl e Santos
+
 gregorysholl@gmail.com
 
 ## License

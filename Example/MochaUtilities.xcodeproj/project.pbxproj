@@ -7,17 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		0C0376691EEB7A8900F1F8E2 /* BasicStringTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0376681EEB7A8900F1F8E2 /* BasicStringTest.swift */; };
+		0C03766B1EEB7C6B00F1F8E2 /* CoreStringTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C03766A1EEB7C6B00F1F8E2 /* CoreStringTest.swift */; };
+		0C03766D1EEB7CA100F1F8E2 /* ImagesColorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C03766C1EEB7CA100F1F8E2 /* ImagesColorTest.swift */; };
+		0C03766F1EEB7CC100F1F8E2 /* HttpHelperTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C03766E1EEB7CC100F1F8E2 /* HttpHelperTest.swift */; };
 		AE59CD3C7190742FD3693332 /* Pods_MochaUtilities_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8603BCE625ECFCD3F3F78E45 /* Pods_MochaUtilities_Tests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0585895233361FED18A30F4E /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		072688D78687085077808A41 /* Pods-MochaUtilities_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MochaUtilities_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MochaUtilities_Tests/Pods-MochaUtilities_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		0C0376681EEB7A8900F1F8E2 /* BasicStringTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicStringTest.swift; sourceTree = "<group>"; };
+		0C03766A1EEB7C6B00F1F8E2 /* CoreStringTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreStringTest.swift; sourceTree = "<group>"; };
+		0C03766C1EEB7CA100F1F8E2 /* ImagesColorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagesColorTest.swift; sourceTree = "<group>"; };
+		0C03766E1EEB7CC100F1F8E2 /* HttpHelperTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpHelperTest.swift; sourceTree = "<group>"; };
 		1738B69F69290EBF21059A2F /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* MochaUtilities_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MochaUtilities_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		6638F2603EB0DD00E4232099 /* MochaUtilities.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = MochaUtilities.podspec; path = ../MochaUtilities.podspec; sourceTree = "<group>"; };
 		8603BCE625ECFCD3F3F78E45 /* Pods_MochaUtilities_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MochaUtilities_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE66BFC0C6C0845FE9126197 /* Pods-MochaUtilities_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MochaUtilities_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MochaUtilities_Tests/Pods-MochaUtilities_Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -35,6 +41,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C0376641EEB7A2900F1F8E2 /* Basic */ = {
+			isa = PBXGroup;
+			children = (
+				0C0376681EEB7A8900F1F8E2 /* BasicStringTest.swift */,
+			);
+			path = Basic;
+			sourceTree = "<group>";
+		};
+		0C0376651EEB7A2900F1F8E2 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				0C03766A1EEB7C6B00F1F8E2 /* CoreStringTest.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		0C0376661EEB7A2900F1F8E2 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				0C03766C1EEB7CA100F1F8E2 /* ImagesColorTest.swift */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		0C0376671EEB7A2900F1F8E2 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				0C03766E1EEB7CC100F1F8E2 /* HttpHelperTest.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		55350D3CF29B9CCDECE90293 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -65,7 +103,10 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				607FACEB1AFB9204008FA782 /* Tests.swift */,
+				0C0376641EEB7A2900F1F8E2 /* Basic */,
+				0C0376651EEB7A2900F1F8E2 /* Core */,
+				0C0376661EEB7A2900F1F8E2 /* Images */,
+				0C0376671EEB7A2900F1F8E2 /* Network */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -220,7 +261,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
+				0C0376691EEB7A8900F1F8E2 /* BasicStringTest.swift in Sources */,
+				0C03766B1EEB7C6B00F1F8E2 /* CoreStringTest.swift in Sources */,
+				0C03766D1EEB7CA100F1F8E2 /* ImagesColorTest.swift in Sources */,
+				0C03766F1EEB7CC100F1F8E2 /* HttpHelperTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
