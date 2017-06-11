@@ -8,11 +8,11 @@
 
 import UIKit
 
-public class NavigationBarUtils {
+public class NavigationBarUtil {
     
     //MARK: - Get
     
-    static public func get(for viewController: UIViewController) -> UINavigationBar? {
+    static public func navigationBar(for viewController: UIViewController) -> UINavigationBar? {
         guard let navigationController = viewController.navigationController else {
             return nil
         }
@@ -22,8 +22,8 @@ public class NavigationBarUtils {
     
     //MARK: - Information
     
-    static public func getHeight(for viewController: UIViewController) -> CGFloat {
-        guard let navigationBar = get(for: viewController) else {
+    static public func height(for viewController: UIViewController) -> CGFloat {
+        guard let navigationBar = navigationBar(for: viewController) else {
             return 0
         }
         
@@ -33,7 +33,7 @@ public class NavigationBarUtils {
     //MARK: - Show & Hide
     
     static public func show(_ viewController: UIViewController) {
-        guard let navigationBar = get(for: viewController) else {
+        guard let navigationBar = navigationBar(for: viewController) else {
             return
         }
         
@@ -41,7 +41,7 @@ public class NavigationBarUtils {
     }
     
     static public func hide(_ viewController: UIViewController) {
-        guard let navigationBar = get(for: viewController) else {
+        guard let navigationBar = navigationBar(for: viewController) else {
             return
         }
         
@@ -49,7 +49,7 @@ public class NavigationBarUtils {
     }
     
     static public func showBorder(for viewController: UIViewController) {
-        guard let navigationBar = get(for: viewController) else {
+        guard let navigationBar = navigationBar(for: viewController) else {
             return
         }
         
@@ -58,7 +58,7 @@ public class NavigationBarUtils {
     }
     
     static public func hideBorder(for viewController: UIViewController) {
-        guard let navigationBar = get(for: viewController) else {
+        guard let navigationBar = navigationBar(for: viewController) else {
             return
         }
         
@@ -69,7 +69,7 @@ public class NavigationBarUtils {
     //MARK: - Layout
     
     static public func setTranslucent(for viewController: UIViewController) {
-        guard let navigationBar = get(for: viewController) else {
+        guard let navigationBar = navigationBar(for: viewController) else {
             return
         }
         
@@ -78,7 +78,7 @@ public class NavigationBarUtils {
     }
     
     static public func setOpaque(for viewController: UIViewController) {
-        guard let navigationBar = get(for: viewController) else {
+        guard let navigationBar = navigationBar(for: viewController) else {
             return
         }
         
@@ -95,7 +95,7 @@ public class NavigationBarUtils {
     }
     
     static public func setTitleAttributes(_ titleAttributes: [String: Any], for viewController: UIViewController) {
-        guard let navigationBar = get(for: viewController) else {
+        guard let navigationBar = navigationBar(for: viewController) else {
             return
         }
         
@@ -103,7 +103,7 @@ public class NavigationBarUtils {
     }
     
     static public func setTintColor(_ color: UIColor, for viewController: UIViewController) {
-        guard let navigationBar = get(for: viewController) else {
+        guard let navigationBar = navigationBar(for: viewController) else {
             return
         }
         
@@ -111,7 +111,7 @@ public class NavigationBarUtils {
     }
     
     static public func setBackgroundColor(_ color: UIColor, for viewController: UIViewController) {
-        guard let navigationBar = get(for: viewController) else {
+        guard let navigationBar = navigationBar(for: viewController) else {
             return
         }
         
@@ -126,7 +126,7 @@ public class NavigationBarUtils {
     }
     
     static public func setBackButton(withImage image: UIImage?, for viewController: UIViewController) {
-        guard let navigationBar = get(for: viewController) else {
+        guard let navigationBar = navigationBar(for: viewController) else {
             return
         }
         
@@ -138,7 +138,7 @@ public class NavigationBarUtils {
     
     //MARK: - Bar Button
     
-    static private func getBarButton(with object: Any?, action: Selector, for target: UIViewController) -> UIBarButtonItem? {
+    static private func barButton(with object: Any?, action: Selector, for target: UIViewController) -> UIBarButtonItem? {
         var barButton : UIBarButtonItem?
         
         if let title = object as? String {
@@ -155,7 +155,7 @@ public class NavigationBarUtils {
     //MARK: - Left Button
     
     static public func setLeftButton(with object: Any?, andAction action: Selector, for target: UIViewController) {
-        guard let leftButton = getBarButton(with: object, action: action, for: target) else {
+        guard let leftButton = barButton(with: object, action: action, for: target) else {
             return
         }
         
@@ -170,7 +170,7 @@ public class NavigationBarUtils {
         var leftBarButtons = [UIBarButtonItem]()
         
         for i in 0 ..< objects.count {
-            guard let leftBarButton = getBarButton(with: objects[i], action: actions[i], for: target) else {
+            guard let leftBarButton = barButton(with: objects[i], action: actions[i], for: target) else {
                 continue
             }
             leftBarButtons.append(leftBarButton)
@@ -193,7 +193,7 @@ public class NavigationBarUtils {
     //MARK: - Right Button
     
     static public func setRightButton(with object: Any?, andAction action: Selector, for target: UIViewController) {
-        guard let rightButton = getBarButton(with: object, action: action, for: target) else {
+        guard let rightButton = barButton(with: object, action: action, for: target) else {
             return
         }
         
@@ -208,7 +208,7 @@ public class NavigationBarUtils {
         var rightBarButtons = [UIBarButtonItem]()
         
         for i in 0 ..< objects.count {
-            guard let rightBarButton = getBarButton(with: objects[i], action: actions[i], for: target) else {
+            guard let rightBarButton = barButton(with: objects[i], action: actions[i], for: target) else {
                 continue
             }
             rightBarButtons.append(rightBarButton)

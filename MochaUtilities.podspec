@@ -46,6 +46,11 @@ MochaUtilities is designed to assist developers with common problems/needs that 
     basic.source_files = 'MochaUtilities/Classes/Basic/**/*'
   end
 
+  s.subspec 'Brazil' do |brazil|
+    brazil.dependency 'MochaUtilities/Core'
+    brazil.source_files = 'MochaUtilities/Classes/Brazil/**/*'
+  end
+
   s.subspec 'Core' do |core|
     core.dependency 'MochaUtilities/Basic'
     core.source_files = 'MochaUtilities/Classes/Core/**/*'

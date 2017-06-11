@@ -8,13 +8,12 @@
 
 import UIKit
 
-public class StatusBarUtils {
+public class StatusBarUtil {
     
     //MARK: - Sizes
     
-    static public func getHeight() -> CGFloat {
-        let height = UIApplication.shared.statusBarFrame.size.height
-        return height
+    static public var height: CGFloat {
+        return UIApplication.shared.statusBarFrame.size.height
     }
     
     //MARK: - Show & Hide
@@ -27,7 +26,7 @@ public class StatusBarUtils {
         UIApplication.shared.isStatusBarHidden = true
     }
     
-    static public func isHidden() -> Bool {
+    static public var isHidden: Bool {
         return UIApplication.shared.isStatusBarHidden
     }
     
@@ -44,7 +43,7 @@ public class StatusBarUtils {
     //MARK: - Background Color
     
     static public func setBackgroundColor(_ color: UIColor) {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: DeviceUtils.getScreenWidth(), height: 20))
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: DeviceUtil.screenWidth, height: 20))
         view.backgroundColor = color
         
         let window = UIApplication.shared.keyWindow

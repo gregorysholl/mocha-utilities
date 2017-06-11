@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class KeyboardUtils {
+public class KeyboardUtil {
     
     //MARK: - Show
     
@@ -36,7 +36,7 @@ public class KeyboardUtils {
     
     //MARK: - Sizes
     
-    static public func getSize(from notification: Notification) -> CGSize {
+    static public func size(from notification: Notification) -> CGSize {
         guard let userInfo = notification.userInfo else {
             return CGSize.zero
         }
@@ -48,13 +48,13 @@ public class KeyboardUtils {
         return keyboardSize
     }
     
-    static public func getWidth(from notification: Notification) -> CGFloat {
-        let size = getSize(from: notification)
+    static public func width(from notification: Notification) -> CGFloat {
+        let size = self.size(from: notification)
         return size.width
     }
     
-    static public func getHeight(from notification: Notification) -> CGFloat {
-        let size = getSize(from: notification)
+    static public func height(from notification: Notification) -> CGFloat {
+        let size = self.size(from: notification)
         return size.height
     }
 }

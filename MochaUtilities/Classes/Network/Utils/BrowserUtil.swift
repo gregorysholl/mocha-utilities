@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class BrowserUtils {
+public class BrowserUtil {
     
     //MARK: - Open
 

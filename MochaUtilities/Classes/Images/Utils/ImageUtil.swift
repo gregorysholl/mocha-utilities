@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class ImageUtils {
+public class ImageUtil {
     
     static public func resize(_ image: UIImage?, withMaxWidthOrHeight max:CGFloat) -> UIImage? {
         let newSize = self.newSize(forImage: image, with: max)

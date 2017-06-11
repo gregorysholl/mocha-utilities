@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class AppUtils {
+public class AppUtil {
     
     //MARK: - Information
     
@@ -16,28 +16,28 @@ public class AppUtils {
         return Bundle.main.object(forInfoDictionaryKey: key)
     }
     
-    static public func getName() -> String {
+    static public var name: String {
         guard let displayName = object(forInfoDictionaryKey: "CFBundleDisplayName") as? String else {
             return ""
         }
         return displayName
     }
     
-    static public func getVersion() -> String {
+    static public var version: String {
         guard let shortVersion = object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String else {
             return ""
         }
         return shortVersion
     }
     
-    static public func getBundleNumber() -> String {
+    static public var bundleNumber: String {
         guard let bundleVersion = object(forInfoDictionaryKey: "CFBundleVersion") as? String else {
             return ""
         }
         return bundleVersion
     }
     
-    static public func getViewControllerBasedStatusBarAppearance() throws -> Bool {
+    static public var viewControllerBasedStatusBarAppearance: Bool {
         guard let vcBased = object(forInfoDictionaryKey: "UIViewControllerBasedStatusBarAppearance") as? Bool else {
             MochaLogger.log("The attribute 'UIViewControllerBasedStatusBarAppearance' was not found in project's Info.plist.")
             return false
@@ -60,17 +60,15 @@ public class AppUtils {
     
     //MARK: - State
     
-    static public func getState() -> UIApplicationState {
+    static public var state: UIApplicationState {
         return UIApplication.shared.applicationState
     }
     
-    static public func isActive() -> Bool {
-        let state = getState()
+    static public var active: Bool {
         return state == .active
     }
     
-    static public func isInBackground() -> Bool {
-        let state = getState()
+    static public var inBackground: Bool {
         return state == .background
     }
 }

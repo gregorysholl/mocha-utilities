@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class NotificationUtils {
+public class NotificationUtil {
     
     //MARK: - Register
     

@@ -8,28 +8,25 @@
 
 import UIKit
 
-public class OrientationUtils {
+public class OrientationUtil {
     
     //MARK: - Get
     
-    static public func get() -> UIInterfaceOrientation {
+    static public var orientation: UIInterfaceOrientation {
         return UIApplication.shared.statusBarOrientation
     }
     
     //MARK: - Validation
     
-    static public func isPortrait() -> Bool {
-        let orientation = get()
+    static public var portrait: Bool {
         return orientation == .portrait
     }
     
-    static public func isUpsideDown() -> Bool {
-        let orientation = get()
+    static public var upsideDown: Bool {
         return orientation == .portraitUpsideDown
     }
     
-    static public func isLandscape() -> Bool {
-        let orientation = get()
+    static public var landscape: Bool {
         return orientation == .landscapeLeft || orientation == .landscapeRight
     }
 }

@@ -10,11 +10,11 @@ import UIKit
 
 import AudioToolbox
 
-public class DeviceUtils {
+public class DeviceUtil {
     
     //MARK: - Helpers
     
-    static private func getOnlyDigits(of phoneNumber: String) -> String {
+    static private func digitsOnly(of phoneNumber: String) -> String {
         let numberArray = phoneNumber.components(separatedBy: CharacterSet.decimalDigits.inverted)
         let number = numberArray.joined(separator: "")
         return number
@@ -23,23 +23,27 @@ public class DeviceUtils {
     //MARK: - Actions
     
     static public func call(_ phoneNumber: String) {
-        let number = getOnlyDigits(of: phoneNumber)
+        let number = digitsOnly(of: phoneNumber)
         if let url = URL(string: "tel://\(number)") {
             UIApplication.shared.openURL(url)
         }
     }
     
     static public func sms(_ phoneNumber: String) {
-        let number = getOnlyDigits(of: phoneNumber)
-        if let url = URL(string: "sms://\(number)") {
-            UIApplication.shared.openURL(url)
+        let number = digitsOnly(of: phoneNumber)
+        guard let url = URL(string: "sms://\(number)") else {
+            return
         }
+        
+        UIApplication.shared.openURL(url)
     }
     
     static public func openSettings() {
-        if let url = URL(string: UIApplicationOpenSettingsURLString) {
-            UIApplication.shared.openURL(url)
+        guard let url = URL(string: UIApplicationOpenSettingsURLString) else {
+            return
         }
+        
+        UIApplication.shared.openURL(url)
     }
     
     static public func vibrate() {
@@ -48,12 +52,11 @@ public class DeviceUtils {
     
     //MARK: - Information
     
-    static public func getUUID() -> String {
-        let uuid = NSUUID().uuidString
-        return uuid
+    static public var uuid: String {
+        return NSUUID().uuidString
     }
     
-    static public func getPlatformCode() -> String {
+    static public var platformCode: String {
         var systemInfo = utsname()
         uname(&systemInfo)
         
@@ -66,15 +69,14 @@ public class DeviceUtils {
         return platform
     }
     
-    static public func getName() -> String {
-        let model = getPlatformCode()
-        let version = "\(getVersion())"
-        let uniqueIdentifier = getUUID()
-        
-        var name = "\(model)_\(version)_\(uniqueIdentifier)"
+    static public var version: Float {
+        return NumberUtil.toFloat(UIDevice.current.systemVersion)
+    }
+    
+    static public var name: String {
+        var name = "\(platformCode)_\(version)_\(uuid)"
         name = name.replacingOccurrences(of: ",", with: ".")
         name = name.replacingOccurrences(of: "-", with: "_")
-        
         return name
     }
     
@@ -87,57 +89,48 @@ public class DeviceUtils {
     
     //MARK: - Sizes
     
-    static public func getScreenSize() -> CGSize {
+    static public var screenSize: CGSize {
         return UIScreen.main.bounds.size
     }
     
-    static public func getScreenWidth() -> CGFloat {
-        return getScreenSize().width
+    static public var screenWidth: CGFloat {
+        return screenSize.width
     }
     
-    static public func getScreenHeight() -> CGFloat {
-        return getScreenSize().height
+    static public var screenHeight: CGFloat {
+        return screenSize.height
     }
     
     //MARK: - Scales
     
-    static public func getScreenScale() -> CGFloat {
+    static public var screenScale: CGFloat {
         return UIScreen.main.scale
     }
     
     static public func isNormalDisplay() -> Bool {
-        let version = getVersion()
         if version < 4.0 {
             return false
         }
-        
-        let scale = getScreenScale()
-        return scale == 1.0
+        return screenScale == 1.0
     }
     
     static public func isRetinaDisplay() -> Bool {
-        let version = getVersion()
         if version < 4.0 {
             return false
         }
-        
-        let scale = getScreenScale()
-        return scale == 2.0
+        return screenScale == 2.0
     }
     
     static public func isHdDisplay() -> Bool {
-        let version = getVersion()
         if version < 4.0 {
             return false
         }
-        
-        let scale = getScreenScale()
-        return scale == 3.0
+        return screenScale == 3.0
     }
     
     //MARK: - Model
     
-    static public func getModel() -> String  {
+    static public var model: String  {
         return UIDevice.current.model
     }
     
@@ -159,8 +152,6 @@ public class DeviceUtils {
         if isPad() {
             return false
         }
-        
-        let screenHeight = getScreenHeight()
         return screenHeight == 480.0
     }
     
@@ -168,8 +159,6 @@ public class DeviceUtils {
         if isPad() {
             return false
         }
-        
-        let screenHeight = getScreenHeight()
         return screenHeight == 568.0
     }
     
@@ -177,8 +166,6 @@ public class DeviceUtils {
         if isPad() {
             return false
         }
-        
-        let screenHeight = getScreenHeight()
         return screenHeight == 667.0
     }
     
@@ -186,14 +173,6 @@ public class DeviceUtils {
         if isPad() {
             return false
         }
-        
-        let screenHeight = getScreenHeight()
         return screenHeight == 736.0
-    }
-    
-    //MARK: - Version
-    
-    static public func getVersion() -> Float {
-        return NumberUtils.toFloat(UIDevice.current.systemVersion)
     }
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class NumberUtils {
+public class NumberUtil {
     
     //MARK: - Int
     

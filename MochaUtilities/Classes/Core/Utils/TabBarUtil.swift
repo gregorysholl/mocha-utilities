@@ -8,12 +8,12 @@
 
 import UIKit
 
-public class TabBarUtils {
+public class TabBarUtil {
     
     //MARK: - Get
     
     ///Returns the `UITabBar` of the given `UIViewController` if possible, or `nil` otherwise.
-    static public func get(for viewController: UIViewController) -> UITabBar? {
+    static public func tabBar(for viewController: UIViewController) -> UITabBar? {
         guard let tabBarController = viewController.tabBarController else {
             return nil
         }
@@ -21,8 +21,8 @@ public class TabBarUtils {
         return tabBarController.tabBar
     }
     
-    static public func getHeight(for viewController:UIViewController) -> CGFloat {
-        guard let tabBar = get(for: viewController) else {
+    static public func height(for viewController:UIViewController) -> CGFloat {
+        guard let tabBar = tabBar(for: viewController) else {
             return 0.0
         }
         

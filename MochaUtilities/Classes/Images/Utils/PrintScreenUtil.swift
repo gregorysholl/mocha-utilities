@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class PrintScreenUtils {
+public class PrintScreenUtil {
     
     //MARK: - Get
     
