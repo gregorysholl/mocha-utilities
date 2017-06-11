@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class CPFUtil {
+public class CpfUtil {
     
     //MARK: - Mask
     
@@ -35,11 +35,20 @@ public class CPFUtil {
         return masked
     }
     
-    static public func isMasked(_ str: String?) -> Bool {
-        if let str = str {
-            return str.contains(".")
+    static public func isMasked(_ possibleCpf: String?) -> Bool {
+        guard let string = possibleCpf, string.length == 14 else {
+            return false
         }
-        return false
+        
+        for offset in stride(from: 3, through: 9, by: 4) {
+            let index = string.index(string.startIndex, offsetBy: offset)
+            let wrongCharacter = offset == 9 ? string[index] != "-" : string[index] != "."
+            if wrongCharacter {
+                return false
+            }
+        }
+        
+        return true
     }
     
     //MARK: - Validation
@@ -50,7 +59,7 @@ public class CPFUtil {
         }
         
         let cpf = unmask(string)
-        if cpf.length != 11 {
+        if cpf.length != 11 || !cpf.isNumber {
             return false
         }
         

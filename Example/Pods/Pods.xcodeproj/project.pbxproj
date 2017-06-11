@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0C560B301EECF75600719807 /* CPFUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C560B2F1EECF75600719807 /* CPFUtil.swift */; };
+		0C560B301EECF75600719807 /* CpfUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C560B2F1EECF75600719807 /* CpfUtil.swift */; };
 		0C91DD561EE5C93100F9F19D /* HttpHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C91DD551EE5C93100F9F19D /* HttpHelper.swift */; };
 		0C91DD591EE5C99B00F9F19D /* BrowserUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C91DD581EE5C99B00F9F19D /* BrowserUtil.swift */; };
 		0C91DD5C1EE5D48500F9F19D /* UIColor+Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C91DD5B1EE5D48500F9F19D /* UIColor+Images.swift */; };
@@ -46,7 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0C560B2F1EECF75600719807 /* CPFUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPFUtil.swift; sourceTree = "<group>"; };
+		0C560B2F1EECF75600719807 /* CpfUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CpfUtil.swift; sourceTree = "<group>"; };
 		0C91DD551EE5C93100F9F19D /* HttpHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpHelper.swift; sourceTree = "<group>"; };
 		0C91DD581EE5C99B00F9F19D /* BrowserUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowserUtil.swift; sourceTree = "<group>"; };
 		0C91DD5B1EE5D48500F9F19D /* UIColor+Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Images.swift"; sourceTree = "<group>"; };
@@ -119,7 +119,7 @@
 		0C560B2E1EECF74700719807 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				0C560B2F1EECF75600719807 /* CPFUtil.swift */,
+				0C560B2F1EECF75600719807 /* CpfUtil.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -480,7 +480,7 @@
 				0C91DD591EE5C99B00F9F19D /* BrowserUtil.swift in Sources */,
 				0C91DD5C1EE5D48500F9F19D /* UIColor+Images.swift in Sources */,
 				0C91DD7A1EE5DE7400F9F19D /* PrintScreenUtil.swift in Sources */,
-				0C560B301EECF75600719807 /* CPFUtil.swift in Sources */,
+				0C560B301EECF75600719807 /* CpfUtil.swift in Sources */,
 				0C91DD711EE5DC0F00F9F19D /* NavigationBarUtil.swift in Sources */,
 				0C91DD601EE5D5FD00F9F19D /* Preferences.swift in Sources */,
 			);

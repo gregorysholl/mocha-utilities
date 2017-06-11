@@ -14,17 +14,8 @@ public extension String {
     
     // MARK: Contains
     
-    public func contains(insensitiveString other: String) -> Bool {
+    public func containsIgnoreCase(_ other: String) -> Bool {
         return uppercased().contains(other.uppercased())
-    }
-    
-    public func contains(inArray array: [String]) -> Bool {
-        for element in array {
-            if contains(insensitiveString: element) {
-                return true
-            }
-        }
-        return false
     }
     
     public func begins(with other: String) -> Bool {
