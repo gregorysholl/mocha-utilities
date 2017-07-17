@@ -79,15 +79,16 @@ The Network pod contains classes aimed to help with Internet related processes, 
 
 #### Http Helper
 
-`HttpHelper` assists with handling HTTP/HTTPS requests and responses. It is constructed under the Builder pattern. The following code demonstrates how to make a simple GET request.
+`HttpHelper` assists with handling HTTP/HTTPS requests and responses. It is constructed under the Builder pattern. The Builder is an inner class of the `HttpHelper`. The following code demonstrates how to make a simple GET request.
 
 ```swift
 import MochaUtilities
 
 func getSomeData() {
-  let handler = { data, error in
+  let handler = { (data: Data?, error: Error?) in
     //handle response information
   }
+  //directly get the reference to HttpHelper
   let httpHelper = HttpHelper.Builder().setUrl("http://www.google.com").setCompletionHandler(handler).build()
   httpHelper.get()
 }
@@ -100,7 +101,40 @@ The following should be taken into consideration before usage:
 - The request's `contentType` defaults to `application/json`.
 - The request's `timeout` defaults to 60 seconds.
 - The request's `encoding` defaults to UTF-8.
-- Other possible configurations are `setParameters(_: [String: Any])`, `setContentType(_: String)`, `setTimeout(_: TimeInterval)`, `setEncoding(_: String.Encoding)`, `setHeader(_: [String: String])`, `setBasicAuth(username: String, password: String)`, `setCertificate(_: Data?, with: String?)`, `setTrustAll(_: Bool)` and `setHostDomain(_: String)`.
+- Other possible configurations are `setParameters(_: [String: Any])`, `setHeader(_: [String: String])`, `setBasicAuth(username: String, password: String)`, `setCertificate(_: Data?, with: String?)`, `setTrustAll(_: Bool)` and `setHostDomain(_: String)`.
+
+To set the Basic Authentication header into your HTTP request, use the `setBasicAuth(username: String, password: String)` method as follows:
+
+```swift
+import MochaUtilities
+
+func getDataWithBasicAuth() {
+  let httpHelper = HttpHelper.Builder().setUrl(someUrl).setCompletionHandler(someHandler).setBasicAuth(username: "request_basic_auth_usr", password: "request_basic_auth_pwd").build()
+  httpHelper.get()
+}
+```
+
+If necessary, retain the reference to the `HttpHelper.Builder` class before using the `build()` method. It might become necessary to configure the request according to some parameters. For example:
+
+```swift
+import MochaUtilities
+
+func doHttpRequest(needsBasicAuth: Bool, addDefaultHeader: Bool) {
+  let handler = { (data: Data?, error: Error?) in
+    //handle response information
+  }
+  //directly get the reference to HttpHelper
+  let builder = HttpHelper.Builder().setUrl("http://www.google.com").setCompletionHandler(handler)
+  if needsBasicAuth {
+    builder.setBasicAuth(username: "request_basic_auth_usr", password: "request_basic_auth_pwd")
+  }
+  if addDefaultHeader {
+    builder.setHeader(["default_header_key": "default_header_value"])
+  }
+  ...
+  httpHelper.get()
+}
+```
 
 More examples will be included as the documentation grows.
 
