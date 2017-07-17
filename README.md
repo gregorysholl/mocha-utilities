@@ -20,6 +20,8 @@ MochaUtilities is library written in Swift intended to help iOS developers durin
 
 MochaUtilities is designed to help iOS developers in as many common needs as possible. During the construction of an iOS project, developers often need the same boilerplate code. This library aims to reduce such code. It does not use any other library from CocoaPods as dependency, since its purpose is to help with more general coding problems.
 
+Most (if not all) public methods from the Util classes are static. In case it isn't, it will be explicitly described so here.
+
 MochaUtilities is divided in subpods which are listed bellow:
 
 - [Basic](#basic)
@@ -33,6 +35,8 @@ The Basic pod contains, as the name implies, the most basic classes and extensio
 
 #### MochaException
 
+The `MochaException` enum type is used internally in the MochaUtilities to be more concise in what issue might have occurred. It is associated to the Swift's `Error` type, so it can be thrown as an error.
+
 #### String+Basic
 
 #### MochaLogger
@@ -45,33 +49,74 @@ The Core pod provides access to the most used features during iOS programming.
 
 #### Preferences
 
-#### AppUtils
+#### AppUtil
 
-#### DeviceUtils
+#### DeviceUtil
 
-#### KeyboardUtils
+#### KeyboardUtil
 
-#### NavigationBarUtils
+#### NavigationBarUtil
 
-#### NumberUtils
+#### NumberUtil
 
-#### OrientationUtils
+The `NumberUtil` class helps to work with numeric values in `String?` (optional String) format. It can convert to specific number types or check if the given `String?` can be represented as a number.
 
-#### StatusBarUtils
+For conversion, the methods available are `toInteger(_:, with:)`, `toFloat(_:, with:)` and `toDouble(_:, with:)` and `toNumber(_:, with:)`. In case the given `String?` is nil or cannot be converted to the wanted number type, a default value will be returned instead. If the default value is not passed, it will be zero by default.
 
-#### TabBarUtils
+The example bellow show how the `toInteger(_:, with:)` method works. The other methods described above work similarly to their types.
 
-#### NotificationUtils
+```swift
+import MochaUtilities
+
+func convertStrings() {
+  let integerString = "123"
+  let integer = NumberUtil.toInteger(integerString)
+  //integer is an Int with value 123
+  
+  let nonIntegerString = "4a5"
+  let defaultValue = NumberUtil.toInteger(nonIntegerString)
+  //since no extra argument was given and nonIntegerString cannot be converted to an integer,
+  //defaultValue will be 0 (zero)
+  
+  let anotherDefaultValue = NumberUtil.toInteger(nonIntegerString, with: -1)
+  //since nonIntegerString cannot be converted to an integer,
+  //anotherDefaultValue will be -1
+}
+```
+
+Another method available is `isNumber(_:)` which return a boolean if the given `String?` can be converted to a number type.
+
+```swift
+import MochaUtilities
+
+func checkNumberStrings() {
+  let numberString = "3.1415"
+  print(NumberUtil.isNumber(numberString))
+  //prints true
+  
+  let nonNumberString = "3.1415.pi"
+  print(NumberUtil.isNumber(nonNumberString))
+  //prints false
+}
+```
+
+#### OrientationUtil
+
+#### StatusBarUtil
+
+#### TabBarUtil
+
+#### NotificationUtil
 
 ### Images
 
 The Images pod helps with a few image related methods.
 
-#### UIColor+Images
+#### UIColor+Image
 
-#### ImageUtils
+#### ImageUtil
 
-#### PrintScreenUtils
+#### PrintScreenUtil
 
 ### Network
 
@@ -139,7 +184,7 @@ func doHttpRequest(needsBasicAuth: Bool, addDefaultHeader: Bool) {
 
 More examples will be included as the documentation grows.
 
-#### Browser Utils
+#### Browser Util
 
 To open the default browser of the device, use the `openUrl(_: String?)`. If the given String is nil or is not valid, no action is taken.
 
@@ -148,7 +193,7 @@ import MochaUtilities
 
 @IBAction func onClickOpenBrowser(sender: Any?) {
   let url = "http..."
-  BrowserUtils.openUrl(url)
+  BrowserUtil.openUrl(url)
 }
 ```
 
