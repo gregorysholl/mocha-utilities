@@ -132,6 +132,7 @@ func doHttpRequest(needsBasicAuth: Bool, addDefaultHeader: Bool) {
     builder.setHeader(["default_header_key": "default_header_value"])
   }
   ...
+  let httpHelper = builder.build()
   httpHelper.get()
 }
 ```
