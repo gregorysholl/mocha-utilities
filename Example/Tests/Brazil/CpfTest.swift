@@ -40,7 +40,7 @@ class CpfTest: XCTestCase {
     }
     
     func testMaskedWithLetters() {
-        //since it only checks if the mask is applied, it can contain letters inside
+        //since it only checks if the mask is applied and not if it is also a valid CPF, it can contain letters inside
         XCTAssertTrue(CpfUtil.isMasked("000.000.0a0-00"))
     }
     

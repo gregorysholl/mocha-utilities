@@ -123,7 +123,7 @@ public class HttpHelper: NSObject {
             return
         }
         
-        var request = URLRequest(url: nsurl, cachePolicy: .useProtocolCachePolicy, timeoutInterval: timeout)
+        var request = URLRequest(url: nsurl, cachePolicy: .useProtocolCachePolicy)
         request.httpMethod = httpMethod
         
         if let username = self.username, username.isNotEmpty, let password = self.password, password.isNotEmpty {
@@ -168,6 +168,7 @@ public class HttpHelper: NSObject {
         }
         
         let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = timeout
         
         let session = URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
         
