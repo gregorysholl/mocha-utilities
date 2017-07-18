@@ -136,6 +136,8 @@ The Core subpod provides access to the most used features during iOS programming
 
 #### String+Core
 
+#### UIColor+Core
+
 #### Preferences
 
 #### AppUtil
@@ -193,7 +195,9 @@ The Images subpod helps with a few image related problems.
 
 The Network subpod contains classes aimed to help with Internet related processes, such as HTTP requests.
 
-#### Http Helper
+#### MochaEmailAttachment
+
+#### HttpHelper
 
 `HttpHelper` assists with handling HTTP/HTTPS requests and responses. It is constructed under the Builder pattern. The Builder is an inner class of the `HttpHelper`. The following code demonstrates how to make a simple GET request.
 
@@ -247,7 +251,7 @@ func doHttpRequest(needsBasicAuth: Bool, addDefaultHeader: Bool) {
 
 More examples will be included as the documentation grows.
 
-#### Browser Util
+#### BrowserUtil
 
 To open the default browser of the device, use the `openUrl(_: String?)`. If the given String is nil or is not valid, no action is taken.
 
@@ -257,6 +261,8 @@ To open the default browser of the device, use the `openUrl(_: String?)`. If the
   BrowserUtil.openUrl(url)
 }
 ```
+
+#### EmailUtil
 
 ### Tasks
 
