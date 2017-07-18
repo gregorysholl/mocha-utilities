@@ -27,6 +27,7 @@ Most (if not all) public methods from the Util classes are static. In case it is
 MochaUtilities is divided in subpods which are listed bellow:
 
 - [Basic](#basic)
+- [Brazil](#brazil)
 - [Core](#core)
 - [Images](#images)
 - [Network](#network)
@@ -97,6 +98,36 @@ MochaLogger.log("Trying out a new tag.")
 MochaLogger.removeTag()
 MochaLogger.log("Works just like print.")
 //prints Works just like print.
+```
+
+### Brazil
+
+The Brazil subpod provides specific functionalities for Brazilian developers.
+
+#### CpfUtil
+
+This class is responsible for applying or removing CPF (Cadastro de Pessoa Física) mask from `String`. It can also check whether a given `String?` is a valid CPF.
+
+For masking and unmasking a `String?`, use `mask(_:)` and `unmask(_:)` respectively. If the given value cannot be masked or unmasked, these methods will return an empty `String` instead.
+
+There is also a method for checking if a given `String?` has the mask applied to it or not.
+
+```swift
+let masked = CpfUtil.mask("12345678900")
+//masked equals 123.456.879-00
+
+let unmasked = CpfUtil.unmask("123.456.789-00")
+//unmasked equals 12345678900
+```
+
+The `isValid(_:)` method, as it suggests, checks whether a given `String?` is a valid CPF. If the given `String?` is nil, empty or cannot be converted to numeric value, it returns `false`.
+
+```swift
+let maskedCheck = CpfUtil.isValid("000.000.000-00")
+//maskedCheck is true
+
+let unmaskedCheck = CpfUtil.isValid("00000000000")
+//unmaskedCheck is also true
 ```
 
 ### Core
