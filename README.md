@@ -251,6 +251,10 @@ func doHttpRequest(needsBasicAuth: Bool, addDefaultHeader: Bool) {
 
 More examples will be included as the documentation grows.
 
+#### EmailUtilDelegate
+
+The protocol used to communicate the caller class and [EmailUtil](#emailutil). Its methods are `onEmailSuccess()`, `onEmailCancelled()` and `onEmailFailed()`, all of which are of mandatory implementation.
+
 #### BrowserUtil
 
 To open the default browser of the device, use the `openUrl(_: String?)`. If the given String is nil or is not valid, no action is taken.

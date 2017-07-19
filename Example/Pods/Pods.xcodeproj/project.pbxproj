@@ -13,6 +13,9 @@
 		0C5ECB861F1ED1DF00ABCD5A /* MochaTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5ECB851F1ED1DF00ABCD5A /* MochaTask.swift */; };
 		0C5ECB881F1ED2D000ABCD5A /* MochaTaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5ECB871F1ED2D000ABCD5A /* MochaTaskManager.swift */; };
 		0C5ECB8A1F1ED5FA00ABCD5A /* NSObject+Tasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5ECB891F1ED5FA00ABCD5A /* NSObject+Tasks.swift */; };
+		0C5ECB8D1F1EF33000ABCD5A /* MochaEmailAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5ECB8C1F1EF33000ABCD5A /* MochaEmailAttachment.swift */; };
+		0C5ECB8F1F1EF48900ABCD5A /* EmailUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5ECB8E1F1EF48900ABCD5A /* EmailUtil.swift */; };
+		0C5ECB921F1EF9EF00ABCD5A /* EmailUtilDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5ECB911F1EF9EF00ABCD5A /* EmailUtilDelegate.swift */; };
 		0C91DD561EE5C93100F9F19D /* HttpHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C91DD551EE5C93100F9F19D /* HttpHelper.swift */; };
 		0C91DD591EE5C99B00F9F19D /* BrowserUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C91DD581EE5C99B00F9F19D /* BrowserUtil.swift */; };
 		0C91DD5C1EE5D48500F9F19D /* UIColor+Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C91DD5B1EE5D48500F9F19D /* UIColor+Images.swift */; };
@@ -57,6 +60,9 @@
 		0C5ECB851F1ED1DF00ABCD5A /* MochaTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MochaTask.swift; sourceTree = "<group>"; };
 		0C5ECB871F1ED2D000ABCD5A /* MochaTaskManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MochaTaskManager.swift; sourceTree = "<group>"; };
 		0C5ECB891F1ED5FA00ABCD5A /* NSObject+Tasks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Tasks.swift"; sourceTree = "<group>"; };
+		0C5ECB8C1F1EF33000ABCD5A /* MochaEmailAttachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MochaEmailAttachment.swift; sourceTree = "<group>"; };
+		0C5ECB8E1F1EF48900ABCD5A /* EmailUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailUtil.swift; sourceTree = "<group>"; };
+		0C5ECB911F1EF9EF00ABCD5A /* EmailUtilDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailUtilDelegate.swift; sourceTree = "<group>"; };
 		0C91DD551EE5C93100F9F19D /* HttpHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpHelper.swift; sourceTree = "<group>"; };
 		0C91DD581EE5C99B00F9F19D /* BrowserUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowserUtil.swift; sourceTree = "<group>"; };
 		0C91DD5B1EE5D48500F9F19D /* UIColor+Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Images.swift"; sourceTree = "<group>"; };
@@ -168,6 +174,22 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		0C5ECB8B1F1EF31B00ABCD5A /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				0C5ECB8C1F1EF33000ABCD5A /* MochaEmailAttachment.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		0C5ECB901F1EF9D100ABCD5A /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				0C5ECB911F1EF9EF00ABCD5A /* EmailUtilDelegate.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		0C91DD421EE5BB8500F9F19D /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -190,7 +212,9 @@
 		0C91DD441EE5BB8500F9F19D /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				0C5ECB8B1F1EF31B00ABCD5A /* Domain */,
 				0C91DD541EE5C93100F9F19D /* Helpers */,
+				0C5ECB901F1EF9D100ABCD5A /* Protocols */,
 				0C91DD571EE5C98B00F9F19D /* Utils */,
 			);
 			path = Network;
@@ -208,6 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				0C91DD581EE5C99B00F9F19D /* BrowserUtil.swift */,
+				0C5ECB8E1F1EF48900ABCD5A /* EmailUtil.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -526,10 +551,13 @@
 				4D9EC6355ECA3869F24600513076B85D /* MochaUtilities-dummy.m in Sources */,
 				0C91DD561EE5C93100F9F19D /* HttpHelper.swift in Sources */,
 				0C91DD641EE5D7C200F9F19D /* StatusBarUtil.swift in Sources */,
+				0C5ECB8D1F1EF33000ABCD5A /* MochaEmailAttachment.swift in Sources */,
 				0C91DD621EE5D71400F9F19D /* TabBarUtil.swift in Sources */,
 				0C91DD751EE5DD4D00F9F19D /* OrientationUtil.swift in Sources */,
+				0C5ECB8F1F1EF48900ABCD5A /* EmailUtil.swift in Sources */,
 				0C91DD591EE5C99B00F9F19D /* BrowserUtil.swift in Sources */,
 				0C91DD5C1EE5D48500F9F19D /* UIColor+Images.swift in Sources */,
+				0C5ECB921F1EF9EF00ABCD5A /* EmailUtilDelegate.swift in Sources */,
 				0C91DD7A1EE5DE7400F9F19D /* PrintScreenUtil.swift in Sources */,
 				0C5ECB8A1F1ED5FA00ABCD5A /* NSObject+Tasks.swift in Sources */,
 				0C560B301EECF75600719807 /* CpfUtil.swift in Sources */,

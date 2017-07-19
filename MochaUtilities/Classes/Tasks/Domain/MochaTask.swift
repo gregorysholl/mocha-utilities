@@ -12,9 +12,11 @@ public typealias TaskBlock = () -> Void
 public typealias ThrowableTaskBlock = () throws -> Void
 public typealias ErrorTaskBlock = (_ error: Error) -> Void
 
+//MARK: -
+
 public class MochaTask: NSObject {
     
-    //MARK: - Variables
+    //MARK: Variables
     
     var preExecute  : TaskBlock?
     var execute     : ThrowableTaskBlock!
@@ -24,45 +26,18 @@ public class MochaTask: NSObject {
     
     var operation   : BlockOperation!
     
-    //MARK: - Inits
+    //MARK: Inits
     
     override public init() {
         super.init()
     }
     
-    public convenience init(execute: @escaping ThrowableTaskBlock, updateView: @escaping TaskBlock) {
-        self.init()
-        
-        preExecute = nil
-        self.execute = execute
-        self.updateView = updateView
-        error = nil
-    }
-    
-    public convenience init(execute: @escaping ThrowableTaskBlock, updateView: @escaping TaskBlock, onError: @escaping ErrorTaskBlock) {
-        self.init()
-        
-        preExecute = nil
-        self.execute = execute
-        self.updateView = updateView
-        error = onError
-    }
-    
-    public convenience init(preExecute: @escaping TaskBlock, execute: @escaping ThrowableTaskBlock, updateView: @escaping TaskBlock) {
+    public convenience init(preExecute: TaskBlock? = nil, execute: @escaping ThrowableTaskBlock, updateView: @escaping TaskBlock, error: ErrorTaskBlock? = nil) {
         self.init()
         
         self.preExecute = preExecute
         self.execute = execute
         self.updateView = updateView
-        error = nil
-    }
-    
-    public convenience init(preExecute: @escaping TaskBlock, execute: @escaping ThrowableTaskBlock, updateView: @escaping TaskBlock, onError: @escaping ErrorTaskBlock) {
-        self.init()
-        
-        self.preExecute = preExecute
-        self.execute = execute
-        self.updateView = updateView
-        error = onError
+        self.error = error
     }
 }
