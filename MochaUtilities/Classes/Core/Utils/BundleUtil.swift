@@ -10,5 +10,18 @@ import UIKit
 
 public class BundleUtil {
     
-    private init() {}
+    fileprivate var bundle: Bundle!
+    
+    static public var main: BundleUtil {
+        return BundleUtil(bundle: .main)
+    }
+    
+    static public func custom(_ bundle: Bundle) -> BundleUtil {
+        return BundleUtil(bundle: bundle)
+    }
+    
+    internal init(bundle: Bundle) {
+        self.bundle = bundle
+    }
 }
+
