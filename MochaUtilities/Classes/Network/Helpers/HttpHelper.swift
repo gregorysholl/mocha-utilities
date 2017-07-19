@@ -14,6 +14,10 @@ public class HttpHelper: NSObject {
     
     // MARK: Variables
     
+    static public var builder   : HttpHelper.Builder {
+        return HttpHelper.Builder()
+    }
+    
     //Http Properties
     
     fileprivate var contentType : String!
@@ -304,57 +308,57 @@ public extension HttpHelper {
         
         private var helper : HttpHelper
         
-        public init() {
+        internal init() {
             helper = HttpHelper()
         }
         
-        public func setUrl(_ url: String) -> Builder {
+        public func url(_ url: String) -> Builder {
             helper.url = url
             return self
         }
         
-        public func setCompletionHandler(_ handler: @escaping HttpCompletionHandler) -> Builder {
+        public func completionHandler(_ handler: @escaping HttpCompletionHandler) -> Builder {
             helper.completionHandler = handler
             return self
         }
         
-//        public func setSynchronous(_ synchronous: Bool) -> Builder {
+//        public func synchronous(_ synchronous: Bool) -> Builder {
 //            helper.synchronous = synchronous
 //            return self
 //        }
         
-        public func setParameters(_ parameters: [String: Any]) -> Builder {
+        public func parameters(_ parameters: [String: Any]) -> Builder {
             helper.parameters = parameters
             return self
         }
         
-        public func setContentType(_ contentType: String) -> Builder {
+        public func contentType(_ contentType: String) -> Builder {
             helper.contentType = contentType
             return self
         }
         
-        public func setTimeout(_ timeout: TimeInterval) -> Builder {
+        public func timeout(_ timeout: TimeInterval) -> Builder {
             helper.timeout = timeout
             return self
         }
         
-        public func setEncoding(_ encoding: String.Encoding) -> Builder {
+        public func encoding(_ encoding: String.Encoding) -> Builder {
             helper.encoding = encoding
             return self
         }
         
-        public func setHeader(_ header: [String: String]) -> Builder {
+        public func header(_ header: [String: String]) -> Builder {
             helper.header = header
             return self
         }
         
-        public func setBasicAuth(username: String, password: String) -> Builder {
+        public func basicAuth(username: String, password: String) -> Builder {
             helper.username = username
             helper.password = password
             return self
         }
         
-        public func setCertificate(_ certificate: Data?, with password: String? = nil) -> Builder {
+        public func certificate(_ certificate: Data?, with password: String? = nil) -> Builder {
             if certificate != nil {
                 helper.certificateMode = .publicKey
             }
@@ -364,12 +368,12 @@ public extension HttpHelper {
             return self
         }
         
-        public func setTrustAll(_ trustAll: Bool) -> Builder {
+        public func trustAll(_ trustAll: Bool) -> Builder {
             helper.trustAllSSL = trustAll
             return self
         }
         
-        public func setHostDomain(_ hostDomain: String) -> Builder {
+        public func hostDomain(_ hostDomain: String) -> Builder {
             helper.hostDomain = hostDomain
             return self
         }
