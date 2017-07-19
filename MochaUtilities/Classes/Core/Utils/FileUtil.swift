@@ -10,11 +10,11 @@ import UIKit
 
 public class FileUtil {
     
-    public var bundle: BundleUtil {
-        return BundleUtil()
+    static public var bundle: BundleUtil.Type {
+        return BundleUtil.self
     }
     
-    public var documents: DocumentsUtil {
+    static public var documents: DocumentsUtil {
         return DocumentsUtil()
     }
     
