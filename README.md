@@ -42,16 +42,16 @@ The `MochaException` enum type is used internally in the MochaUtilities to be mo
 
 `MochaException` has the following possible values:
 
-- ioException: Used whenever the HttpHelper (from [Network](#network) module) has encountered a problem, except for the error specified in the appSecurityTransportException described bellow.
-- fileNotFoundException: Used whenever the given file reference or path was not found inside the application's bundle or documents. Mainly used in the FileUtil class (from [Core](#core) module).
-- appSecurityTransportException: Used whenever HttpHelper (from [Network](#network) module) requests data but access to the given URL is not permitted through the project's App Security Transport value in Info.plist.
+- ioException: Used whenever the [HttpHelper](#httphelper) has encountered a problem, except for the error specified in the appSecurityTransportException described bellow.
+- fileNotFoundException: Used whenever the given file reference or path was not found inside the application's bundle or documents. Mainly used in the [BundleUtil](#bundleutil) and [DocumentsUtil](#documentsutil) classes.
+- appSecurityTransportException: Used whenever [HttpHelper](#httphelper) requests data but access to the given URL is not permitted through the project's App Security Transport value in Info.plist.
 - notImplemented: Used whenever a prior method or class inheritance is required but was not implemented.
-- domainException: Used whenever any value or convertion inside `MochaUtilities` is invalid. This specific value might be removed for version 1.0.
+- domainException: Used whenever any value or convertion inside MochaUtilities is invalid. This specific value might be removed for version 1.0.
 - genericException: Used whenever an unespecified error occurs.
 
 #### String+Basic
 
-An extension for the `String` class that will be used throughout the `MochaUtilities` implementations. It consists of the get-only properties `length` and `isNotEmpty`, and the method `equalsIgnoreCase(_:).`
+An extension for the `String` class that will be used throughout the MochaUtilities implementations. It consists of the get-only properties `length` and `isNotEmpty`, and the method `equalsIgnoreCase(_:).`
 
 The `length` property returns, as expected, the length of the `String`. It might be removed when this Pod supports Swift 4. The `isNotEmpty` simply return if the `String` is not empty. Though this information can accessed through `!someString.isEmpty`, it helps for a more readable code.
 
@@ -141,9 +141,15 @@ The Core subpod provides access to the most used features during iOS programming
 
 #### AppUtil
 
+#### BundleUtil
+
 #### DateUtil
 
 #### DeviceUtil
+
+#### DocumentsUtil
+
+#### FileUtil
 
 #### KeyboardUtil
 
