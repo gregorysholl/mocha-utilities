@@ -204,7 +204,7 @@ The Network subpod contains classes aimed to help with Internet related processe
 
 #### HttpHelper
 
-`HttpHelper` assists with handling HTTP/HTTPS requests and responses. It is constructed under the Builder pattern. The Builder is an inner class of the `HttpHelper`. The following code demonstrates how to make a simple GET request.
+`HttpHelper` assists with handling HTTP/HTTPS requests and responses. It is constructed under the Builder pattern. The Builder is an inner class of the `HttpHelper` class. The following code demonstrates how to make a simple GET request.
 
 ```swift
 let handler = { (data: Data?, error: Error?) in
@@ -212,24 +212,24 @@ let handler = { (data: Data?, error: Error?) in
 }
 
 //directly get the reference to HttpHelper
-let httpHelper = HttpHelper.Builder().setUrl("http://www.google.com").setCompletionHandler(handler).build()
+let httpHelper = HttpHelper.builder.url("http://www.google.com").completionHandler(handler).build()
 httpHelper.get()
 ```
 
 The following should be taken into consideration before usage:
 
-- The Builder methods `setUrl(_: String)` and `setCompletionHandler(_: @escaping HttpCompletionHandler)` are **mandatory**. If not set, the request will fail or will not return the received response.
+- The Builder methods `url(_: String)` and `completionHandler(_: @escaping HttpCompletionHandler)` are **mandatory** for all requests. If not set, the request will fail or will not return the received response.
 - The type `HttpCompletionHandler` is defined as the closure `(_ data: Data?, _ error: Error?) -> Void`.
 - The request's `contentType` defaults to `application/json`.
 - The request's `timeout` defaults to 60 seconds.
 - The request's `encoding` defaults to UTF-8.
-- Other possible configurations are `setParameters(_: [String: Any])`, `setHeader(_: [String: String])`, `setBasicAuth(username: String, password: String)`, `setCertificate(_: Data?, with: String?)`, `setTrustAll(_: Bool)` and `setHostDomain(_: String)`.
+- Other possible configurations are `parameters(_:)`, `header(_:)`, `basicAuth(username:, password:)`, `certificate(_:, with:)`, `trustAll(_:)` and `hostDomain(_:)`.
 
-To set the Basic Authentication header into your HTTP request, use the `setBasicAuth(username: String, password: String)` method as follows:
+To set the Basic Authentication header into your HTTP request, use the `basicAuth(username: String, password: String)` method as follows:
 
 ```swift
-let httpHelper = HttpHelper.Builder().setUrl(someUrl).setCompletionHandler(someHandler)
-  .setBasicAuth(username: "request_basic_auth_usr", password: "request_basic_auth_pwd").build()
+let httpHelper = HttpHelper.builder.url(someUrl).completionHandler(someHandler)
+  .basicAuth(username: "request_basic_auth_usr", password: "request_basic_auth_pwd").build()
 httpHelper.get()
 ```
 
@@ -241,12 +241,12 @@ func doHttpRequest(needsBasicAuth: Bool, addDefaultHeader: Bool) {
     //handle response information
   }
   //directly get the reference to HttpHelper
-  let builder = HttpHelper.Builder().setUrl("http://www.google.com").setCompletionHandler(handler)
+  let builder = HttpHelper.builder.url("http://www.google.com").completionHandler(handler)
   if needsBasicAuth {
-    builder.setBasicAuth(username: "request_basic_auth_usr", password: "request_basic_auth_pwd")
+    builder.basicAuth(username: "request_basic_auth_usr", password: "request_basic_auth_pwd")
   }
   if addDefaultHeader {
-    builder.setHeader(["default_header_key": "default_header_value"])
+    builder.header(["default_header_key": "default_header_value"])
   }
   ...
   let httpHelper = builder.build()
