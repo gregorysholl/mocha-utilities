@@ -1,6 +1,5 @@
 # MochaUtilities
 
-[![CI Status](http://img.shields.io/travis/gregorysholl/MochaUtilities.svg?style=flat)](https://travis-ci.org/gregorysholl/MochaUtilities)
 [![Version](https://img.shields.io/cocoapods/v/MochaUtilities.svg?style=flat)](http://cocoapods.org/pods/MochaUtilities)
 [![License](https://img.shields.io/cocoapods/l/MochaUtilities.svg?style=flat)](http://cocoapods.org/pods/MochaUtilities)
 [![Platform](https://img.shields.io/cocoapods/p/MochaUtilities.svg?style=flat)](http://cocoapods.org/pods/MochaUtilities)
