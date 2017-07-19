@@ -10,23 +10,17 @@ import UIKit
 
 import AudioToolbox
 
+//MARK: - Actions
+
 public class DeviceUtil {
-    
-    //MARK: - Helpers
-    
-    static private func digitsOnly(of phoneNumber: String) -> String {
-        let numberArray = phoneNumber.components(separatedBy: CharacterSet.decimalDigits.inverted)
-        let number = numberArray.joined(separator: "")
-        return number
-    }
-    
-    //MARK: - Actions
     
     static public func call(_ phoneNumber: String) {
         let number = digitsOnly(of: phoneNumber)
-        if let url = URL(string: "tel://\(number)") {
-            UIApplication.shared.openURL(url)
+        guard number.isNotEmpty, let url = URL(string: "tel://\(number)") else {
+            return
         }
+        
+        UIApplication.shared.openURL(url)
     }
     
     static public func sms(_ phoneNumber: String) {
@@ -50,7 +44,26 @@ public class DeviceUtil {
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
     }
     
-    //MARK: - Information
+    static public func copyToClipboard(_ string: String?) {
+        let pasteboard = UIPasteboard.general
+        pasteboard.string = string
+    }
+}
+
+//MARK: - Helpers
+
+fileprivate extension DeviceUtil {
+    
+    static fileprivate func digitsOnly(of phoneNumber: String) -> String {
+        let numberArray = phoneNumber.components(separatedBy: CharacterSet.decimalDigits.inverted)
+        let number = numberArray.joined(separator: "")
+        return number
+    }
+}
+
+//MARK: - Information
+
+public extension DeviceUtil {
     
     static public var uuid: String {
         return NSUUID().uuidString
@@ -79,15 +92,11 @@ public class DeviceUtil {
         name = name.replacingOccurrences(of: "-", with: "_")
         return name
     }
-    
-    //MARK: - Clipboard
-    
-    static public func copyToClipboard(_ string: String?) {
-        let pasteboard = UIPasteboard.general
-        pasteboard.string = string
-    }
-    
-    //MARK: - Sizes
+}
+
+//MARK: - Sizes
+
+public extension DeviceUtil {
     
     static public var screenSize: CGSize {
         return UIScreen.main.bounds.size
@@ -100,8 +109,11 @@ public class DeviceUtil {
     static public var screenHeight: CGFloat {
         return screenSize.height
     }
-    
-    //MARK: - Scales
+}
+
+//MARK: - Scales
+
+public extension DeviceUtil {
     
     static public var screenScale: CGFloat {
         return UIScreen.main.scale
@@ -127,8 +139,11 @@ public class DeviceUtil {
         }
         return screenScale == 3.0
     }
-    
-    //MARK: - Model
+}
+
+//MARK: - Model
+
+public extension DeviceUtil {
     
     static public var model: String  {
         return UIDevice.current.model

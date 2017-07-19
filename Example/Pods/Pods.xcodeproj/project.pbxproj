@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		0C560B301EECF75600719807 /* CpfUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C560B2F1EECF75600719807 /* CpfUtil.swift */; };
+		0C5ECB7D1F1EC91B00ABCD5A /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5ECB7C1F1EC91B00ABCD5A /* DateUtil.swift */; };
+		0C5ECB801F1ECFD000ABCD5A /* UIColor+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5ECB7F1F1ECFD000ABCD5A /* UIColor+Core.swift */; };
+		0C5ECB861F1ED1DF00ABCD5A /* MochaTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5ECB851F1ED1DF00ABCD5A /* MochaTask.swift */; };
+		0C5ECB881F1ED2D000ABCD5A /* MochaTaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5ECB871F1ED2D000ABCD5A /* MochaTaskManager.swift */; };
+		0C5ECB8A1F1ED5FA00ABCD5A /* NSObject+Tasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5ECB891F1ED5FA00ABCD5A /* NSObject+Tasks.swift */; };
 		0C91DD561EE5C93100F9F19D /* HttpHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C91DD551EE5C93100F9F19D /* HttpHelper.swift */; };
 		0C91DD591EE5C99B00F9F19D /* BrowserUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C91DD581EE5C99B00F9F19D /* BrowserUtil.swift */; };
 		0C91DD5C1EE5D48500F9F19D /* UIColor+Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C91DD5B1EE5D48500F9F19D /* UIColor+Images.swift */; };
@@ -47,6 +52,11 @@
 
 /* Begin PBXFileReference section */
 		0C560B2F1EECF75600719807 /* CpfUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CpfUtil.swift; sourceTree = "<group>"; };
+		0C5ECB7C1F1EC91B00ABCD5A /* DateUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
+		0C5ECB7F1F1ECFD000ABCD5A /* UIColor+Core.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Core.swift"; sourceTree = "<group>"; };
+		0C5ECB851F1ED1DF00ABCD5A /* MochaTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MochaTask.swift; sourceTree = "<group>"; };
+		0C5ECB871F1ED2D000ABCD5A /* MochaTaskManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MochaTaskManager.swift; sourceTree = "<group>"; };
+		0C5ECB891F1ED5FA00ABCD5A /* NSObject+Tasks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Tasks.swift"; sourceTree = "<group>"; };
 		0C91DD551EE5C93100F9F19D /* HttpHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpHelper.swift; sourceTree = "<group>"; };
 		0C91DD581EE5C99B00F9F19D /* BrowserUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowserUtil.swift; sourceTree = "<group>"; };
 		0C91DD5B1EE5D48500F9F19D /* UIColor+Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Images.swift"; sourceTree = "<group>"; };
@@ -124,6 +134,40 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		0C5ECB811F1ED1D100ABCD5A /* Tasks */ = {
+			isa = PBXGroup;
+			children = (
+				0C5ECB821F1ED1D100ABCD5A /* Domain */,
+				0C5ECB831F1ED1D100ABCD5A /* Extensions */,
+				0C5ECB841F1ED1D100ABCD5A /* Helpers */,
+			);
+			path = Tasks;
+			sourceTree = "<group>";
+		};
+		0C5ECB821F1ED1D100ABCD5A /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				0C5ECB851F1ED1DF00ABCD5A /* MochaTask.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		0C5ECB831F1ED1D100ABCD5A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0C5ECB891F1ED5FA00ABCD5A /* NSObject+Tasks.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0C5ECB841F1ED1D100ABCD5A /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				0C5ECB871F1ED2D000ABCD5A /* MochaTaskManager.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		0C91DD421EE5BB8500F9F19D /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -188,6 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				0C91DD6C1EE5DACD00F9F19D /* AppUtil.swift */,
+				0C5ECB7C1F1EC91B00ABCD5A /* DateUtil.swift */,
 				0C91DD651EE5D7DD00F9F19D /* DeviceUtil.swift */,
 				0C91DD6E1EE5DBA600F9F19D /* KeyboardUtil.swift */,
 				0C91DD701EE5DC0F00F9F19D /* NavigationBarUtil.swift */,
@@ -204,6 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				0C91DD681EE5D8C700F9F19D /* String+Core.swift */,
+				0C5ECB7F1F1ECFD000ABCD5A /* UIColor+Core.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -298,6 +344,7 @@
 				0C91DD421EE5BB8500F9F19D /* Core */,
 				0C91DD431EE5BB8500F9F19D /* Images */,
 				0C91DD441EE5BB8500F9F19D /* Network */,
+				0C5ECB811F1ED1D100ABCD5A /* Tasks */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -463,9 +510,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C91DD831EE5E5E600F9F19D /* MochaException.swift in Sources */,
+				0C5ECB7D1F1EC91B00ABCD5A /* DateUtil.swift in Sources */,
+				0C5ECB881F1ED2D000ABCD5A /* MochaTaskManager.swift in Sources */,
 				0C91DD6F1EE5DBA600F9F19D /* KeyboardUtil.swift in Sources */,
 				0C91DD6D1EE5DACD00F9F19D /* AppUtil.swift in Sources */,
 				0C91DD781EE5DE3D00F9F19D /* ImageUtil.swift in Sources */,
+				0C5ECB861F1ED1DF00ABCD5A /* MochaTask.swift in Sources */,
+				0C5ECB801F1ECFD000ABCD5A /* UIColor+Core.swift in Sources */,
 				0C91DD851EE5E5E600F9F19D /* MochaLogger.swift in Sources */,
 				0C91DD661EE5D7DD00F9F19D /* DeviceUtil.swift in Sources */,
 				0C91DD6B1EE5DA4100F9F19D /* NumberUtil.swift in Sources */,
@@ -480,6 +531,7 @@
 				0C91DD591EE5C99B00F9F19D /* BrowserUtil.swift in Sources */,
 				0C91DD5C1EE5D48500F9F19D /* UIColor+Images.swift in Sources */,
 				0C91DD7A1EE5DE7400F9F19D /* PrintScreenUtil.swift in Sources */,
+				0C5ECB8A1F1ED5FA00ABCD5A /* NSObject+Tasks.swift in Sources */,
 				0C560B301EECF75600719807 /* CpfUtil.swift in Sources */,
 				0C91DD711EE5DC0F00F9F19D /* NavigationBarUtil.swift in Sources */,
 				0C91DD601EE5D5FD00F9F19D /* Preferences.swift in Sources */,

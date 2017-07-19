@@ -8,31 +8,42 @@
 
 import UIKit
 
+//MARK: - Declaration
+
 public final class MochaLogger {
     
     //MARK: - Variables
     
-    static private let shared = MochaLogger()
+    static fileprivate let shared = MochaLogger()
     
-    private var tag : String?
+    fileprivate var tag : String?
     
     //MARK: - Inits
     
     private init() {
         tag = "Mocha"
     }
-    
-    //MARK: - Tag Formatting
+}
+
+//MARK: - Tag Formatting
+
+public extension MochaLogger {
     
     static public func changeTag(to newTag: String) {
+        if newTag.isEmpty {
+            return
+        }
         shared.tag = newTag
     }
     
     static public func removeTag() {
         shared.tag = nil
     }
-    
-    //MARK: - Logging
+}
+
+//MARK: - Logging
+
+public extension MochaLogger {
     
     static public func log(_ nullableMessage: String?) {
         guard let message = nullableMessage else {
@@ -44,8 +55,6 @@ public final class MochaLogger {
     private func log(_ message: String) {
         print(getFormattedMessage(message))
     }
-    
-    //MARK: - Helpers
     
     private func getFormattedMessage(_ message: String) -> String {
         guard let tag = self.tag else {

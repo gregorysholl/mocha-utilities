@@ -42,4 +42,11 @@ class BasicStringTest: XCTestCase {
         
         XCTAssertTrue(nonEmptyString.isNotEmpty)
     }
+    
+    func testInsetiveString() {
+        let portugueseWord = "coração"
+        let weirdlyCasePortugueseWord = "CoRaÇãO"
+        
+        XCTAssertTrue(portugueseWord.equalsIgnoreCase(weirdlyCasePortugueseWord))
+    }
 }

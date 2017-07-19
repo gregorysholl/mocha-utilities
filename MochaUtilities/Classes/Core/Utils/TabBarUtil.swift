@@ -8,16 +8,15 @@
 
 import UIKit
 
+//MARK: - Information
+
 public class TabBarUtil {
-    
-    //MARK: - Get
     
     ///Returns the `UITabBar` of the given `UIViewController` if possible, or `nil` otherwise.
     static public func tabBar(for viewController: UIViewController) -> UITabBar? {
         guard let tabBarController = viewController.tabBarController else {
             return nil
         }
-        
         return tabBarController.tabBar
     }
     
@@ -25,12 +24,14 @@ public class TabBarUtil {
         guard let tabBar = tabBar(for: viewController) else {
             return 0.0
         }
-        
         let height = tabBar.frame.size.height
         return height
     }
-    
-    //MARK: - Layout
+}
+
+//MARK: - Layout
+
+public extension TabBarUtil {
     
     static public func setTextColor(_ color: UIColor, for state: UIControlState) {
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: color], for: state)

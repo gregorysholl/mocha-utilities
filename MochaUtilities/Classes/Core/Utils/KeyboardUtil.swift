@@ -8,9 +8,9 @@
 
 import UIKit
 
+//MARK: - Show & Hide
+
 public class KeyboardUtil {
-    
-    //MARK: - Show
     
     static public func show(at view: UIKeyInput?) {
         guard let view = view as? UIView else {
@@ -33,8 +33,11 @@ public class KeyboardUtil {
         
         view.endEditing(true)
     }
-    
-    //MARK: - Sizes
+}
+
+//MARK: - Sizes
+
+public extension KeyboardUtil {
     
     static public func size(from notification: Notification) -> CGSize {
         guard let userInfo = notification.userInfo else {

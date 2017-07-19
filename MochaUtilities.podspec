@@ -66,4 +66,9 @@ MochaUtilities is designed to assist developers with common problems/needs that 
     network.source_files = 'MochaUtilities/Classes/Network/**/*'
   end
 
+  s.subspec 'Tasks' do |tasks|
+    tasks.dependency 'MochaUtilities/Basic'
+    tasks.source_files = 'MochaUtilities/Classes/Tasks/**/*'
+  end
+
 end

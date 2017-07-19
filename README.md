@@ -20,6 +20,8 @@ MochaUtilities is library written in Swift intended to help iOS developers durin
 
 MochaUtilities is designed to help iOS developers in as many common needs as possible. During the construction of an iOS project, developers often need the same boilerplate code. This library aims to reduce such code. It does not use any other library from CocoaPods as dependency, since its purpose is to help with more general coding problems.
 
+Please note that to use any functionality of MochaUtilities, a `import MochaUtilities` **must** be included at the file's header.
+
 Most (if not all) public methods from the Util classes are static. In case it isn't, it will be explicitly described so here.
 
 MochaUtilities is divided in subpods which are listed bellow:
@@ -28,6 +30,7 @@ MochaUtilities is divided in subpods which are listed bellow:
 - [Core](#core)
 - [Images](#images)
 - [Network](#network)
+- [Tasks](#tasks)
 
 ### Basic
 
@@ -37,9 +40,64 @@ The Basic pod contains, as the name implies, the most basic classes and extensio
 
 The `MochaException` enum type is used internally in the MochaUtilities to be more concise in what issue might have occurred. It is associated to the Swift's `Error` type, so it can be thrown as an error.
 
+`MochaException` has the following possible values:
+
+- ioException: Used whenever the HttpHelper (from [Network](#network) module) has encountered a problem, except for the error specified in the appSecurityTransportException described bellow.
+- fileNotFoundException: Used whenever the given file reference or path was not found inside the application's bundle or documents. Mainly used in the FileUtil class (from [Core](#core) module).
+- appSecurityTransportException: Used whenever HttpHelper (from [Network](#network) module) requests data but access to the given URL is not permitted through the project's App Security Transport value in Info.plist.
+- notImplemented: Used whenever a prior method or class inheritance is required but was not implemented.
+- domainException: Used whenever any value or convertion inside `MochaUtilities` is invalid. This specific value might be removed for version 1.0.
+- genericException: Used whenever an unespecified error occurs.
+
 #### String+Basic
 
+An extension for the `String` class that will be used throughout the `MochaUtilities` implementations. It consists of the get-only properties `length` and `isNotEmpty`, and the method `equalsIgnoreCase(_:).`
+
+The `length` property returns, as expected, the length of the `String`. It might be removed when this Pod supports Swift 4. The `isNotEmpty` simply return if the `String` is not empty. Though this information can accessed through `!someString.isEmpty`, it helps for a more readable code.
+
+```swift
+let lenth = "my_length".length
+//length = 9
+
+"".isNotEmpty
+//false
+
+"Non Empty String".isNotEmpty
+//true
+```
+
+The `equalsIgnoreCase(_:)` method compares the `String` itself to another given `String` without taking cases into consideration. This method can also compare non-English words.
+
+```swift
+let someText = "lorem ipsum"
+let otherText = "Lorem Ipsum"
+print(someText.equalsIgnoreCase(otherText))
+//prints true since both Strings are essentially the same except one is capitalized
+
+let heart = "coração"
+let hearts = "corações"
+print(heart.equalsIgnoreCase(hearts))
+//prints false since both Strings varies at the end
+```
+
 #### MochaLogger
+
+The default logging class used by MochaUtilities. It uses the Singleton pattern. Its public methods are `changeTag(to:)`, `removeTag()` and `log(_:)`. The default tag used is `Mocha`.
+
+Whenever a message is logged through `MochaLogger`, it adds a prefix `[<given_tag>]`, if and only if the `removeTag()` was not called. Therefore, by default if it logs `message`, the console will print `[Mocha] message`.
+
+```swift
+MochaLogger.log("This is a test.")
+//prints [Mocha] This is a test.
+
+MochaLogger.changeTag(to: "New Tag")
+MochaLogger.log("Trying out a new tag.")
+//prints [New Tag] Trying out a new tag.
+
+MochaLogger.removeTag()
+MochaLogger.log("Works just like print.")
+//prints Works just like print.
+```
 
 ### Core
 
@@ -51,6 +109,8 @@ The Core pod provides access to the most used features during iOS programming.
 
 #### AppUtil
 
+#### DateUtil
+
 #### DeviceUtil
 
 #### KeyboardUtil
@@ -59,45 +119,25 @@ The Core pod provides access to the most used features during iOS programming.
 
 #### NumberUtil
 
-The `NumberUtil` class helps to work with numeric values in `String?` (optional String) format. It can convert to specific number types or check if the given `String?` can be represented as a number.
+The `NumberUtil` class helps to work with numeric values in `String?` (optional String) format. It can convert to specific number types.
 
 For conversion, the methods available are `toInteger(_:, with:)`, `toFloat(_:, with:)` and `toDouble(_:, with:)` and `toNumber(_:, with:)`. In case the given `String?` is nil or cannot be converted to the wanted number type, a default value will be returned instead. If the default value is not passed, it will be zero by default.
 
 The example bellow show how the `toInteger(_:, with:)` method works. The other methods described above work similarly to their types.
 
 ```swift
-import MochaUtilities
+let integerString = "123"
+let integer = NumberUtil.toInteger(integerString)
+//integer is an Int with value 123
 
-func convertStrings() {
-  let integerString = "123"
-  let integer = NumberUtil.toInteger(integerString)
-  //integer is an Int with value 123
-  
-  let nonIntegerString = "4a5"
-  let defaultValue = NumberUtil.toInteger(nonIntegerString)
-  //since no extra argument was given and nonIntegerString cannot be converted to an integer,
-  //defaultValue will be 0 (zero)
-  
-  let anotherDefaultValue = NumberUtil.toInteger(nonIntegerString, with: -1)
-  //since nonIntegerString cannot be converted to an integer,
-  //anotherDefaultValue will be -1
-}
-```
+let nonIntegerString = "4a5"
+let defaultValue = NumberUtil.toInteger(nonIntegerString)
+//since no extra argument was given and nonIntegerString cannot be converted to an integer,
+//defaultValue will be 0 (zero)
 
-Another method available is `isNumber(_:)` which return a boolean if the given `String?` can be converted to a number type.
-
-```swift
-import MochaUtilities
-
-func checkNumberStrings() {
-  let numberString = "3.1415"
-  print(NumberUtil.isNumber(numberString))
-  //prints true
-  
-  let nonNumberString = "3.1415.pi"
-  print(NumberUtil.isNumber(nonNumberString))
-  //prints false
-}
+let anotherDefaultValue = NumberUtil.toInteger(nonIntegerString, with: -1)
+//since nonIntegerString cannot be converted to an integer,
+//anotherDefaultValue will be -1
 ```
 
 #### OrientationUtil
@@ -127,16 +167,13 @@ The Network pod contains classes aimed to help with Internet related processes, 
 `HttpHelper` assists with handling HTTP/HTTPS requests and responses. It is constructed under the Builder pattern. The Builder is an inner class of the `HttpHelper`. The following code demonstrates how to make a simple GET request.
 
 ```swift
-import MochaUtilities
-
-func getSomeData() {
-  let handler = { (data: Data?, error: Error?) in
-    //handle response information
-  }
-  //directly get the reference to HttpHelper
-  let httpHelper = HttpHelper.Builder().setUrl("http://www.google.com").setCompletionHandler(handler).build()
-  httpHelper.get()
+let handler = { (data: Data?, error: Error?) in
+//handle response information
 }
+
+//directly get the reference to HttpHelper
+let httpHelper = HttpHelper.Builder().setUrl("http://www.google.com").setCompletionHandler(handler).build()
+httpHelper.get()
 ```
 
 The following should be taken into consideration before usage:
@@ -151,19 +188,14 @@ The following should be taken into consideration before usage:
 To set the Basic Authentication header into your HTTP request, use the `setBasicAuth(username: String, password: String)` method as follows:
 
 ```swift
-import MochaUtilities
-
-func getDataWithBasicAuth() {
-  let httpHelper = HttpHelper.Builder().setUrl(someUrl).setCompletionHandler(someHandler).setBasicAuth(username: "request_basic_auth_usr", password: "request_basic_auth_pwd").build()
-  httpHelper.get()
-}
+let httpHelper = HttpHelper.Builder().setUrl(someUrl).setCompletionHandler(someHandler)
+  .setBasicAuth(username: "request_basic_auth_usr", password: "request_basic_auth_pwd").build()
+httpHelper.get()
 ```
 
 If necessary, retain the reference to the `HttpHelper.Builder` class before using the `build()` method. It might become necessary to configure the request according to some parameters. For example:
 
 ```swift
-import MochaUtilities
-
 func doHttpRequest(needsBasicAuth: Bool, addDefaultHeader: Bool) {
   let handler = { (data: Data?, error: Error?) in
     //handle response information
@@ -189,13 +221,21 @@ More examples will be included as the documentation grows.
 To open the default browser of the device, use the `openUrl(_: String?)`. If the given String is nil or is not valid, no action is taken.
 
 ```swift
-import MochaUtilities
-
 @IBAction func onClickOpenBrowser(sender: Any?) {
   let url = "http..."
   BrowserUtil.openUrl(url)
 }
 ```
+
+### Tasks
+
+The Tasks module contains classes which enable the use of background threads to execute time consuming tasks.
+
+#### MochaTask
+
+#### NSObject+Tasks
+
+#### MochaTaskManager
 
 ## Requirements
 

@@ -8,15 +8,18 @@
 
 import UIKit
 
+//MARK: - Register
+
 public class NotificationUtil {
-    
-    //MARK: - Register
     
     static public func registerName(_ name: Notification.Name, with selector: Selector, for observer: Any) {
         NotificationCenter.default.addObserver(observer, selector: selector, name: name, object: nil)
     }
-    
-    //MARK: - Unregister
+}
+
+//MARK: - Unregister
+
+public extension NotificationUtil {
     
     static public func unregisterName(_ name: Notification.Name, from observer: Any) {
         NotificationCenter.default.removeObserver(observer, name: name, object: nil)
@@ -25,8 +28,11 @@ public class NotificationUtil {
     static public func unregisterAllNotifications(from observer: Any) {
         NotificationCenter.default.removeObserver(observer)
     }
-    
-    //MARK: - Post
+}
+
+//MARK: - Post
+
+public extension NotificationUtil {
     
     static public func post(_ name: Notification.Name, with object: Any? = nil) {
         NotificationCenter.default.post(name: name, object: object)

@@ -8,9 +8,9 @@
 
 import Foundation
 
+//MARK: - Get-only Properties
+
 public extension String {
-    
-    //MARK: - Variables
     
     public var length: Int {
         return characters.count
@@ -19,8 +19,11 @@ public extension String {
     public var isNotEmpty: Bool {
         return !isEmpty
     }
-    
-    //MARK: - Equals
+}
+
+//MARK: - Equals
+
+public extension String {
     
     public func equalsIgnoreCase(_ otherString: String) -> Bool {
         return localizedCaseInsensitiveCompare(otherString) == .orderedSame

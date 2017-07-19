@@ -8,35 +8,38 @@
 
 import UIKit
 
+//MARK: - Get
+
 public class NavigationBarUtil {
-    
-    //MARK: - Get
     
     static public func navigationBar(for viewController: UIViewController) -> UINavigationBar? {
         guard let navigationController = viewController.navigationController else {
             return nil
         }
-        
         return navigationController.navigationBar
     }
-    
-    //MARK: - Information
+}
+
+//MARK: - Information
+
+public extension NavigationBarUtil {
     
     static public func height(for viewController: UIViewController) -> CGFloat {
         guard let navigationBar = navigationBar(for: viewController) else {
             return 0
         }
-        
         return navigationBar.frame.height
     }
-    
-    //MARK: - Show & Hide
+}
+
+//MARK: - Show & Hide
+
+public extension NavigationBarUtil {
     
     static public func show(_ viewController: UIViewController) {
         guard let navigationBar = navigationBar(for: viewController) else {
             return
         }
-        
         navigationBar.isHidden = false
     }
     
@@ -44,7 +47,6 @@ public class NavigationBarUtil {
         guard let navigationBar = navigationBar(for: viewController) else {
             return
         }
-        
         navigationBar.isHidden = true
     }
     
@@ -52,7 +54,6 @@ public class NavigationBarUtil {
         guard let navigationBar = navigationBar(for: viewController) else {
             return
         }
-        
         navigationBar.setBackgroundImage(nil, for: .default)
         navigationBar.shadowImage = nil
     }
@@ -61,18 +62,19 @@ public class NavigationBarUtil {
         guard let navigationBar = navigationBar(for: viewController) else {
             return
         }
-        
         navigationBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
         navigationBar.shadowImage = UIImage()
     }
-    
-    //MARK: - Layout
+}
+
+//MARK: - Layout
+
+public extension NavigationBarUtil {
     
     static public func setTranslucent(for viewController: UIViewController) {
         guard let navigationBar = navigationBar(for: viewController) else {
             return
         }
-        
         navigationBar.isTranslucent = true
         navigationBar.isOpaque = false
     }
@@ -81,7 +83,6 @@ public class NavigationBarUtil {
         guard let navigationBar = navigationBar(for: viewController) else {
             return
         }
-        
         navigationBar.isTranslucent = false
         navigationBar.isOpaque = true
     }
@@ -98,7 +99,6 @@ public class NavigationBarUtil {
         guard let navigationBar = navigationBar(for: viewController) else {
             return
         }
-        
         navigationBar.titleTextAttributes = titleAttributes
     }
     
@@ -106,7 +106,6 @@ public class NavigationBarUtil {
         guard let navigationBar = navigationBar(for: viewController) else {
             return
         }
-        
         navigationBar.tintColor = color
     }
     
@@ -114,11 +113,32 @@ public class NavigationBarUtil {
         guard let navigationBar = navigationBar(for: viewController) else {
             return
         }
-        
         navigationBar.barTintColor = color
     }
+}
+
+//MARK: - Bar Button
+
+fileprivate extension NavigationBarUtil {
     
-    //MARK: - Back Button
+    static fileprivate func barButton(with object: Any?, action: Selector, for target: UIViewController) -> UIBarButtonItem? {
+        var barButton : UIBarButtonItem?
+        
+        if let title = object as? String {
+            barButton = UIBarButtonItem(title: title, style: .plain, target: target, action: action)
+        } else if let image = object as? UIImage {
+            barButton = UIBarButtonItem(image: image, style: .plain, target: target, action: action)
+        } else if let systemItem = object as? UIBarButtonSystemItem {
+            barButton = UIBarButtonItem(barButtonSystemItem: systemItem, target: target, action: action)
+        }
+        
+        return barButton
+    }
+}
+
+//MARK: - Back Button
+
+public extension NavigationBarUtil {
     
     static public func setBackButton(withString title: String, for viewController: UIViewController) {
         let backButton = UIBarButtonItem(title: title, style: .plain, target: nil, action: nil)
@@ -135,24 +155,11 @@ public class NavigationBarUtil {
         
         viewController.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
-    
-    //MARK: - Bar Button
-    
-    static private func barButton(with object: Any?, action: Selector, for target: UIViewController) -> UIBarButtonItem? {
-        var barButton : UIBarButtonItem?
-        
-        if let title = object as? String {
-            barButton = UIBarButtonItem(title: title, style: .plain, target: target, action: action)
-        } else if let image = object as? UIImage {
-            barButton = UIBarButtonItem(image: image, style: .plain, target: target, action: action)
-        } else if let systemItem = object as? UIBarButtonSystemItem {
-            barButton = UIBarButtonItem(barButtonSystemItem: systemItem, target: target, action: action)
-        }
-        
-        return barButton
-    }
-    
-    //MARK: - Left Button
+}
+
+//MARK: - Left Button
+
+public extension NavigationBarUtil {
     
     static public func setLeftButton(with object: Any?, andAction action: Selector, for target: UIViewController) {
         guard let leftButton = barButton(with: object, action: action, for: target) else {
@@ -189,8 +196,11 @@ public class NavigationBarUtil {
         
         viewController.navigationItem.leftBarButtonItem = leftButton
     }
-    
-    //MARK: - Right Button
+}
+
+//MARK: - Right Button
+
+public extension NavigationBarUtil {
     
     static public func setRightButton(with object: Any?, andAction action: Selector, for target: UIViewController) {
         guard let rightButton = barButton(with: object, action: action, for: target) else {
