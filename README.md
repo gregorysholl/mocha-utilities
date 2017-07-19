@@ -34,7 +34,7 @@ MochaUtilities is divided in subpods which are listed bellow:
 
 ### Basic
 
-The Basic pod contains, as the name implies, the most basic classes and extensions that not only help the users as well as those building the library. This specific pod can but should not be used on its own since it does not provide much to users.
+The Basic subpod contains, as the name implies, the most basic classes and extensions that not only help the users as well as those building the library. This specific pod can but should not be used on its own since it does not provide much to users.
 
 #### MochaException
 
@@ -101,7 +101,7 @@ MochaLogger.log("Works just like print.")
 
 ### Core
 
-The Core pod provides access to the most used features during iOS programming.
+The Core subpod provides access to the most used features during iOS programming.
 
 #### String+Core
 
@@ -150,7 +150,7 @@ let anotherDefaultValue = NumberUtil.toInteger(nonIntegerString, with: -1)
 
 ### Images
 
-The Images pod helps with a few image related methods.
+The Images subpod helps with a few image related problems.
 
 #### UIColor+Image
 
@@ -160,7 +160,7 @@ The Images pod helps with a few image related methods.
 
 ### Network
 
-The Network pod contains classes aimed to help with Internet related processes, such as HTTP requests.
+The Network subpod contains classes aimed to help with Internet related processes, such as HTTP requests.
 
 #### Http Helper
 
@@ -229,7 +229,7 @@ To open the default browser of the device, use the `openUrl(_: String?)`. If the
 
 ### Tasks
 
-The Tasks module contains classes which enable the use of background threads to execute time consuming tasks.
+The Tasks subpod contains classes which enable the use of background threads to execute time consuming tasks.
 
 #### MochaTask
 
