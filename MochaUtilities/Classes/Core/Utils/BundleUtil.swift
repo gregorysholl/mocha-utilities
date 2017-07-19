@@ -25,3 +25,20 @@ public class BundleUtil {
     }
 }
 
+public extension BundleUtil {
+    
+    public func path(of filename: String?, ofType type: String?) throws -> String {
+        guard let path = bundle.path(forResource: filename, ofType: type) else {
+            throw MochaException.fileNotFoundException
+        }
+        return path
+    }
+    
+    public func file(_ filename: String?, ofType type: String?) throws -> Data {
+        let path = try self.path(of: filename, ofType: type)
+        guard let fileData = try? Data(contentsOf: URL(fileURLWithPath: path)) else {
+            throw MochaException.fileNotFoundException
+        }
+        return fileData
+    }
+}
