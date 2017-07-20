@@ -162,3 +162,20 @@ public extension DocumentsUtil {
         }
     }
 }
+
+//MARK: - Directories
+
+public extension DocumentsUtil {
+    
+    public func createDirectories(atPath path: String) throws {
+        guard !fileExists(path) else {
+            return
+        }
+        
+        do {
+            try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
+        } catch {
+            throw MochaException.genericException(message: "")
+        }
+    }
+}
