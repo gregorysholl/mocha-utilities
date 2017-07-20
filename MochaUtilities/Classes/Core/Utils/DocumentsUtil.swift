@@ -134,3 +134,31 @@ public extension DocumentsUtil {
         try write(newText, atPath: path)
     }
 }
+
+//MARK: - Remove
+
+public extension DocumentsUtil {
+    
+    public func remove(atPath path: String) throws {
+        do {
+            try FileManager.default.removeItem(atPath: path)
+        } catch {
+            throw MochaException.genericException(message: "")
+        }
+    }
+    
+    public func remove(_ filename: String?) throws {
+        let path = try self.path(of: filename)
+        try remove(atPath: path)
+    }
+    
+    public func removeAll(in filenames: [String]) throws {
+        if filenames.isEmpty {
+            throw MochaException.fileNotFoundException
+        }
+        
+        for filename in filenames {
+            try remove(filename)
+        }
+    }
+}
