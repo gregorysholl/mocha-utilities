@@ -53,3 +53,20 @@ public extension DocumentsUtil {
         return FileManager.default.fileExists(atPath: path)
     }
 }
+
+//MARK: - Get
+
+public extension DocumentsUtil {
+    
+    public func file(_ filename: String?) throws -> Data {
+        let path = try self.path(of: filename)
+        return try file(atPath: path)
+    }
+    
+    public func file(atPath path: String) throws -> Data {
+        guard let data = try? Data(contentsOf: URL(fileURLWithPath: path)) else {
+            throw MochaException.genericException(message: "")
+        }
+        return data
+    }
+}
