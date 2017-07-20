@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MochaUtilities'
-  s.version          = '0.4.0'
+  s.version          = '0.4.1'
   s.summary          = 'A framework designed to deal with some common iOS needs.'
 
 # This description is used to generate tags and improve search results.
