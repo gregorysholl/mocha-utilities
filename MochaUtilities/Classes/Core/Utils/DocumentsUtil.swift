@@ -12,7 +12,7 @@ import UIKit
 
 public class DocumentsUtil {
     
-    private init() {}
+    internal init() {}
 }
 
 //MARK: - Path
