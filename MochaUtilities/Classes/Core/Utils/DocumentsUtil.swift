@@ -70,3 +70,21 @@ public extension DocumentsUtil {
         return data
     }
 }
+
+//MARK: - Read
+
+public extension DocumentsUtil {
+    
+    public func read(_ filename: String, withEncoding encoding: String.Encoding = .utf8) throws -> String {
+        let path = try self.path(of: filename, with: .allDomainsMask)
+        return try read(atPath: path, withEncoding: encoding)
+    }
+    
+    public func read(atPath path: String, withEncoding encoding: String.Encoding = .utf8) throws -> String {
+        do {
+            return try String(contentsOfFile: path, encoding: encoding)
+        } catch {
+            throw MochaException.fileNotFoundException
+        }
+    }
+}
