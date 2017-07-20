@@ -106,3 +106,31 @@ public extension DocumentsUtil {
         }
     }
 }
+
+//MARK: - Append
+
+public extension DocumentsUtil {
+    
+    public func append(_ text: String, in filename: String?, ofType type: String?) throws {
+        guard let filename = filename, filename.isNotEmpty else {
+            throw MochaException.fileNotFoundException
+        }
+        
+        var fullFileName = ""
+        if let type = type {
+            fullFileName = "\(filename).\(type)"
+        } else {
+            fullFileName = filename
+        }
+        
+        let currentText = try read(fullFileName)
+        let newText = "\(currentText)\n\(text)"
+        try write(newText, in: fullFileName)
+    }
+    
+    public func append(_ text: String, atPath path: String) throws {
+        let currentText = try read(atPath: path)
+        let newText = "\(currentText)\n\(text)"
+        try write(newText, atPath: path)
+    }
+}
