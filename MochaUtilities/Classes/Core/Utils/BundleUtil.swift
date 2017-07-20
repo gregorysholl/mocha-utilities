@@ -52,7 +52,7 @@ public extension BundleUtil {
     }
     
     public func resourcePath(of filename: String) throws -> String {
-        guard let resourcePath = Bundle.main.resourcePath else {
+        guard let resourcePath = bundle.resourcePath else {
             throw MochaException.fileNotFoundException
         }
         return resourcePath.appendingPathComponent(filename)
