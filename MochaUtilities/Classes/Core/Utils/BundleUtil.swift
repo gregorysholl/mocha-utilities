@@ -8,6 +8,8 @@
 
 import UIKit
 
+//MARK: - Variables & Accessors
+
 public class BundleUtil {
     
     fileprivate var bundle: Bundle!
@@ -25,6 +27,21 @@ public class BundleUtil {
     }
 }
 
+//MARK: - File
+
+public extension BundleUtil {
+    
+    public func file(_ filename: String?, ofType type: String?) throws -> Data {
+        let path = try self.path(of: filename, ofType: type)
+        guard let fileData = try? Data(contentsOf: URL(fileURLWithPath: path)) else {
+            throw MochaException.fileNotFoundException
+        }
+        return fileData
+    }
+}
+
+//MARK: - Path
+
 public extension BundleUtil {
     
     public func path(of filename: String?, ofType type: String?) throws -> String {
@@ -34,11 +51,28 @@ public extension BundleUtil {
         return path
     }
     
-    public func file(_ filename: String?, ofType type: String?) throws -> Data {
-        let path = try self.path(of: filename, ofType: type)
-        guard let fileData = try? Data(contentsOf: URL(fileURLWithPath: path)) else {
+    public func resourcePath(of filename: String) throws -> String {
+        guard let resourcePath = Bundle.main.resourcePath else {
             throw MochaException.fileNotFoundException
         }
-        return fileData
+        return resourcePath.appendingPathComponent(filename)
+    }
+}
+
+//MARK: - Read
+
+public extension BundleUtil {
+    
+    public func read(_ filename: String?, ofType type: String?, withEncoding encoding: String.Encoding = .utf8) throws -> String {
+        let path = try self.path(of: filename, ofType: type)
+        return try read(atPath: path)
+    }
+    
+    public func read(atPath filePath: String, withEncoding encoding: String.Encoding = .utf8) throws -> String {
+        do {
+            return try String(contentsOfFile: filePath, encoding: encoding)
+        } catch {
+            throw MochaException.genericException(message: "")
+        }
     }
 }
