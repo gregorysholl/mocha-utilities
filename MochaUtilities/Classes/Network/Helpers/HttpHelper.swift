@@ -308,7 +308,7 @@ public extension HttpHelper {
         
         private var helper : HttpHelper
         
-        internal init() {
+        fileprivate init() {
             helper = HttpHelper()
         }
         
