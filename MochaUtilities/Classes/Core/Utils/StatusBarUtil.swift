@@ -8,7 +8,7 @@
 
 import UIKit
 
-//MARK: - Sizes
+// MARK: - Sizes
 
 public class StatusBarUtil {
     
@@ -17,7 +17,7 @@ public class StatusBarUtil {
     }
 }
 
-//MARK: - Show & Hide
+// MARK: - Show & Hide
 
 public extension StatusBarUtil {
     
@@ -34,7 +34,7 @@ public extension StatusBarUtil {
     }
 }
 
-//MARK: - Text Color
+// MARK: - Text Color
 
 public extension StatusBarUtil {
     
@@ -47,7 +47,7 @@ public extension StatusBarUtil {
     }
 }
 
-//MARK: - Background Color
+// MARK: - Background Color
 
 public extension StatusBarUtil {
     

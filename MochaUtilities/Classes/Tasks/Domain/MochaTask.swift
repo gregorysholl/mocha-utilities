@@ -12,11 +12,11 @@ public typealias TaskBlock = () -> Void
 public typealias ThrowableTaskBlock = () throws -> Void
 public typealias ErrorTaskBlock = (_ error: Error) -> Void
 
-//MARK: -
+// MARK: -
 
 public class MochaTask: NSObject {
     
-    //MARK: Variables
+    // MARK: Variables
     
     var preExecute  : TaskBlock?
     var execute     : ThrowableTaskBlock!
@@ -26,7 +26,7 @@ public class MochaTask: NSObject {
     
     var operation   : BlockOperation!
     
-    //MARK: Inits
+    // MARK: Inits
     
     override public init() {
         super.init()

@@ -10,7 +10,7 @@ import UIKit
 
 public extension UIColor {
     
-    //MARK: - Generate Image
+    // MARK: - Generate Image
     
     class func imageWith(color: UIColor) -> UIImage? {
         let rect = CGRect(x: 0, y: 0, width: 1, height: 1)

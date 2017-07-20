@@ -8,7 +8,7 @@
 
 import UIKit
 
-//MARK: - Get
+// MARK: - Get
 
 public class NavigationBarUtil {
     
@@ -20,7 +20,7 @@ public class NavigationBarUtil {
     }
 }
 
-//MARK: - Information
+// MARK: - Information
 
 public extension NavigationBarUtil {
     
@@ -32,7 +32,7 @@ public extension NavigationBarUtil {
     }
 }
 
-//MARK: - Show & Hide
+// MARK: - Show & Hide
 
 public extension NavigationBarUtil {
     
@@ -67,7 +67,7 @@ public extension NavigationBarUtil {
     }
 }
 
-//MARK: - Layout
+// MARK: - Layout
 
 public extension NavigationBarUtil {
     
@@ -117,7 +117,7 @@ public extension NavigationBarUtil {
     }
 }
 
-//MARK: - Bar Button
+// MARK: - Bar Button
 
 fileprivate extension NavigationBarUtil {
     
@@ -136,7 +136,7 @@ fileprivate extension NavigationBarUtil {
     }
 }
 
-//MARK: - Back Button
+// MARK: - Back Button
 
 public extension NavigationBarUtil {
     
@@ -157,7 +157,7 @@ public extension NavigationBarUtil {
     }
 }
 
-//MARK: - Left Button
+// MARK: - Left Button
 
 public extension NavigationBarUtil {
     
@@ -198,7 +198,7 @@ public extension NavigationBarUtil {
     }
 }
 
-//MARK: - Right Button
+// MARK: - Right Button
 
 public extension NavigationBarUtil {
     

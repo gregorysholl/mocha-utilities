@@ -8,11 +8,11 @@
 
 import UIKit
 
-//MARK: - Convertions
+// MARK: - Convertions
 
 public class NumberUtil {
     
-    //MARK: Int
+    // MARK: Int
     
     static public func toInteger(_ string: String?, with defaultValue: Int = 0) -> Int {
         guard let s = string, s.isNotEmpty else {
@@ -26,7 +26,7 @@ public class NumberUtil {
         return intString
     }
     
-    //MARK: Float
+    // MARK: Float
     
     static public func toFloat(_ string: String?, with defaultValue: Float = 0.0) -> Float {
         guard let s = string, s.isNotEmpty else {
@@ -40,7 +40,7 @@ public class NumberUtil {
         return floatString
     }
     
-    //MARK: Double
+    // MARK: Double
     
     static public func toDouble(_ string: String?, with defaultValue: Double = 0.0) -> Double {
         guard let s = string, s.isNotEmpty else {
@@ -54,7 +54,7 @@ public class NumberUtil {
         return doubleString
     }
     
-    //MARK: Number
+    // MARK: Number
     
     static public func toNumber(_ string: String?, with defaultValue: Double = 0.0) -> NSNumber {
         guard let s = string, s.isNotEmpty else {

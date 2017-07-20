@@ -10,7 +10,7 @@ import UIKit
 
 import AudioToolbox
 
-//MARK: - Actions
+// MARK: - Actions
 
 public class DeviceUtil {
     
@@ -50,7 +50,7 @@ public class DeviceUtil {
     }
 }
 
-//MARK: - Helpers
+// MARK: - Helpers
 
 fileprivate extension DeviceUtil {
     
@@ -61,7 +61,7 @@ fileprivate extension DeviceUtil {
     }
 }
 
-//MARK: - Information
+// MARK: - Information
 
 public extension DeviceUtil {
     
@@ -94,7 +94,7 @@ public extension DeviceUtil {
     }
 }
 
-//MARK: - Sizes
+// MARK: - Sizes
 
 public extension DeviceUtil {
     
@@ -111,7 +111,7 @@ public extension DeviceUtil {
     }
 }
 
-//MARK: - Scales
+// MARK: - Scales
 
 public extension DeviceUtil {
     
@@ -141,7 +141,7 @@ public extension DeviceUtil {
     }
 }
 
-//MARK: - Model
+// MARK: - Model
 
 public extension DeviceUtil {
     

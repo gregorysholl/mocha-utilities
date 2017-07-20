@@ -8,7 +8,7 @@
 
 import UIKit
 
-//MARK: - Show & Hide
+// MARK: - Show & Hide
 
 public class KeyboardUtil {
     
@@ -35,7 +35,7 @@ public class KeyboardUtil {
     }
 }
 
-//MARK: - Sizes
+// MARK: - Sizes
 
 public extension KeyboardUtil {
     

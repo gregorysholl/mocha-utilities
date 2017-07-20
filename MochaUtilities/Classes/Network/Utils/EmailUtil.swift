@@ -11,24 +11,24 @@ import UIKit
 import MobileCoreServices
 import MessageUI
 
-//MARK: - Main
+// MARK: - Main
 
 public class EmailUtil: NSObject {
     
-    //MARK: Variables
+    // MARK: Variables
     
     static fileprivate var instance : EmailUtil?
     
     fileprivate var delegate : EmailUtilDelegate?
     
-    //MARK: Inits
+    // MARK: Inits
     
     fileprivate override init() {
         super.init()
     }
 }
 
-//MARK: - Valid
+// MARK: - Valid
 
 public extension EmailUtil {
     
@@ -39,7 +39,7 @@ public extension EmailUtil {
     }
 }
 
-//MARK: - Send
+// MARK: - Send
 
 public extension EmailUtil {
     
@@ -97,7 +97,7 @@ public extension EmailUtil {
     }
 }
 
-//MARK: - Mail Compose View Controller Delegate
+// MARK: - Mail Compose View Controller Delegate
 
 extension EmailUtil: MFMailComposeViewControllerDelegate {
     

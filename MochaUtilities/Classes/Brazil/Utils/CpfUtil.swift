@@ -8,7 +8,7 @@
 
 import UIKit
 
-//MARK: - Mask
+// MARK: - Mask
 
 public class CpfUtil {
     
@@ -55,7 +55,7 @@ public class CpfUtil {
     }
 }
 
-//MARK: - Validation
+// MARK: - Validation
 
 public extension CpfUtil {
     

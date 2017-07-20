@@ -15,6 +15,7 @@ public enum MochaException : Error {
     case appSecurityTransportException
     case notImplemented
     
+    case illegalStateException(message: String)
     case domainException(message: String)
     case genericException(message: String)
 }

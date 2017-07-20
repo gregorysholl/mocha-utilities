@@ -8,14 +8,14 @@
 
 import UIKit
 
-//MARK: - Variables & Accessors
+// MARK: - Variables & Accessors
 
 public class DocumentsUtil {
     
     internal init() {}
 }
 
-//MARK: - Path
+// MARK: - Path
 
 public extension DocumentsUtil {
     
@@ -36,7 +36,7 @@ public extension DocumentsUtil {
     }
 }
 
-//MARK: - Exists
+// MARK: - Exists
 
 public extension DocumentsUtil {
     
@@ -54,7 +54,7 @@ public extension DocumentsUtil {
     }
 }
 
-//MARK: - Get
+// MARK: - Get
 
 public extension DocumentsUtil {
     
@@ -71,7 +71,7 @@ public extension DocumentsUtil {
     }
 }
 
-//MARK: - Read
+// MARK: - Read
 
 public extension DocumentsUtil {
     
@@ -89,7 +89,7 @@ public extension DocumentsUtil {
     }
 }
 
-//MARK: - Write
+// MARK: - Write
 
 public extension DocumentsUtil {
     
@@ -107,7 +107,7 @@ public extension DocumentsUtil {
     }
 }
 
-//MARK: - Append
+// MARK: - Append
 
 public extension DocumentsUtil {
     
@@ -135,7 +135,7 @@ public extension DocumentsUtil {
     }
 }
 
-//MARK: - Remove
+// MARK: - Remove
 
 public extension DocumentsUtil {
     
@@ -163,7 +163,7 @@ public extension DocumentsUtil {
     }
 }
 
-//MARK: - Directories
+// MARK: - Directories
 
 public extension DocumentsUtil {
     

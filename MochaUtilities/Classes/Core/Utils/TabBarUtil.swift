@@ -8,7 +8,7 @@
 
 import UIKit
 
-//MARK: - Information
+// MARK: - Information
 
 public class TabBarUtil {
     
@@ -29,7 +29,7 @@ public class TabBarUtil {
     }
 }
 
-//MARK: - Layout
+// MARK: - Layout
 
 public extension TabBarUtil {
     

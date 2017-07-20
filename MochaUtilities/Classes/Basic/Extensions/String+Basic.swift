@@ -8,7 +8,7 @@
 
 import Foundation
 
-//MARK: - Get-only Properties
+// MARK: - Get-only Properties
 
 public extension String {
     
@@ -21,7 +21,7 @@ public extension String {
     }
 }
 
-//MARK: - Equals
+// MARK: - Equals
 
 public extension String {
     

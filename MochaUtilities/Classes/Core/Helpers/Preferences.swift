@@ -11,20 +11,20 @@ import UIKit
 ///Class responsible for saving information at `UserDefaults.standard`.
 public class Preferences {
     
-    //MARK: - Get
+    // MARK: - Get
     
     ///Returns the standard UserDefaults reference.
     static public func getStandard() -> UserDefaults {
         return UserDefaults.standard
     }
     
-    //MARK: - Synchronize
+    // MARK: - Synchronize
     
     static public func synchronize() {
         getStandard().synchronize()
     }
     
-    //MARK: - String
+    // MARK: - String
     
     static public func setString(_ string: String, forKey key: String) {
         getStandard().set(string, forKey: key)
@@ -38,7 +38,7 @@ public class Preferences {
         return ""
     }
     
-    //MARK: - Int
+    // MARK: - Int
     
     static public func setInteger(_ int: Int, forKey key: String) {
         getStandard().set(int, forKey: key)
@@ -50,7 +50,7 @@ public class Preferences {
         return i
     }
     
-    //MARK: - Float
+    // MARK: - Float
     
     static public func setFloat(_ float: Float, forKey key: String) {
         getStandard().set(float, forKey: key)
@@ -62,7 +62,7 @@ public class Preferences {
         return f
     }
     
-    //MARK: - Double
+    // MARK: - Double
     
     static public func setDouble(_ double: Double, forKey key: String) {
         getStandard().set(double, forKey: key)
@@ -74,7 +74,7 @@ public class Preferences {
         return d
     }
     
-    //MARK: - Boolean
+    // MARK: - Boolean
     
     static public func setBool(_ bool: Bool, forKey key: String) {
         getStandard().set(bool, forKey: key)
@@ -86,7 +86,7 @@ public class Preferences {
         return b
     }
     
-    //MARK: - Object
+    // MARK: - Object
     
     static public func setObject(_ object: Any, forKey key: String) {
         let objectData = NSKeyedArchiver.archivedData(withRootObject: object)
@@ -102,7 +102,7 @@ public class Preferences {
         return nil
     }
     
-    //MARK: - Clear
+    // MARK: - Clear
     
     ///Deltes all information saved.
     static public func clearAll() {

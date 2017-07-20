@@ -10,7 +10,7 @@ import Foundation
 
 fileprivate var queueAssociationKey: UInt8 = 0
 
-//MARK: - Queue
+// MARK: - Queue
 
 public extension NSObject {
     
@@ -40,7 +40,7 @@ public extension NSObject {
     }
 }
 
-//MARK: - Start
+// MARK: - Start
 
 public extension NSObject {
     
@@ -66,7 +66,7 @@ public extension NSObject {
     }
 }
 
-//MARK: - Cancel
+// MARK: - Cancel
 
 public extension NSObject {
     
