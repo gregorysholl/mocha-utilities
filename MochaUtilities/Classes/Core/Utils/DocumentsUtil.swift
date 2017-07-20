@@ -35,3 +35,21 @@ public extension DocumentsUtil {
         return documentPath.appendingPathComponent(filename)
     }
 }
+
+//MARK: - Exists
+
+public extension DocumentsUtil {
+    
+    public func fileExists(_ filename: String?) -> Bool {
+        do {
+            let path = try self.path(of: filename)
+            return FileManager.default.fileExists(atPath: path)
+        } catch {
+            return false
+        }
+    }
+    
+    public func fileExists(atPath path: String) -> Bool {
+        return FileManager.default.fileExists(atPath: path)
+    }
+}
