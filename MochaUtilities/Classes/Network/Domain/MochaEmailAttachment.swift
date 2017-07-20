@@ -8,11 +8,11 @@
 
 import UIKit
 
-//MARK: -
+// MARK: -
 
 public class MochaEmailAttachment {
     
-    //MARK: Variables
+    // MARK: Variables
     
     private var _data    : Data!
     private var _type    : String!
@@ -30,7 +30,7 @@ public class MochaEmailAttachment {
         return _filename
     }
     
-    //MARK: Inits
+    // MARK: Inits
     
     ///compressionQuality is a number between 0.0 and 1.0
     public init(jpegImage: UIImage, compressionQuality: CGFloat = 1.0, filename: String) {

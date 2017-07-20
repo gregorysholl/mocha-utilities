@@ -8,24 +8,24 @@
 
 import UIKit
 
-//MARK: - Declaration
+// MARK: - Declaration
 
 public final class MochaLogger {
     
-    //MARK: - Variables
+    // MARK: - Variables
     
     static fileprivate let shared = MochaLogger()
     
     fileprivate var tag : String?
     
-    //MARK: - Inits
+    // MARK: - Inits
     
     private init() {
         tag = "Mocha"
     }
 }
 
-//MARK: - Tag Formatting
+// MARK: - Tag Formatting
 
 public extension MochaLogger {
     
@@ -41,7 +41,7 @@ public extension MochaLogger {
     }
 }
 
-//MARK: - Logging
+// MARK: - Logging
 
 public extension MochaLogger {
     

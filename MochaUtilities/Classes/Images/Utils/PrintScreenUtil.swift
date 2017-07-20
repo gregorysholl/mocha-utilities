@@ -10,7 +10,7 @@ import UIKit
 
 public class PrintScreenUtil {
     
-    //MARK: - Get
+    // MARK: - Get
     
     static public func get(of view: UIView?) -> UIImage? {
         guard let view = view else {
@@ -38,7 +38,7 @@ public class PrintScreenUtil {
         return image
     }
     
-    //MARK: - Save
+    // MARK: - Save
     
     static public func save(toJpgFile filename: String, of view: UIView?) {
         guard let image = get(of: view) else {

@@ -10,7 +10,7 @@ import UIKit
 
 public class BrowserUtil {
     
-    //MARK: - Open
+    // MARK: - Open
 
     static public func openUrl(_ nullableUrl: String?) {
         guard let url = nullableUrl else {

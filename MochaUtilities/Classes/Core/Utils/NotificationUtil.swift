@@ -8,7 +8,7 @@
 
 import UIKit
 
-//MARK: - Register
+// MARK: - Register
 
 public class NotificationUtil {
     
@@ -17,7 +17,7 @@ public class NotificationUtil {
     }
 }
 
-//MARK: - Unregister
+// MARK: - Unregister
 
 public extension NotificationUtil {
     
@@ -30,7 +30,7 @@ public extension NotificationUtil {
     }
 }
 
-//MARK: - Post
+// MARK: - Post
 
 public extension NotificationUtil {
     

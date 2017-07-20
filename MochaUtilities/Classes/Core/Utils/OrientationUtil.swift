@@ -8,17 +8,17 @@
 
 import UIKit
 
-//MARK: - Get-Only Properties
+// MARK: - Get-Only Properties
 
 public class OrientationUtil {
     
-    //MARK: Get
+    // MARK: Get
     
     static public var orientation: UIInterfaceOrientation {
         return UIApplication.shared.statusBarOrientation
     }
     
-    //MARK: Validation
+    // MARK: Validation
     
     static public var portrait: Bool {
         return orientation == .portrait

@@ -8,7 +8,7 @@
 
 import UIKit
 
-//MARK: - Date Components
+// MARK: - Date Components
 
 public class DateUtil {
     
@@ -28,7 +28,7 @@ public class DateUtil {
     }
 }
 
-//MARK: - Date
+// MARK: - Date
 
 public extension DateUtil {
     
@@ -51,7 +51,7 @@ public extension DateUtil {
     }
 }
 
-//MARK: - String
+// MARK: - String
 
 public extension DateUtil {
     

@@ -8,7 +8,7 @@
 
 import UIKit
 
-//MARK: - Variables & Accessors
+// MARK: - Variables & Accessors
 
 public class BundleUtil {
     
@@ -27,7 +27,7 @@ public class BundleUtil {
     }
 }
 
-//MARK: - File
+// MARK: - File
 
 public extension BundleUtil {
     
@@ -40,7 +40,7 @@ public extension BundleUtil {
     }
 }
 
-//MARK: - Path
+// MARK: - Path
 
 public extension BundleUtil {
     
@@ -59,7 +59,7 @@ public extension BundleUtil {
     }
 }
 
-//MARK: - Read
+// MARK: - Read
 
 public extension BundleUtil {
     

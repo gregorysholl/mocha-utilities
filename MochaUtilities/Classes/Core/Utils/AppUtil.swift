@@ -10,7 +10,7 @@ import UIKit
 
 public class AppUtil {
     
-    //MARK: - Information
+    // MARK: - Information
     
     static public func object(forInfoDictionaryKey key: String) -> Any? {
         return Bundle.main.object(forInfoDictionaryKey: key)
@@ -45,7 +45,7 @@ public class AppUtil {
         return vcBased
     }
     
-    //MARK: - App Store
+    // MARK: - App Store
     
     static public func openAppStore(appLink: String) {
         let appStorePrefix = "itms://itunes.apple.com/br/app/"
@@ -58,7 +58,7 @@ public class AppUtil {
         }
     }
     
-    //MARK: - State
+    // MARK: - State
     
     static public var state: UIApplicationState {
         return UIApplication.shared.applicationState
