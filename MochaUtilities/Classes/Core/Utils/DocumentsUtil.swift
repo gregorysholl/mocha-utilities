@@ -75,7 +75,7 @@ public extension DocumentsUtil {
 
 public extension DocumentsUtil {
     
-    public func read(_ filename: String, withEncoding encoding: String.Encoding = .utf8) throws -> String {
+    public func read(_ filename: String?, withEncoding encoding: String.Encoding = .utf8) throws -> String {
         let path = try self.path(of: filename, with: .allDomainsMask)
         return try read(atPath: path, withEncoding: encoding)
     }
@@ -85,6 +85,24 @@ public extension DocumentsUtil {
             return try String(contentsOfFile: path, encoding: encoding)
         } catch {
             throw MochaException.fileNotFoundException
+        }
+    }
+}
+
+//MARK: - Write
+
+public extension DocumentsUtil {
+    
+    public func write(_ text: String, in filename: String?, withEncoding encoding: String.Encoding = .utf8) throws {
+        let path = try self.path(of: filename, with: .allDomainsMask)
+        try write(text, atPath: path, withEncoding: encoding)
+    }
+    
+    public func write(_ text: String, atPath path: String, withEncoding encoding: String.Encoding = .utf8) throws {
+        do {
+            try text.write(toFile: path, atomically: false, encoding: encoding)
+        } catch {
+            throw MochaException.genericException(message: "")
         }
     }
 }
