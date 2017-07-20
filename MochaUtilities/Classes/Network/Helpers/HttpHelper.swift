@@ -43,10 +43,6 @@ public class HttpHelper: NSObject {
     
     fileprivate var hostDomain          : String?
     
-    //Request Type
-    
-//    fileprivate var synchronous : Bool = false
-    
     //Request
     
     fileprivate var url : String?
@@ -184,7 +180,6 @@ public class HttpHelper: NSObject {
                     self.completionHandler?(nil, MochaException.appSecurityTransportException)
                 } else if httpResponse.statusCode != 200 {
                     self.completionHandler?(nil, error)
-//                    throw Exception.ioException
                 }
             }
             
@@ -322,11 +317,6 @@ public extension HttpHelper {
             return self
         }
         
-//        public func synchronous(_ synchronous: Bool) -> Builder {
-//            helper.synchronous = synchronous
-//            return self
-//        }
-        
         public func parameters(_ parameters: [String: Any]) -> Builder {
             helper.parameters = parameters
             return self
@@ -393,7 +383,6 @@ extension HttpHelper: URLSessionDelegate {
             return
         }
         
-//        responseError = error
         MochaLogger.log(error.localizedDescription)
     }
     
