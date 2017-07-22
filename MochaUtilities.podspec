@@ -61,6 +61,11 @@ MochaUtilities is designed to assist developers with common problems/needs that 
     images.source_files = 'MochaUtilities/Classes/Images/**/*'
   end
 
+  s.subspec 'Layout' do |layout|
+    layout.dependency 'MochaUtilities/Basic'
+    layout.source_files = 'MochaUtilities/Classes/Layout/**/*'
+  end
+
   s.subspec 'Network' do |network|
     network.dependency 'MochaUtilities/Basic'
     network.source_files = 'MochaUtilities/Classes/Network/**/*'
