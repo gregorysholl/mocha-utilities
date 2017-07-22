@@ -41,6 +41,7 @@
 		0C91DD851EE5E5E600F9F19D /* MochaLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C91DD821EE5E5E600F9F19D /* MochaLogger.swift */; };
 		0CE107531F22C93C00FCE716 /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE107521F22C93C00FCE716 /* UIView+Layout.swift */; };
 		0CE107561F22CCF700FCE716 /* ConstraintUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE107551F22CCF700FCE716 /* ConstraintUtil.swift */; };
+		0CE107581F22CEC600FCE716 /* UIImage+Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE107571F22CEC600FCE716 /* UIImage+Images.swift */; };
 		121D64A1FB1B8D79200163EB08514B54 /* Pods-MochaUtilities_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 373DB977986D08763A35D7DA687BC9CA /* Pods-MochaUtilities_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		20D7285A6D1CC9F85DF54272FA98483D /* Pods-MochaUtilities_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B9D02925B12F2604F5EFD6C30BFA23 /* Pods-MochaUtilities_Tests-dummy.m */; };
 		4D9EC6355ECA3869F24600513076B85D /* MochaUtilities-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D8DD06E2F2F21D0AE84BF10F0FA05AC6 /* MochaUtilities-dummy.m */; };
@@ -94,6 +95,7 @@
 		0C91DD821EE5E5E600F9F19D /* MochaLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MochaLogger.swift; sourceTree = "<group>"; };
 		0CE107521F22C93C00FCE716 /* UIView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
 		0CE107551F22CCF700FCE716 /* ConstraintUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintUtil.swift; sourceTree = "<group>"; };
+		0CE107571F22CEC600FCE716 /* UIImage+Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Images.swift"; sourceTree = "<group>"; };
 		0F96334356FCF1149347B27E303F99C5 /* Pods-MochaUtilities_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-MochaUtilities_Tests.modulemap"; sourceTree = "<group>"; };
 		19EBE152D41E0927ABAC5723B78C327E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1AE3B2C1A12D347089BA5AB9CB7E79F5 /* MochaUtilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MochaUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -253,6 +255,7 @@
 			isa = PBXGroup;
 			children = (
 				0C91DD5B1EE5D48500F9F19D /* UIColor+Images.swift */,
+				0CE107571F22CEC600FCE716 /* UIImage+Images.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -581,6 +584,7 @@
 				0C5ECB881F1ED2D000ABCD5A /* MochaTaskManager.swift in Sources */,
 				0C91DD6F1EE5DBA600F9F19D /* KeyboardUtil.swift in Sources */,
 				0C91DD6D1EE5DACD00F9F19D /* AppUtil.swift in Sources */,
+				0CE107581F22CEC600FCE716 /* UIImage+Images.swift in Sources */,
 				0C91DD781EE5DE3D00F9F19D /* ImageUtil.swift in Sources */,
 				0C5ECB861F1ED1DF00ABCD5A /* MochaTask.swift in Sources */,
 				0C5ECB801F1ECFD000ABCD5A /* UIColor+Core.swift in Sources */,
