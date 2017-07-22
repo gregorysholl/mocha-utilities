@@ -35,7 +35,7 @@ public extension UIImage {
             return nil
         }
         
-        var context = CIContext(options: nil)
+        let context = CIContext(options: nil)
         
         guard let cgimg = context.createCGImage(output, from: output.extent) else {
             return nil

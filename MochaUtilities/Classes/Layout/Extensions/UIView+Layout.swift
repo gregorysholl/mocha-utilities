@@ -30,8 +30,6 @@ public extension UIView {
         case .bottomUp:
             gradientLayer.startPoint = CGPoint(x: 0.5, y: 1)
             gradientLayer.endPoint = CGPoint(x: 0.5, y: 0)
-        default:
-            break
         }
         
         layer.insertSublayer(gradientLayer, at: 0)
