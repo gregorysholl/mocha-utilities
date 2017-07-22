@@ -39,6 +39,8 @@
 		0C91DD831EE5E5E600F9F19D /* MochaException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C91DD7E1EE5E5E600F9F19D /* MochaException.swift */; };
 		0C91DD841EE5E5E600F9F19D /* String+Basic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C91DD801EE5E5E600F9F19D /* String+Basic.swift */; };
 		0C91DD851EE5E5E600F9F19D /* MochaLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C91DD821EE5E5E600F9F19D /* MochaLogger.swift */; };
+		0CE107531F22C93C00FCE716 /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE107521F22C93C00FCE716 /* UIView+Layout.swift */; };
+		0CE107561F22CCF700FCE716 /* ConstraintUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE107551F22CCF700FCE716 /* ConstraintUtil.swift */; };
 		121D64A1FB1B8D79200163EB08514B54 /* Pods-MochaUtilities_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 373DB977986D08763A35D7DA687BC9CA /* Pods-MochaUtilities_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		20D7285A6D1CC9F85DF54272FA98483D /* Pods-MochaUtilities_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B9D02925B12F2604F5EFD6C30BFA23 /* Pods-MochaUtilities_Tests-dummy.m */; };
 		4D9EC6355ECA3869F24600513076B85D /* MochaUtilities-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D8DD06E2F2F21D0AE84BF10F0FA05AC6 /* MochaUtilities-dummy.m */; };
@@ -90,6 +92,8 @@
 		0C91DD7E1EE5E5E600F9F19D /* MochaException.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MochaException.swift; sourceTree = "<group>"; };
 		0C91DD801EE5E5E600F9F19D /* String+Basic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Basic.swift"; sourceTree = "<group>"; };
 		0C91DD821EE5E5E600F9F19D /* MochaLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MochaLogger.swift; sourceTree = "<group>"; };
+		0CE107521F22C93C00FCE716 /* UIView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
+		0CE107551F22CCF700FCE716 /* ConstraintUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintUtil.swift; sourceTree = "<group>"; };
 		0F96334356FCF1149347B27E303F99C5 /* Pods-MochaUtilities_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-MochaUtilities_Tests.modulemap"; sourceTree = "<group>"; };
 		19EBE152D41E0927ABAC5723B78C327E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1AE3B2C1A12D347089BA5AB9CB7E79F5 /* MochaUtilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MochaUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -341,6 +345,31 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		0CE107501F22C91700FCE716 /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				0CE107511F22C93100FCE716 /* Extensions */,
+				0CE107541F22CCE500FCE716 /* Utils */,
+			);
+			path = Layout;
+			sourceTree = "<group>";
+		};
+		0CE107511F22C93100FCE716 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0CE107521F22C93C00FCE716 /* UIView+Layout.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0CE107541F22CCE500FCE716 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				0CE107551F22CCF700FCE716 /* ConstraintUtil.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		2B97752282393BDA33BB5C5E967A49FF /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -380,6 +409,7 @@
 				0C560B2D1EECF74700719807 /* Brazil */,
 				0C91DD421EE5BB8500F9F19D /* Core */,
 				0C91DD431EE5BB8500F9F19D /* Images */,
+				0CE107501F22C91700FCE716 /* Layout */,
 				0C91DD441EE5BB8500F9F19D /* Network */,
 				0C5ECB811F1ED1D100ABCD5A /* Tasks */,
 			);
@@ -556,6 +586,7 @@
 				0C5ECB801F1ECFD000ABCD5A /* UIColor+Core.swift in Sources */,
 				0C91DD851EE5E5E600F9F19D /* MochaLogger.swift in Sources */,
 				0C56FE511F2012CD000B15C2 /* FileUtil.swift in Sources */,
+				0CE107561F22CCF700FCE716 /* ConstraintUtil.swift in Sources */,
 				0C91DD661EE5D7DD00F9F19D /* DeviceUtil.swift in Sources */,
 				0C91DD6B1EE5DA4100F9F19D /* NumberUtil.swift in Sources */,
 				0C91DD841EE5E5E600F9F19D /* String+Basic.swift in Sources */,
@@ -568,6 +599,7 @@
 				0C5ECB8D1F1EF33000ABCD5A /* MochaEmailAttachment.swift in Sources */,
 				0C91DD621EE5D71400F9F19D /* TabBarUtil.swift in Sources */,
 				0C91DD751EE5DD4D00F9F19D /* OrientationUtil.swift in Sources */,
+				0CE107531F22C93C00FCE716 /* UIView+Layout.swift in Sources */,
 				0C5ECB8F1F1EF48900ABCD5A /* EmailUtil.swift in Sources */,
 				0C91DD591EE5C99B00F9F19D /* BrowserUtil.swift in Sources */,
 				0C91DD5C1EE5D48500F9F19D /* UIColor+Images.swift in Sources */,
