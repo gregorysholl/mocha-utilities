@@ -32,11 +32,15 @@ public class BundleUtil {
 public extension BundleUtil {
     
     public func file(_ filename: String?, ofType type: String?) -> Result<Data> {
-        let path = try self.path(of: filename, ofType: type)
-        guard let fileData = try? Data(contentsOf: URL(fileURLWithPath: path)) else {
-            return .failure(.fileNotFoundException)
+        let path = self.path(of: filename, ofType: type)
+        let fileData = path.flatMap { (value) -> Result<Data> in
+            do {
+                return try Result.success(Data(contentsOf: URL(fileURLWithPath: value)))
+            } catch {
+                return Result.failure(MochaException.fileNotFoundException)
+            }
         }
-        return .success(fileData)
+        return fileData
     }
 }
 
