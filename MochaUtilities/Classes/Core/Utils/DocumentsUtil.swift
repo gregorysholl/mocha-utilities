@@ -63,7 +63,7 @@ public extension DocumentsUtil {
     public func file(_ filename: String?) -> Result<Data> {
         let pathResult = self.path(of: filename)
         return pathResult.flatMap {
-            self.file(atPath: $0)
+            file(atPath: $0)
         }
     }
     
@@ -85,7 +85,7 @@ public extension DocumentsUtil {
                      withEncoding encoding: String.Encoding = .utf8) -> Result<String> {
         let pathResult = self.path(of: filename, with: .allDomainsMask)
         return pathResult.flatMap {
-            self.read(atPath: $0, withEncoding: encoding)
+            read(atPath: $0, withEncoding: encoding)
         }
     }
     
