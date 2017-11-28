@@ -20,14 +20,17 @@ public class DocumentsUtil {
 public extension DocumentsUtil {
     
     public func path(forDomainMask domainMask: FileManager.SearchPathDomainMask = .userDomainMask) -> Result<String> {
-        let documentPaths = NSSearchPathForDirectoriesInDomains(.documentDirectory, domainMask, true)
+        let documentPaths = NSSearchPathForDirectoriesInDomains(.documentDirectory,
+                                                                domainMask,
+                                                                true)
         if documentPaths.isEmpty {
             return .failure(.fileNotFoundException)
         }
         return .success(documentPaths[0])
     }
     
-    public func path(of filename: String?, with domainMask: FileManager.SearchPathDomainMask = .userDomainMask) -> Result<String> {
+    public func path(of filename: String?,
+                     with domainMask: FileManager.SearchPathDomainMask = .userDomainMask) -> Result<String> {
         guard let filename = filename, filename.isNotEmpty else {
             return .failure(.fileNotFoundException)
         }
@@ -212,11 +215,12 @@ public extension DocumentsUtil {
         }
         
         do {
-            try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
+            try FileManager.default.createDirectory(atPath: path,
+                                                    withIntermediateDirectories: true,
+                                                    attributes: nil)
             return .success()
         } catch {
             return .failure(.genericException(message: ""))
         }
     }
 }
-
