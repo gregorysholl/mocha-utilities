@@ -143,19 +143,15 @@ public extension DocumentsUtil {
         }
 
         let readResult = read(fullFileName)
-        
-        return readResult.flatMap { (value) -> Result<Void> in
-            let newText = "\(value)\n\(text)"
-            return write(newText, in: fullFileName)
+        return readResult.flatMap {
+            write("\($0)\n\(text)", in: fullFileName)
         }
     }
 
     public func append(_ text: String, atPath path: String) -> Result<Void> {
         let readResult = read(atPath: path)
-        
-        return readResult.flatMap { (currentText) -> Result<Void> in
-            let newText = "\(currentText)\n\(text)"
-            return write(newText, atPath: path)
+        return readResult.flatMap {
+            write("\($0)\n\(text)", atPath: path)
         }
     }
 }
@@ -175,8 +171,8 @@ public extension DocumentsUtil {
 
     public func remove(_ filename: String?) -> Result<Void> {
         let pathResult = self.path(of: filename)
-        return pathResult.flatMap { (path) -> Result<Void> in
-            return self.remove(atPath: path)
+        return pathResult.flatMap {
+            remove(atPath: $0)
         }
     }
 
