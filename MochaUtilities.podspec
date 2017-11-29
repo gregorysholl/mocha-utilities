@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MochaUtilities'
-  s.version          = '0.4.0'
+  s.version          = '0.5.0'
   s.summary          = 'A framework designed to deal with some common iOS needs.'
 
 # This description is used to generate tags and improve search results.
@@ -40,7 +40,7 @@ MochaUtilities is designed to assist developers with common problems/needs that 
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
 
-  s.default_subspecs = 'Core', 'Images', 'Network'
+  s.default_subspecs = 'Core', 'Images', 'Layout', 'Network', 'Tasks'
 
   s.subspec 'Basic' do |basic|
     basic.source_files = 'MochaUtilities/Classes/Basic/**/*'
@@ -59,6 +59,11 @@ MochaUtilities is designed to assist developers with common problems/needs that 
   s.subspec 'Images' do |images|
     images.dependency 'MochaUtilities/Basic'
     images.source_files = 'MochaUtilities/Classes/Images/**/*'
+  end
+
+  s.subspec 'Layout' do |layout|
+    layout.dependency 'MochaUtilities/Basic'
+    layout.source_files = 'MochaUtilities/Classes/Layout/**/*'
   end
 
   s.subspec 'Network' do |network|

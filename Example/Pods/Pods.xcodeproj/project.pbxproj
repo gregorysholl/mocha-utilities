@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C0161191FC7477700D23BAB /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0161181FC7477700D23BAB /* Result.swift */; };
 		0C1203B01F2163A30032A9AD /* NSObject+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1203AF1F2163A30032A9AD /* NSObject+Core.swift */; };
 		0C560B301EECF75600719807 /* CpfUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C560B2F1EECF75600719807 /* CpfUtil.swift */; };
 		0C56FE511F2012CD000B15C2 /* FileUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C56FE501F2012CD000B15C2 /* FileUtil.swift */; };
@@ -39,6 +40,10 @@
 		0C91DD831EE5E5E600F9F19D /* MochaException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C91DD7E1EE5E5E600F9F19D /* MochaException.swift */; };
 		0C91DD841EE5E5E600F9F19D /* String+Basic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C91DD801EE5E5E600F9F19D /* String+Basic.swift */; };
 		0C91DD851EE5E5E600F9F19D /* MochaLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C91DD821EE5E5E600F9F19D /* MochaLogger.swift */; };
+		0CE107531F22C93C00FCE716 /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE107521F22C93C00FCE716 /* UIView+Layout.swift */; };
+		0CE107561F22CCF700FCE716 /* ConstraintUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE107551F22CCF700FCE716 /* ConstraintUtil.swift */; };
+		0CE107581F22CEC600FCE716 /* UIImage+Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE107571F22CEC600FCE716 /* UIImage+Images.swift */; };
+		0CE1075A1F22D4F300FCE716 /* UIViewController+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE107591F22D4F300FCE716 /* UIViewController+Core.swift */; };
 		121D64A1FB1B8D79200163EB08514B54 /* Pods-MochaUtilities_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 373DB977986D08763A35D7DA687BC9CA /* Pods-MochaUtilities_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		20D7285A6D1CC9F85DF54272FA98483D /* Pods-MochaUtilities_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B9D02925B12F2604F5EFD6C30BFA23 /* Pods-MochaUtilities_Tests-dummy.m */; };
 		4D9EC6355ECA3869F24600513076B85D /* MochaUtilities-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D8DD06E2F2F21D0AE84BF10F0FA05AC6 /* MochaUtilities-dummy.m */; };
@@ -58,6 +63,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C0161181FC7477700D23BAB /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		0C1203AF1F2163A30032A9AD /* NSObject+Core.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Core.swift"; sourceTree = "<group>"; };
 		0C560B2F1EECF75600719807 /* CpfUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CpfUtil.swift; sourceTree = "<group>"; };
 		0C56FE501F2012CD000B15C2 /* FileUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileUtil.swift; sourceTree = "<group>"; };
@@ -90,6 +96,10 @@
 		0C91DD7E1EE5E5E600F9F19D /* MochaException.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MochaException.swift; sourceTree = "<group>"; };
 		0C91DD801EE5E5E600F9F19D /* String+Basic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Basic.swift"; sourceTree = "<group>"; };
 		0C91DD821EE5E5E600F9F19D /* MochaLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MochaLogger.swift; sourceTree = "<group>"; };
+		0CE107521F22C93C00FCE716 /* UIView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
+		0CE107551F22CCF700FCE716 /* ConstraintUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintUtil.swift; sourceTree = "<group>"; };
+		0CE107571F22CEC600FCE716 /* UIImage+Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Images.swift"; sourceTree = "<group>"; };
+		0CE107591F22D4F300FCE716 /* UIViewController+Core.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Core.swift"; sourceTree = "<group>"; };
 		0F96334356FCF1149347B27E303F99C5 /* Pods-MochaUtilities_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-MochaUtilities_Tests.modulemap"; sourceTree = "<group>"; };
 		19EBE152D41E0927ABAC5723B78C327E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1AE3B2C1A12D347089BA5AB9CB7E79F5 /* MochaUtilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MochaUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -249,6 +259,7 @@
 			isa = PBXGroup;
 			children = (
 				0C91DD5B1EE5D48500F9F19D /* UIColor+Images.swift */,
+				0CE107571F22CEC600FCE716 /* UIImage+Images.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -287,6 +298,7 @@
 				0C1203AF1F2163A30032A9AD /* NSObject+Core.swift */,
 				0C91DD681EE5D8C700F9F19D /* String+Core.swift */,
 				0C5ECB7F1F1ECFD000ABCD5A /* UIColor+Core.swift */,
+				0CE107591F22D4F300FCE716 /* UIViewController+Core.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -337,8 +349,34 @@
 			isa = PBXGroup;
 			children = (
 				0C91DD821EE5E5E600F9F19D /* MochaLogger.swift */,
+				0C0161181FC7477700D23BAB /* Result.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		0CE107501F22C91700FCE716 /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				0CE107511F22C93100FCE716 /* Extensions */,
+				0CE107541F22CCE500FCE716 /* Utils */,
+			);
+			path = Layout;
+			sourceTree = "<group>";
+		};
+		0CE107511F22C93100FCE716 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0CE107521F22C93C00FCE716 /* UIView+Layout.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0CE107541F22CCE500FCE716 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				0CE107551F22CCF700FCE716 /* ConstraintUtil.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		2B97752282393BDA33BB5C5E967A49FF /* Support Files */ = {
@@ -380,6 +418,7 @@
 				0C560B2D1EECF74700719807 /* Brazil */,
 				0C91DD421EE5BB8500F9F19D /* Core */,
 				0C91DD431EE5BB8500F9F19D /* Images */,
+				0CE107501F22C91700FCE716 /* Layout */,
 				0C91DD441EE5BB8500F9F19D /* Network */,
 				0C5ECB811F1ED1D100ABCD5A /* Tasks */,
 			);
@@ -548,26 +587,31 @@
 			files = (
 				0C91DD831EE5E5E600F9F19D /* MochaException.swift in Sources */,
 				0C5ECB7D1F1EC91B00ABCD5A /* DateUtil.swift in Sources */,
+				0C0161191FC7477700D23BAB /* Result.swift in Sources */,
 				0C5ECB881F1ED2D000ABCD5A /* MochaTaskManager.swift in Sources */,
 				0C91DD6F1EE5DBA600F9F19D /* KeyboardUtil.swift in Sources */,
 				0C91DD6D1EE5DACD00F9F19D /* AppUtil.swift in Sources */,
+				0CE107581F22CEC600FCE716 /* UIImage+Images.swift in Sources */,
 				0C91DD781EE5DE3D00F9F19D /* ImageUtil.swift in Sources */,
 				0C5ECB861F1ED1DF00ABCD5A /* MochaTask.swift in Sources */,
 				0C5ECB801F1ECFD000ABCD5A /* UIColor+Core.swift in Sources */,
 				0C91DD851EE5E5E600F9F19D /* MochaLogger.swift in Sources */,
 				0C56FE511F2012CD000B15C2 /* FileUtil.swift in Sources */,
+				0CE107561F22CCF700FCE716 /* ConstraintUtil.swift in Sources */,
 				0C91DD661EE5D7DD00F9F19D /* DeviceUtil.swift in Sources */,
 				0C91DD6B1EE5DA4100F9F19D /* NumberUtil.swift in Sources */,
 				0C91DD841EE5E5E600F9F19D /* String+Basic.swift in Sources */,
 				0C56FE531F201308000B15C2 /* BundleUtil.swift in Sources */,
 				0C91DD691EE5D8C700F9F19D /* String+Core.swift in Sources */,
 				0C91DD731EE5DC6A00F9F19D /* NotificationUtil.swift in Sources */,
+				0CE1075A1F22D4F300FCE716 /* UIViewController+Core.swift in Sources */,
 				4D9EC6355ECA3869F24600513076B85D /* MochaUtilities-dummy.m in Sources */,
 				0C91DD561EE5C93100F9F19D /* HttpHelper.swift in Sources */,
 				0C91DD641EE5D7C200F9F19D /* StatusBarUtil.swift in Sources */,
 				0C5ECB8D1F1EF33000ABCD5A /* MochaEmailAttachment.swift in Sources */,
 				0C91DD621EE5D71400F9F19D /* TabBarUtil.swift in Sources */,
 				0C91DD751EE5DD4D00F9F19D /* OrientationUtil.swift in Sources */,
+				0CE107531F22C93C00FCE716 /* UIView+Layout.swift in Sources */,
 				0C5ECB8F1F1EF48900ABCD5A /* EmailUtil.swift in Sources */,
 				0C91DD591EE5C99B00F9F19D /* BrowserUtil.swift in Sources */,
 				0C91DD5C1EE5D48500F9F19D /* UIColor+Images.swift in Sources */,
