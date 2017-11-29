@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C0161191FC7477700D23BAB /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0161181FC7477700D23BAB /* Result.swift */; };
 		0C1203B01F2163A30032A9AD /* NSObject+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1203AF1F2163A30032A9AD /* NSObject+Core.swift */; };
 		0C560B301EECF75600719807 /* CpfUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C560B2F1EECF75600719807 /* CpfUtil.swift */; };
 		0C56FE511F2012CD000B15C2 /* FileUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C56FE501F2012CD000B15C2 /* FileUtil.swift */; };
@@ -62,6 +63,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C0161181FC7477700D23BAB /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		0C1203AF1F2163A30032A9AD /* NSObject+Core.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Core.swift"; sourceTree = "<group>"; };
 		0C560B2F1EECF75600719807 /* CpfUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CpfUtil.swift; sourceTree = "<group>"; };
 		0C56FE501F2012CD000B15C2 /* FileUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileUtil.swift; sourceTree = "<group>"; };
@@ -347,6 +349,7 @@
 			isa = PBXGroup;
 			children = (
 				0C91DD821EE5E5E600F9F19D /* MochaLogger.swift */,
+				0C0161181FC7477700D23BAB /* Result.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -584,6 +587,7 @@
 			files = (
 				0C91DD831EE5E5E600F9F19D /* MochaException.swift in Sources */,
 				0C5ECB7D1F1EC91B00ABCD5A /* DateUtil.swift in Sources */,
+				0C0161191FC7477700D23BAB /* Result.swift in Sources */,
 				0C5ECB881F1ED2D000ABCD5A /* MochaTaskManager.swift in Sources */,
 				0C91DD6F1EE5DBA600F9F19D /* KeyboardUtil.swift in Sources */,
 				0C91DD6D1EE5DACD00F9F19D /* AppUtil.swift in Sources */,

@@ -8,7 +8,7 @@
 
 import UIKit
 
-public typealias HttpCompletionHandler = (_ data: Data?, _ error: Error?) -> Void
+public typealias HttpCompletionHandler = (_ result: Result<Data>) -> Void
 
 public class HttpHelper: NSObject {
     
@@ -108,7 +108,7 @@ public class HttpHelper: NSObject {
     }
     
     private func handleDomainException(_ message: String) {
-        completionHandler?(nil, MochaException.domainException(message: message))
+        completionHandler?(.failure(.domainException(message: message)))
     }
     
     private func send(httpMethod: String) {
@@ -177,19 +177,20 @@ public class HttpHelper: NSObject {
             
             if let httpResponse = response as? HTTPURLResponse {
                 if httpResponse.statusCode == -1022 {
-                    self.completionHandler?(nil, MochaException.appSecurityTransportException)
+                    self.completionHandler?(.failure(.appSecurityTransportException))
                 } else if httpResponse.statusCode != 200 {
-                    self.completionHandler?(nil, error)
+//                    self.completionHandler?(.failure(error))
+//                    self.completionHandler?(nil, error)
                 }
             }
             
             if let error = error {
                 MochaLogger.log("Http error: \(error.localizedDescription)")
-                self.completionHandler?(nil, error)
+//                self.completionHandler?(nil, error)
             }
             
             if let data = data {
-                self.completionHandler?(data, nil)
+                self.completionHandler?(.success(data))
             }
         })
         
@@ -303,7 +304,7 @@ public extension HttpHelper {
         
         private var helper : HttpHelper
         
-        fileprivate init() {
+        public init() {
             helper = HttpHelper()
         }
         
@@ -311,58 +312,58 @@ public extension HttpHelper {
             helper.url = url
             return self
         }
-        
+
         public func completionHandler(_ handler: @escaping HttpCompletionHandler) -> Builder {
             helper.completionHandler = handler
             return self
         }
-        
+
         public func parameters(_ parameters: [String: Any]) -> Builder {
             helper.parameters = parameters
             return self
         }
-        
+
         public func contentType(_ contentType: String) -> Builder {
             helper.contentType = contentType
             return self
         }
-        
+
         public func timeout(_ timeout: TimeInterval) -> Builder {
             helper.timeout = timeout
             return self
         }
-        
+
         public func encoding(_ encoding: String.Encoding) -> Builder {
             helper.encoding = encoding
             return self
         }
-        
+
         public func header(_ header: [String: String]) -> Builder {
             helper.header = header
             return self
         }
-        
+
         public func basicAuth(username: String, password: String) -> Builder {
             helper.username = username
             helper.password = password
             return self
         }
-        
+
         public func certificate(_ certificate: Data?, with password: String? = nil) -> Builder {
             if certificate != nil {
                 helper.certificateMode = .publicKey
             }
-            
+
             helper.certificate = certificate
             helper.certificatePassword = password
             return self
         }
-        
+
         public func trustAll(_ trustAll: Bool) -> Builder {
             helper.trustAllSSL = trustAll
             return self
         }
-        
+
         public func hostDomain(_ hostDomain: String) -> Builder {
             helper.hostDomain = hostDomain
             return self
