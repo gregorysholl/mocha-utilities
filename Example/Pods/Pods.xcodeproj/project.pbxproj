@@ -37,7 +37,7 @@
 		0C91DD751EE5DD4D00F9F19D /* OrientationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C91DD741EE5DD4D00F9F19D /* OrientationUtil.swift */; };
 		0C91DD781EE5DE3D00F9F19D /* ImageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C91DD771EE5DE3D00F9F19D /* ImageUtil.swift */; };
 		0C91DD7A1EE5DE7400F9F19D /* PrintScreenUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C91DD791EE5DE7400F9F19D /* PrintScreenUtil.swift */; };
-		0C91DD831EE5E5E600F9F19D /* MochaException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C91DD7E1EE5E5E600F9F19D /* MochaException.swift */; };
+		0C91DD831EE5E5E600F9F19D /* MochaError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C91DD7E1EE5E5E600F9F19D /* MochaError.swift */; };
 		0C91DD841EE5E5E600F9F19D /* String+Basic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C91DD801EE5E5E600F9F19D /* String+Basic.swift */; };
 		0C91DD851EE5E5E600F9F19D /* MochaLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C91DD821EE5E5E600F9F19D /* MochaLogger.swift */; };
 		0CE107531F22C93C00FCE716 /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE107521F22C93C00FCE716 /* UIView+Layout.swift */; };
@@ -93,7 +93,7 @@
 		0C91DD741EE5DD4D00F9F19D /* OrientationUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrientationUtil.swift; sourceTree = "<group>"; };
 		0C91DD771EE5DE3D00F9F19D /* ImageUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUtil.swift; sourceTree = "<group>"; };
 		0C91DD791EE5DE7400F9F19D /* PrintScreenUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintScreenUtil.swift; sourceTree = "<group>"; };
-		0C91DD7E1EE5E5E600F9F19D /* MochaException.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MochaException.swift; sourceTree = "<group>"; };
+		0C91DD7E1EE5E5E600F9F19D /* MochaError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MochaError.swift; sourceTree = "<group>"; };
 		0C91DD801EE5E5E600F9F19D /* String+Basic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Basic.swift"; sourceTree = "<group>"; };
 		0C91DD821EE5E5E600F9F19D /* MochaLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MochaLogger.swift; sourceTree = "<group>"; };
 		0CE107521F22C93C00FCE716 /* UIView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
@@ -332,7 +332,7 @@
 		0C91DD7D1EE5E5E600F9F19D /* Enums */ = {
 			isa = PBXGroup;
 			children = (
-				0C91DD7E1EE5E5E600F9F19D /* MochaException.swift */,
+				0C91DD7E1EE5E5E600F9F19D /* MochaError.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -585,7 +585,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C91DD831EE5E5E600F9F19D /* MochaException.swift in Sources */,
+				0C91DD831EE5E5E600F9F19D /* MochaError.swift in Sources */,
 				0C5ECB7D1F1EC91B00ABCD5A /* DateUtil.swift in Sources */,
 				0C0161191FC7477700D23BAB /* Result.swift in Sources */,
 				0C5ECB881F1ED2D000ABCD5A /* MochaTaskManager.swift in Sources */,

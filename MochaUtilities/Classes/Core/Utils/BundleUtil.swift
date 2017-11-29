@@ -37,7 +37,7 @@ public extension BundleUtil {
             do {
                 return try Result.success(Data(contentsOf: URL(fileURLWithPath: value)))
             } catch {
-                return Result.failure(MochaException.fileNotFoundException)
+                return Result.failure(MochaError.fileNotFound)
             }
         }
         return fileData
@@ -50,14 +50,14 @@ public extension BundleUtil {
     
     public func path(of filename: String?, ofType type: String?) -> Result<String> {
         guard let path = bundle.path(forResource: filename, ofType: type) else {
-            return .failure(.fileNotFoundException)
+            return .failure(.fileNotFound)
         }
         return .success(path)
     }
     
     public func resourcePath(of filename: String) -> Result<String> {
         guard let resourcePath = bundle.resourcePath else {
-            return .failure(.fileNotFoundException)
+            return .failure(.fileNotFound)
         }
         return .success(resourcePath.appendingPathComponent(filename))
     }
@@ -76,8 +76,8 @@ public extension BundleUtil {
                      withEncoding encoding: String.Encoding = .utf8) -> Result<String> {
         do {
             return try .success(String(contentsOfFile: filePath, encoding: encoding))
-        } catch {
-            return .failure(.genericException(message: ""))
+        } catch let error {
+            return .failure(.descriptive(message: error.localizedDescription))
         }
     }
 }
