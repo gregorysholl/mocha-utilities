@@ -8,9 +8,9 @@
 
 import UIKit
 
-public typealias HttpCompletionHandler = (_ result: Result<Data>) -> Void
-
 public class HttpClient: NSObject {
+    
+    public typealias Handler = (_ result: Result<Data>) -> Void
     
     // MARK: Variables
     
@@ -49,7 +49,7 @@ public class HttpClient: NSObject {
     
     //Response
     
-    fileprivate var completionHandler   : HttpCompletionHandler?
+    fileprivate var responseHandler   : Handler?
     
     // MARK: Inits
     
@@ -108,7 +108,7 @@ public class HttpClient: NSObject {
     }
     
     private func handleGenericError(with message: String) {
-        completionHandler?(.failure(.descriptive(message: message)))
+        responseHandler?(.failure(.descriptive(message: message)))
     }
     
     private func send(httpMethod: String) {
@@ -162,7 +162,7 @@ public class HttpClient: NSObject {
                     let data = try JSONSerialization.data(withJSONObject: parameters, options: [])
                     request.httpBody = data
                 } catch {
-                    completionHandler?(.failure(.serialization))
+                    responseHandler?(.failure(.serialization))
                     return
                 }
             }
@@ -178,9 +178,9 @@ public class HttpClient: NSObject {
             
             if let httpResponse = response as? HTTPURLResponse {
                 if httpResponse.statusCode == -1022 {
-                    self.completionHandler?(.failure(.appSecurityTransport))
+                    self.responseHandler?(.failure(.appSecurityTransport))
                 } else if httpResponse.statusCode != 200 {
-                    self.completionHandler?(
+                    self.responseHandler?(
                         .failure(
                         MochaError.httpResponse(statusCode: httpResponse.statusCode,
                                                 data: nil)))
@@ -189,11 +189,11 @@ public class HttpClient: NSObject {
             
             if let error = error {
                 MochaLogger.log("Http error: \(error.localizedDescription)")
-                self.completionHandler?(.failure(.error(error: error)))
+                self.responseHandler?(.failure(.error(error: error)))
             }
             
             if let data = data {
-                self.completionHandler?(.success(data))
+                self.responseHandler?(.success(data))
             }
         })
         
@@ -315,9 +315,9 @@ public extension HttpClient {
             helper.url = url
             return self
         }
-
-        public func completionHandler(_ handler: @escaping HttpCompletionHandler) -> Builder {
-            helper.completionHandler = handler
+        
+        public func responseHandler(_ handler: @escaping Handler) -> Builder {
+            helper.responseHandler = handler
             return self
         }
 
