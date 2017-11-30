@@ -1,5 +1,5 @@
 //
-//  HttpHelperTest.swift
+//  HttpClientTest.swift
 //  MochaUtilities
 //
 //  Created by Gregory Sholl e Santos on 09/06/17.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import MochaUtilities
 
-class HttpHelperTest: XCTestCase {
+class HttpClientTest: XCTestCase {
     
     private var mainUrl = "https://httpbin.org"
     
