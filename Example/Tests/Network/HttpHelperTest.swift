@@ -37,7 +37,7 @@ class HttpHelperTest: XCTestCase {
             switch response! {
             case .failure(let error):
                 switch error {
-                case .domainException(_):
+                case .descriptive(_):
                     XCTAssert(true)
                 default:
                     XCTAssert(false)

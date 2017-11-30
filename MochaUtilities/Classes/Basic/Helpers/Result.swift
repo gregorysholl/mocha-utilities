@@ -9,7 +9,7 @@ import Foundation
 
 public enum Result<T> {
     case success(T)
-    case failure(MochaException)
+    case failure(MochaError)
 }
 
 public extension Result {

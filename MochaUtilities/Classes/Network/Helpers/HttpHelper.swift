@@ -70,7 +70,7 @@ public class HttpHelper: NSObject {
         let credentials = "\(username):\(password)"
         
         guard let data = credentials.data(using: encoding) else {
-            throw MochaException.domainException(message: "Error formatting the basic authentication provided.")
+            throw MochaError.descriptive(message: "Error formatting the basic authentication provided.")
         }
         
         let base64Credential = data.base64EncodedString(options: .lineLength64Characters)
@@ -107,19 +107,19 @@ public class HttpHelper: NSObject {
         send(httpMethod: "update")
     }
     
-    private func handleDomainException(_ message: String) {
-        completionHandler?(.failure(.domainException(message: message)))
+    private func handleGenericError(with message: String) {
+        completionHandler?(.failure(.descriptive(message: message)))
     }
     
     private func send(httpMethod: String) {
         
         guard let url = self.url else {
-            handleDomainException("URL cannot be `nil`")
+            handleGenericError(with: "URL cannot be `nil`")
             return
         }
         
         guard let nsurl = URL(string: url) else {
-            handleDomainException("Invalid URL.")
+            handleGenericError(with: "Invalid URL.")
             return
         }
         
@@ -130,7 +130,7 @@ public class HttpHelper: NSObject {
             do {
                 let encodedBasicAuth = try convertBasicAuthToBase64(username: username, password: password)
                 request.setValue(encodedBasicAuth, forHTTPHeaderField: "Authorization")
-            } catch MochaException.domainException(let message) {
+            } catch MochaError.descriptive(let message) {
                 MochaLogger.log(message)
             } catch {}
         }
@@ -143,7 +143,7 @@ public class HttpHelper: NSObject {
         
         if httpMethod.equalsIgnoreCase("post") || httpMethod.equalsIgnoreCase("update") {
             if parameters.isEmpty {
-                handleDomainException("Http request (\(httpMethod.lowercased()) without parameters.")
+                handleGenericError(with: "Http request (\(httpMethod.lowercased()) without parameters.")
                 return
             }
             
@@ -162,7 +162,8 @@ public class HttpHelper: NSObject {
                     let data = try JSONSerialization.data(withJSONObject: parameters, options: [])
                     request.httpBody = data
                 } catch {
-                    handleDomainException("Error formatting the data to be sent.")
+                    completionHandler?(.failure(.serialization))
+                    return
                 }
             }
         }
@@ -177,16 +178,18 @@ public class HttpHelper: NSObject {
             
             if let httpResponse = response as? HTTPURLResponse {
                 if httpResponse.statusCode == -1022 {
-                    self.completionHandler?(.failure(.appSecurityTransportException))
+                    self.completionHandler?(.failure(.appSecurityTransport))
                 } else if httpResponse.statusCode != 200 {
-//                    self.completionHandler?(.failure(error))
-//                    self.completionHandler?(nil, error)
+                    self.completionHandler?(
+                        .failure(
+                        MochaError.httpResponse(statusCode: httpResponse.statusCode,
+                                                data: nil)))
                 }
             }
             
             if let error = error {
                 MochaLogger.log("Http error: \(error.localizedDescription)")
-//                self.completionHandler?(nil, error)
+                self.completionHandler?(.failure(.error(error: error)))
             }
             
             if let data = data {

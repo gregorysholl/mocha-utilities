@@ -24,7 +24,7 @@ public extension DocumentsUtil {
                                                                 domainMask,
                                                                 true)
         if documentPaths.isEmpty {
-            return .failure(.fileNotFoundException)
+            return .failure(.fileNotFound)
         }
         return .success(documentPaths[0])
     }
@@ -32,7 +32,7 @@ public extension DocumentsUtil {
     public func path(of filename: String?,
                      with domainMask: FileManager.SearchPathDomainMask = .userDomainMask) -> Result<String> {
         guard let filename = filename, filename.isNotEmpty else {
-            return .failure(.fileNotFoundException)
+            return .failure(.fileNotFound)
         }
         return path(forDomainMask: domainMask).map {
             $0.appendingPathComponent(filename)
@@ -72,7 +72,7 @@ public extension DocumentsUtil {
             let data = try Data(contentsOf: URL(fileURLWithPath: path))
             return .success(data)
         } catch(let error) {
-            return .failure(.genericException(message: error.localizedDescription))
+            return .failure(.descriptive(message: error.localizedDescription))
         }
     }
 }
@@ -94,7 +94,7 @@ public extension DocumentsUtil {
         do {
             return try .success(String(contentsOfFile: path, encoding: encoding))
         } catch {
-            return .failure(.fileNotFoundException)
+            return .failure(.fileNotFound)
         }
     }
 }
@@ -118,8 +118,8 @@ public extension DocumentsUtil {
         do {
             try text.write(toFile: path, atomically: false, encoding: encoding)
             return .success()
-        } catch {
-            return .failure(.genericException(message: ""))
+        } catch let error {
+            return .failure(.descriptive(message: error.localizedDescription))
         }
     }
 }
@@ -132,7 +132,7 @@ public extension DocumentsUtil {
                        in filename: String?,
                        ofType type: String?) -> Result<Void> {
         guard let filename = filename, filename.isNotEmpty else {
-            return .failure(.fileNotFoundException)
+            return .failure(.fileNotFound)
         }
 
         var fullFileName = ""
@@ -164,8 +164,8 @@ public extension DocumentsUtil {
         do {
             try FileManager.default.removeItem(atPath: path)
             return .success()
-        } catch {
-            return .failure(.genericException(message: ""))
+        } catch let error {
+            return .failure(.descriptive(message: error.localizedDescription))
         }
     }
 
@@ -178,7 +178,7 @@ public extension DocumentsUtil {
 
     public func removeAll(in filenames: [String]) -> Result<Void> {
         if filenames.isEmpty {
-            return .failure(.fileNotFoundException)
+            return .failure(.fileNotFound)
         }
 
         for filename in filenames {
@@ -206,7 +206,7 @@ public extension DocumentsUtil {
             return .failure(error)
         case .success(let exists):
             if !exists {
-                return .failure(.fileNotFoundException)
+                return .failure(.fileNotFound)
             }
         }
         
@@ -215,8 +215,8 @@ public extension DocumentsUtil {
                                                     withIntermediateDirectories: true,
                                                     attributes: nil)
             return .success()
-        } catch {
-            return .failure(.genericException(message: ""))
+        } catch let error {
+            return .failure(.descriptive(message: error.localizedDescription))
         }
     }
 }
