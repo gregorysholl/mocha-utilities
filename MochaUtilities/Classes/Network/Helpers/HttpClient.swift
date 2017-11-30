@@ -10,12 +10,12 @@ import UIKit
 
 public typealias HttpCompletionHandler = (_ result: Result<Data>) -> Void
 
-public class HttpHelper: NSObject {
+public class HttpClient: NSObject {
     
     // MARK: Variables
     
-    static public var builder   : HttpHelper.Builder {
-        return HttpHelper.Builder()
+    static public var builder   : HttpClient.Builder {
+        return HttpClient.Builder()
     }
     
     //Http Properties
@@ -291,7 +291,7 @@ public class HttpHelper: NSObject {
 
 // MARK: - Enums
 
-public extension HttpHelper {
+public extension HttpClient {
     
     public enum CertificateMode {
         case none
@@ -301,14 +301,14 @@ public extension HttpHelper {
 
 // MARK: - Builder
 
-public extension HttpHelper {
+public extension HttpClient {
     
     public class Builder {
         
-        private var helper : HttpHelper
+        private var helper : HttpClient
         
         public init() {
-            helper = HttpHelper()
+            helper = HttpClient()
         }
         
         public func url(_ url: String) -> Builder {
@@ -372,7 +372,7 @@ public extension HttpHelper {
             return self
         }
         
-        public func build() -> HttpHelper {
+        public func build() -> HttpClient {
             return helper
         }
     }
@@ -380,7 +380,7 @@ public extension HttpHelper {
 
 // MARK: - URL Session Delegate
 
-extension HttpHelper: URLSessionDelegate {
+extension HttpClient: URLSessionDelegate {
     
     public func urlSession(_ session: URLSession, didBecomeInvalidWithError error: Error?) {
         guard let error = error else {

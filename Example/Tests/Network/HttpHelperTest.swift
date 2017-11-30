@@ -26,7 +26,7 @@ class HttpHelperTest: XCTestCase {
             expect.fulfill()
         }
         
-        let httpHelper = HttpHelper.builder.completionHandler(handler).build()
+        let httpHelper = HttpClient.builder.completionHandler(handler).build()
         httpHelper.get()
         
         waitForExpectations(timeout: 60) { error in
@@ -70,7 +70,7 @@ class HttpHelperTest: XCTestCase {
         }
     }
     
-    private func getDefaultBuilder(url: String, handler: @escaping HttpCompletionHandler) -> HttpHelper.Builder {
-        return HttpHelper.builder.url(mainUrl + url).completionHandler(handler)
+    private func getDefaultBuilder(url: String, handler: @escaping HttpCompletionHandler) -> HttpClient.Builder {
+        return HttpClient.builder.url(mainUrl + url).completionHandler(handler)
     }
 }
