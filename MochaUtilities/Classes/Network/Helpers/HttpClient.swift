@@ -66,16 +66,16 @@ public class HttpClient: NSObject {
     
     // MARK: Conversions
     
-    private func convertBasicAuthToBase64(username: String, password: String) throws -> String {
+    private func convertBasicAuthToBase64(username: String,
+                                          password: String) -> Result<String> {
         let credentials = "\(username):\(password)"
         
         guard let data = credentials.data(using: encoding) else {
-            throw MochaError.descriptive(message: "Error formatting the basic authentication provided.")
+            return .failure(.descriptive(message: "Error formatting the basic authentication provided."))
         }
         
         let base64Credential = data.base64EncodedString(options: .lineLength64Characters)
-        let authValue = "Basic \(base64Credential)"
-        return authValue
+        return .success("Basic \(base64Credential)")
     }
     
     private func string(fromDictionary dictionary: [String: Any]) -> String {
@@ -126,13 +126,17 @@ public class HttpClient: NSObject {
         var request = URLRequest(url: nsurl, cachePolicy: .useProtocolCachePolicy)
         request.httpMethod = httpMethod
         
-        if let username = self.username, username.isNotEmpty, let password = self.password, password.isNotEmpty {
-            do {
-                let encodedBasicAuth = try convertBasicAuthToBase64(username: username, password: password)
-                request.setValue(encodedBasicAuth, forHTTPHeaderField: "Authorization")
-            } catch MochaError.descriptive(let message) {
-                MochaLogger.log(message)
-            } catch {}
+        if let username = self.username, username.isNotEmpty,
+            let password = self.password, password.isNotEmpty {
+            let convertResult = convertBasicAuthToBase64(username: username,
+                                                         password: password)
+            
+            switch convertResult {
+            case .failure(let error):
+                break
+            case .success(let encodedAuth):
+                request.setValue(encodedAuth, forHTTPHeaderField: "Authorization")
+            }
         }
         
         if header.count > 0 {
