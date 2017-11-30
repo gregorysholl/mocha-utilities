@@ -1,5 +1,5 @@
 //
-//  HttpHelper.swift
+//  HttpClient.swift
 //  Pods
 //
 //  Created by Gregory Sholl e Santos on 05/06/17.
