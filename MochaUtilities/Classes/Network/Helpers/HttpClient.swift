@@ -53,7 +53,7 @@ public class HttpClient: NSObject {
     
     // MARK: Inits
     
-    fileprivate override init() {
+    override fileprivate init() {
         super.init()
         
         contentType = "application/json"
