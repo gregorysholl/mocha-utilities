@@ -132,10 +132,10 @@ public class HttpClient: NSObject {
                                                          password: password)
             
             switch convertResult {
-            case .failure(let error):
-                break
             case .success(let encodedAuth):
                 request.setValue(encodedAuth, forHTTPHeaderField: "Authorization")
+            default:
+                break
             }
         }
         
