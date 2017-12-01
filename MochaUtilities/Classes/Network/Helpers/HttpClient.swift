@@ -12,11 +12,11 @@ public class HttpClient: NSObject {
     
     public typealias Handler = (_ result: Result<Data>) -> Void
     
-    // MARK: Variables
+    public typealias SuccessHandler = (_ data: Data) -> Void
     
-    static public var builder   : HttpClient.Builder {
-        return HttpClient.Builder()
-    }
+    public typealias FailureHandler = (_ result: MochaError) -> Void
+    
+    // MARK: Variables
     
     //Http Properties
     
@@ -49,7 +49,11 @@ public class HttpClient: NSObject {
     
     //Response
     
+    @available(iOS, deprecated: 0.7.0, message: "Use `success` and `failure` closures instead.")
     fileprivate var responseHandler   : Handler?
+    
+    fileprivate var success : SuccessHandler?
+    fileprivate var failure : FailureHandler?
     
     // MARK: Inits
     
@@ -107,19 +111,15 @@ public class HttpClient: NSObject {
         send(httpMethod: "update")
     }
     
-    private func handleGenericError(with message: String) {
-        responseHandler?(.failure(.descriptive(message: message)))
-    }
-    
     private func send(httpMethod: String) {
         
         guard let url = self.url else {
-            handleGenericError(with: "URL cannot be `nil`")
+            failure?(.descriptive(message: "URL cannot be `nil`."))
             return
         }
         
         guard let nsurl = URL(string: url) else {
-            handleGenericError(with: "Invalid URL.")
+            failure?(.descriptive(message: "Invalid URL."))
             return
         }
         
@@ -147,7 +147,8 @@ public class HttpClient: NSObject {
         
         if httpMethod.equalsIgnoreCase("post") || httpMethod.equalsIgnoreCase("update") {
             if parameters.isEmpty {
-                handleGenericError(with: "Http request (\(httpMethod.lowercased()) without parameters.")
+                failure?(.descriptive(message:
+                    "Http request (\(httpMethod.uppercased()) without parameters."))
                 return
             }
             
@@ -166,7 +167,7 @@ public class HttpClient: NSObject {
                     let data = try JSONSerialization.data(withJSONObject: parameters, options: [])
                     request.httpBody = data
                 } catch {
-                    responseHandler?(.failure(.serialization))
+                    failure?(.serialization)
                     return
                 }
             }
@@ -181,23 +182,19 @@ public class HttpClient: NSObject {
             (data: Data?, response: URLResponse?, error: Error?) in
             
             if let httpResponse = response as? HTTPURLResponse {
-                if httpResponse.statusCode == -1022 {
-                    self.responseHandler?(.failure(.appSecurityTransport))
-                } else if httpResponse.statusCode != 200 {
-                    self.responseHandler?(
-                        .failure(
-                        MochaError.httpResponse(statusCode: httpResponse.statusCode,
-                                                data: nil)))
+                if httpResponse.statusCode != 200 {
+                    self.failure?(.httpResponse(statusCode: httpResponse.statusCode,
+                                                data: data))
                 }
             }
             
             if let error = error {
                 MochaLogger.log("Http error: \(error.localizedDescription)")
-                self.responseHandler?(.failure(.error(error: error)))
+                self.failure?(.error(error: error))
             }
             
             if let data = data {
-                self.responseHandler?(.success(data))
+                self.success?(data)
             }
         })
         
@@ -359,9 +356,20 @@ public extension HttpClient {
         
         //Response
         
+        @available(iOS, deprecated: 0.7.0, message: "Use `success` and `failure` closures instead.")
         public var responseHandler   : Handler? {
             get { return helper.responseHandler }
             set { helper.responseHandler = newValue }
+        }
+        
+        public var success  : SuccessHandler? {
+            get { return helper.success }
+            set { helper.success = newValue }
+        }
+        
+        public var failure  : FailureHandler? {
+            get { return helper.failure }
+            set { helper.failure = newValue }
         }
         
         private var helper : HttpClient!
