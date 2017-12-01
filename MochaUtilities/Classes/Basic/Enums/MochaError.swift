@@ -15,11 +15,10 @@ public enum MochaError : Error {
         case unauthorized = 401
         case forbidden = 403
         case notFound = 404
+        case appSecurityTransport = -1022
     }
     
     case httpResponse(statusCode: Int, data: Data?)
-    
-    case appSecurityTransport
     
     case fileNotFound
     
@@ -38,8 +37,6 @@ extension MochaError: Equatable {
         switch (lhs, rhs) {
         case (.httpResponse(let lstatus, _), .httpResponse(let rstatus, _)):
             return lstatus == rstatus
-        case (.appSecurityTransport, .appSecurityTransport):
-            return true
         case (.fileNotFound, .fileNotFound):
             return true
         case (.notImplemented, .notImplemented):
