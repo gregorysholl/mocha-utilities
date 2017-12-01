@@ -202,8 +202,16 @@ public class HttpClient: NSObject {
         
         session.finishTasksAndInvalidate()
     }
+}
+
+// MARK: - Certificate
+
+public extension HttpClient {
     
-    // MARK: Certificate Handlers
+    public enum CertificateMode {
+        case none
+        case publicKey
+    }
     
     fileprivate func shoultTrustProtectionSpace(_ protectionSpace: URLProtectionSpace) -> Bool {
         
@@ -287,16 +295,6 @@ public class HttpClient: NSObject {
         
         let credential = URLCredential(identity: identityApp, certificates: nil, persistence: .none)
         return credential
-    }
-}
-
-// MARK: - Enums
-
-public extension HttpClient {
-    
-    public enum CertificateMode {
-        case none
-        case publicKey
     }
 }
 
