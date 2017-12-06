@@ -70,12 +70,22 @@ public class HttpClient: NSObject {
     
     // MARK: Conversions
     
-    private func convertBasicAuthToBase64(username: String,
-                                          password: String) -> Result<String> {
+    private func createBasicAuthString() -> Result<String> {
+        guard let username = self.username, username.isNotEmpty else {
+            return .failure(.descriptive(message:
+                "Username not informed for Basic Authorization"))
+        }
+        
+        guard let password = self.password, password.isNotEmpty else {
+            return .failure(.descriptive(message:
+                "Password not informed for Basic Authorization"))
+        }
+        
         let credentials = "\(username):\(password)"
         
         guard let data = credentials.data(using: encoding) else {
-            return .failure(.descriptive(message: "Error formatting the basic authentication provided."))
+            return .failure(.descriptive(message:
+                "Error formatting the basic authentication provided."))
         }
         
         let base64Credential = data.base64EncodedString(options: .lineLength64Characters)
@@ -126,17 +136,13 @@ public class HttpClient: NSObject {
         var request = URLRequest(url: nsurl, cachePolicy: .useProtocolCachePolicy)
         request.httpMethod = httpMethod
         
-        if let username = self.username, username.isNotEmpty,
-            let password = self.password, password.isNotEmpty {
-            let convertResult = convertBasicAuthToBase64(username: username,
-                                                         password: password)
-            
-            switch convertResult {
-            case .success(let encodedAuth):
-                request.setValue(encodedAuth, forHTTPHeaderField: "Authorization")
-            default:
-                break
-            }
+        //basic auth
+        let basicAuthResult = createBasicAuthString()
+        switch basicAuthResult {
+        case .success(let basicAuth):
+            request.setValue(basicAuth, forHTTPHeaderField: "Authorization")
+        case .failure(let error):
+            MochaLogger.log(error.description)
         }
         
         if header.count > 0 {
