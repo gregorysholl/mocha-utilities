@@ -136,6 +136,28 @@ public class HttpClient: NSObject {
         }
     }
     
+    private func createHttpBody(for httpMethod: String) -> Result<Data> {
+        guard !parameters.isEmpty else {
+            return .failure(.descriptive(message:
+                "Http request (\(httpMethod.uppercased()) without parameters."))
+        }
+        
+        switch contentType {
+        case "application/x-www-form-urlencoded":
+            let formString = string(fromDictionary: parameters)
+            return formString.data(using: encoding).map {
+                Result.success($0)
+            } ?? .failure(.serialization)
+        default:
+            do {
+                let data = try JSONSerialization.data(withJSONObject: parameters, options: [])
+                return .success(data)
+            } catch {
+                return .failure(.serialization)
+            }
+        }
+    }
+    
     private func send(httpMethod: String) -> Result<Data>? {
         
         guard let url = self.url else {
