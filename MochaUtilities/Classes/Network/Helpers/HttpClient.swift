@@ -47,6 +47,8 @@ public class HttpClient: NSObject {
     
     fileprivate var url : String?
     
+    fileprivate var sync: Bool = false
+    
     //Response
     
     @available(iOS, deprecated: 0.7.0, message: "Use `success` and `failure` closures instead.")
@@ -105,32 +107,43 @@ public class HttpClient: NSObject {
     
     // MARK: Requests
     
-    public func get() {
-        send(httpMethod: "get")
+    @discardableResult
+    public func get() -> Result<Data>? {
+        return send(httpMethod: "get")
     }
     
-    public func delete() {
-        send(httpMethod: "delete")
+    @discardableResult
+    public func delete() -> Result<Data>? {
+        return send(httpMethod: "delete")
     }
     
-    public func post() {
-        send(httpMethod: "post")
+    @discardableResult
+    public func post() -> Result<Data>? {
+        return send(httpMethod: "post")
     }
     
-    public func update() {
-        send(httpMethod: "update")
+    @discardableResult
+    public func update() -> Result<Data>? {
+        return send(httpMethod: "update")
     }
     
-    private func send(httpMethod: String) {
+    private func handleError(_ error: MochaError) -> Result<Data>? {
+        if sync {
+            return .failure(error)
+        } else {
+            failure?(error)
+            return nil
+        }
+    }
+    
+    private func send(httpMethod: String) -> Result<Data>? {
         
         guard let url = self.url else {
-            failure?(.descriptive(message: "URL cannot be `nil`."))
-            return
+            return handleError(.descriptive(message: "URL cannot be `nil`."))
         }
         
         guard let nsurl = URL(string: url) else {
-            failure?(.descriptive(message: "Invalid URL."))
-            return
+            return handleError(.descriptive(message: "Invalid URL."))
         }
         
         var request = URLRequest(url: nsurl, cachePolicy: .useProtocolCachePolicy)
@@ -155,9 +168,8 @@ public class HttpClient: NSObject {
         //body
         if httpMethod.equalsIgnoreCase("post") || httpMethod.equalsIgnoreCase("update") {
             if parameters.isEmpty {
-                failure?(.descriptive(message:
+                return handleError(.descriptive(message:
                     "Http request (\(httpMethod.uppercased()) without parameters."))
-                return
             }
             
             if request.value(forHTTPHeaderField: "Content-Type") == nil {
@@ -175,8 +187,7 @@ public class HttpClient: NSObject {
                     let data = try JSONSerialization.data(withJSONObject: parameters, options: [])
                     request.httpBody = data
                 } catch {
-                    failure?(.serialization)
-                    return
+                    return handleError(.serialization)
                 }
             }
         }
@@ -209,6 +220,8 @@ public class HttpClient: NSObject {
         dataTask.resume()
         
         session.finishTasksAndInvalidate()
+        
+        return nil
     }
 }
 
