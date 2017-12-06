@@ -145,12 +145,14 @@ public class HttpClient: NSObject {
             MochaLogger.log(error.description)
         }
         
+        //headers
         if header.count > 0 {
             for (key, value) in header {
                 request.setValue(value, forHTTPHeaderField: key)
             }
         }
         
+        //body
         if httpMethod.equalsIgnoreCase("post") || httpMethod.equalsIgnoreCase("update") {
             if parameters.isEmpty {
                 failure?(.descriptive(message:
