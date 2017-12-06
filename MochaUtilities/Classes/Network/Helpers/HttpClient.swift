@@ -187,31 +187,14 @@ public class HttpClient: NSObject {
             }
         }
         
-        //body
-        if httpMethod.equalsIgnoreCase("post") || httpMethod.equalsIgnoreCase("update") {
-            if parameters.isEmpty {
-                return handleError(.descriptive(message:
-                    "Http request (\(httpMethod.uppercased()) without parameters."))
-            }
-            
-            if request.value(forHTTPHeaderField: "Content-Type") == nil {
-                request.setValue(contentType, forHTTPHeaderField: "Content-Type")
-            }
-            
-            if contentType == "application/x-www-form-urlencoded" {
-                let formString = string(fromDictionary: parameters)
-                let length = "\(formString.length)"
-                
-                request.setValue(length, forHTTPHeaderField: "Content-Length")
-                request.httpBody = formString.data(using: encoding)
-            } else {
-                do {
-                    let data = try JSONSerialization.data(withJSONObject: parameters, options: [])
-                    request.httpBody = data
-                } catch {
-                    return handleError(.serialization)
-                }
-            }
+        //httpBody
+        let httpBodyResult = createHttpBody(for: httpMethod)
+        switch httpBodyResult {
+        case .success(let httpBody):
+            request.addValue("\(httpBody.count)", forHTTPHeaderField: "Content-Length")
+            request.httpBody = httpBody
+        case .failure(let error):
+            return handleError(error)
         }
         
         let configuration = URLSessionConfiguration.default
