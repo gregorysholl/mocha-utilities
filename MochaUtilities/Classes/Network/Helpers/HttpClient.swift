@@ -160,6 +160,7 @@ public class HttpClient: NSObject {
     
     private func send(httpMethod: String) -> Result<Data>? {
         
+        //prerequisites
         guard let url = self.url else {
             return handleError(.descriptive(message: "URL cannot be `nil`."))
         }
@@ -168,6 +169,7 @@ public class HttpClient: NSObject {
             return handleError(.descriptive(message: "Invalid URL."))
         }
         
+        //request
         var request = URLRequest(url: nsurl, cachePolicy: .useProtocolCachePolicy)
         request.httpMethod = httpMethod
         
@@ -197,9 +199,11 @@ public class HttpClient: NSObject {
             return handleError(error)
         }
         
+        //configuration
         let configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForRequest = timeout
         
+        //session
         let session = URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
         
         let dataTask = session.dataTask(with: request, completionHandler: {
