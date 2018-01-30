@@ -206,6 +206,11 @@ public class HttpClient: NSObject {
         //session
         let session = URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
         
+        if sync {
+            let syncExec = SynchronousHttpClient()
+            return syncExec.executeDataTask(with: request, and: session)
+        }
+        
         let dataTask = session.dataTask(with: request, completionHandler: {
             (data: Data?, response: URLResponse?, error: Error?) in
             
@@ -398,6 +403,11 @@ public extension HttpClient {
         public var failure  : FailureHandler? {
             get { return helper.failure }
             set { helper.failure = newValue }
+        }
+        
+        public var sync: Bool {
+            get { return helper.sync }
+            set { helper.sync = newValue }
         }
         
         private var helper : HttpClient!
