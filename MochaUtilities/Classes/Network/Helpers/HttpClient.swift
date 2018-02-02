@@ -8,15 +8,11 @@
 
 import UIKit
 
-public typealias HttpCompletionHandler = (_ result: Result<Data>) -> Void
-
 public class HttpClient: NSObject {
     
-    // MARK: Variables
+    public typealias Handler = (_ result: Result<Data>) -> Void
     
-    static public var builder   : HttpClient.Builder {
-        return HttpClient.Builder()
-    }
+    // MARK: Variables
     
     //Http Properties
     
@@ -49,11 +45,11 @@ public class HttpClient: NSObject {
     
     //Response
     
-    fileprivate var completionHandler   : HttpCompletionHandler?
+    fileprivate var handler : Handler?
     
     // MARK: Inits
     
-    fileprivate override init() {
+    override fileprivate init() {
         super.init()
         
         contentType = "application/json"
@@ -118,7 +114,11 @@ public class HttpClient: NSObject {
     }
     
     private func handleGenericError(with message: String) {
-        completionHandler?(.failure(.descriptive(message: message)))
+        handler?(.failure(.descriptive(message: message)))
+    }
+    
+    private func handleError(_ error: MochaError) {
+        handler?(.failure(error))
     }
     
     private func createHttpBody(for method: Method) -> Result<Data> {
@@ -145,16 +145,17 @@ public class HttpClient: NSObject {
     }
     
     private func send(httpMethod: String) {
+        
+        //prerequisites
         guard let url = self.url else {
-            handleGenericError(with: "URL cannot be `nil`")
-            return
+            return handleError(.descriptive(message: "URL cannot be `nil`."))
         }
         
         guard let nsurl = URL(string: url) else {
-            handleGenericError(with: "Invalid URL.")
-            return
+            return handleError(.descriptive(message: "Invalid URL."))
         }
         
+        //request
         var request = URLRequest(url: nsurl, cachePolicy: .useProtocolCachePolicy)
         request.httpMethod = httpMethod
         
@@ -213,22 +214,20 @@ public class HttpClient: NSObject {
             
             if let httpResponse = response as? HTTPURLResponse {
                 if httpResponse.statusCode == -1022 {
-                    self.completionHandler?(.failure(.appSecurityTransport))
+                    self.handler?(.failure(.appSecurityTransport))
                 } else if httpResponse.statusCode != 200 {
-                    self.completionHandler?(
-                        .failure(
-                        MochaError.httpResponse(statusCode: httpResponse.statusCode,
-                                                data: nil)))
+                    self.handler?(.failure(.httpResponse(statusCode: httpResponse.statusCode,
+                                                         data: data)))
                 }
             }
             
             if let error = error {
                 MochaLogger.log("Http error: \(error.localizedDescription)")
-                self.completionHandler?(.failure(.error(error: error)))
+                self.handler?(.failure(.error(error: error)))
             }
             
             if let data = data {
-                self.completionHandler?(.success(data))
+                self.handler?(.success(data))
             }
         })
         
@@ -350,9 +349,9 @@ public extension HttpClient {
             helper.url = url
             return self
         }
-
-        public func completionHandler(_ handler: @escaping HttpCompletionHandler) -> Builder {
-            helper.completionHandler = handler
+        
+        public func handler(_ handler: @escaping Handler) -> Builder {
+            helper.handler = handler
             return self
         }
 
