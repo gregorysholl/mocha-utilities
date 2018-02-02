@@ -31,10 +31,14 @@ public class BundleUtil {
 
 public extension BundleUtil {
     
-    public func file(_ filename: String?, ofType type: String?) throws -> Data {
-        let path = try self.path(of: filename, ofType: type)
-        guard let fileData = try? Data(contentsOf: URL(fileURLWithPath: path)) else {
-            throw MochaException.fileNotFoundException
+    public func file(_ filename: String?, ofType type: String?) -> Result<Data> {
+        let path = self.path(of: filename, ofType: type)
+        let fileData = path.flatMap { (value) -> Result<Data> in
+            do {
+                return try Result.success(Data(contentsOf: URL(fileURLWithPath: value)))
+            } catch {
+                return Result.failure(MochaError.fileNotFound)
+            }
         }
         return fileData
     }
@@ -44,18 +48,18 @@ public extension BundleUtil {
 
 public extension BundleUtil {
     
-    public func path(of filename: String?, ofType type: String?) throws -> String {
+    public func path(of filename: String?, ofType type: String?) -> Result<String> {
         guard let path = bundle.path(forResource: filename, ofType: type) else {
-            throw MochaException.fileNotFoundException
+            return .failure(.fileNotFound)
         }
-        return path
+        return .success(path)
     }
     
-    public func resourcePath(of filename: String) throws -> String {
+    public func resourcePath(of filename: String) -> Result<String> {
         guard let resourcePath = bundle.resourcePath else {
-            throw MochaException.fileNotFoundException
+            return .failure(.fileNotFound)
         }
-        return resourcePath.appendingPathComponent(filename)
+        return .success(resourcePath.appendingPathComponent(filename))
     }
 }
 
@@ -63,16 +67,17 @@ public extension BundleUtil {
 
 public extension BundleUtil {
     
-    public func read(_ filename: String?, ofType type: String?, withEncoding encoding: String.Encoding = .utf8) throws -> String {
-        let path = try self.path(of: filename, ofType: type)
-        return try read(atPath: path)
+    public func read(_ filename: String?, ofType type: String?, withEncoding encoding: String.Encoding = .utf8) -> Result<String> {
+        let path = self.path(of: filename, ofType: type)
+        return path.flatMap { read(atPath: $0) }
     }
     
-    public func read(atPath filePath: String, withEncoding encoding: String.Encoding = .utf8) throws -> String {
+    public func read(atPath filePath: String,
+                     withEncoding encoding: String.Encoding = .utf8) -> Result<String> {
         do {
-            return try String(contentsOfFile: filePath, encoding: encoding)
-        } catch {
-            throw MochaException.genericException(message: "")
+            return try .success(String(contentsOfFile: filePath, encoding: encoding))
+        } catch let error {
+            return .failure(.descriptive(message: error.localizedDescription))
         }
     }
 }

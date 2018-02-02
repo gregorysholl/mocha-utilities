@@ -11,6 +11,7 @@
 		0C03766B1EEB7C6B00F1F8E2 /* CoreStringTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C03766A1EEB7C6B00F1F8E2 /* CoreStringTest.swift */; };
 		0C03766D1EEB7CA100F1F8E2 /* ImagesColorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C03766C1EEB7CA100F1F8E2 /* ImagesColorTest.swift */; };
 		0C03766F1EEB7CC100F1F8E2 /* HttpHelperTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C03766E1EEB7CC100F1F8E2 /* HttpHelperTest.swift */; };
+		0C49B5632024EEC6006FF3D8 /* MochaErrorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C49B5622024EEC6006FF3D8 /* MochaErrorTest.swift */; };
 		0C560B331EECFE8A00719807 /* CpfTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C560B321EECFE8A00719807 /* CpfTest.swift */; };
 		AE59CD3C7190742FD3693332 /* Pods_MochaUtilities_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8603BCE625ECFCD3F3F78E45 /* Pods_MochaUtilities_Tests.framework */; };
 /* End PBXBuildFile section */
@@ -22,6 +23,7 @@
 		0C03766A1EEB7C6B00F1F8E2 /* CoreStringTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreStringTest.swift; sourceTree = "<group>"; };
 		0C03766C1EEB7CA100F1F8E2 /* ImagesColorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagesColorTest.swift; sourceTree = "<group>"; };
 		0C03766E1EEB7CC100F1F8E2 /* HttpHelperTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpHelperTest.swift; sourceTree = "<group>"; };
+		0C49B5622024EEC6006FF3D8 /* MochaErrorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MochaErrorTest.swift; sourceTree = "<group>"; };
 		0C560B321EECFE8A00719807 /* CpfTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CpfTest.swift; sourceTree = "<group>"; };
 		1738B69F69290EBF21059A2F /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* MochaUtilities_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MochaUtilities_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -47,6 +49,7 @@
 			isa = PBXGroup;
 			children = (
 				0C0376681EEB7A8900F1F8E2 /* BasicStringTest.swift */,
+				0C49B5622024EEC6006FF3D8 /* MochaErrorTest.swift */,
 			);
 			path = Basic;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 				0C0376691EEB7A8900F1F8E2 /* BasicStringTest.swift in Sources */,
 				0C03766B1EEB7C6B00F1F8E2 /* CoreStringTest.swift in Sources */,
 				0C560B331EECFE8A00719807 /* CpfTest.swift in Sources */,
+				0C49B5632024EEC6006FF3D8 /* MochaErrorTest.swift in Sources */,
 				0C03766D1EEB7CA100F1F8E2 /* ImagesColorTest.swift in Sources */,
 				0C03766F1EEB7CC100F1F8E2 /* HttpHelperTest.swift in Sources */,
 			);

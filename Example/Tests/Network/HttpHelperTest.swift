@@ -19,10 +19,10 @@ class HttpHelperTest: XCTestCase {
     
     func testRequestWithoutUrl() {
         let expect = expectation(description: "HttpHelper returns data through closure.")
-        var response : (data: Data?, error: Error?)?
+        var response : Result<Data>!
         
-        let handler = { (data: Data?, error: Error?) in
-            response = (data, error)
+        let handler = { (result: Result<Data>) in
+            response = result
             expect.fulfill()
         }
         
@@ -30,16 +30,30 @@ class HttpHelperTest: XCTestCase {
         httpHelper.get()
         
         waitForExpectations(timeout: 60) { error in
-            XCTAssertTrue(response?.error != nil)
+            if error != nil {
+                XCTAssert(false)
+            }
+            
+            switch response! {
+            case .failure(let error):
+                switch error {
+                case .descriptive(_):
+                    XCTAssert(true)
+                default:
+                    XCTAssert(false)
+                }
+            case .success(_):
+                XCTAssert(false)
+            }
         }
     }
     
     func testGet() {
         let expect = expectation(description: "HttpHelper returns data through closure.")
-        var response : (data: Data?, error: Error?)?
+        var response : Result<Data>!
         
-        let handler = { (data: Data?, error: Error?) in
-            response = (data, error)
+        let handler = { (result: Result<Data>) in
+            response = result
             expect.fulfill()
         }
         
@@ -47,11 +61,12 @@ class HttpHelperTest: XCTestCase {
         httpHelper.get()
         
         waitForExpectations(timeout: 5) { error in
-            if let error = response?.error {
-                XCTFail(error.localizedDescription)
+            switch response! {
+            case .failure(_):
+                XCTAssert(false)
+            case .success(_):
+                XCTAssert(true)
             }
-            
-            XCTAssertTrue(response?.data != nil)
         }
     }
     

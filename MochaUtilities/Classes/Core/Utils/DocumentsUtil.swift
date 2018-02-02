@@ -19,20 +19,24 @@ public class DocumentsUtil {
 
 public extension DocumentsUtil {
     
-    public func path(forDomainMask domainMask: FileManager.SearchPathDomainMask = .userDomainMask) throws -> String {
-        let documentPaths = NSSearchPathForDirectoriesInDomains(.documentDirectory, domainMask, true)
+    public func path(forDomainMask domainMask: FileManager.SearchPathDomainMask = .userDomainMask) -> Result<String> {
+        let documentPaths = NSSearchPathForDirectoriesInDomains(.documentDirectory,
+                                                                domainMask,
+                                                                true)
         if documentPaths.isEmpty {
-            throw MochaException.fileNotFoundException
+            return .failure(.fileNotFound)
         }
-        return documentPaths[0]
+        return .success(documentPaths[0])
     }
     
-    public func path(of filename: String?, with domainMask: FileManager.SearchPathDomainMask = .userDomainMask) throws -> String {
+    public func path(of filename: String?,
+                     with domainMask: FileManager.SearchPathDomainMask = .userDomainMask) -> Result<String> {
         guard let filename = filename, filename.isNotEmpty else {
-            throw MochaException.fileNotFoundException
+            return .failure(.fileNotFound)
         }
-        let documentPath = try path(forDomainMask: domainMask)
-        return documentPath.appendingPathComponent(filename)
+        return path(forDomainMask: domainMask).map {
+            $0.appendingPathComponent(filename)
+        }
     }
 }
 
@@ -40,17 +44,15 @@ public extension DocumentsUtil {
 
 public extension DocumentsUtil {
     
-    public func fileExists(_ filename: String?) -> Bool {
-        do {
-            let path = try self.path(of: filename)
-            return FileManager.default.fileExists(atPath: path)
-        } catch {
-            return false
+    public func fileExists(_ filename: String?) -> Result<Bool> {
+        let pathResult = self.path(of: filename)
+        return pathResult.map {
+            FileManager.default.fileExists(atPath: $0)
         }
     }
     
-    public func fileExists(atPath path: String) -> Bool {
-        return FileManager.default.fileExists(atPath: path)
+    public func fileExists(atPath path: String) -> Result<Bool> {
+        return .success(FileManager.default.fileExists(atPath: path))
     }
 }
 
@@ -58,16 +60,20 @@ public extension DocumentsUtil {
 
 public extension DocumentsUtil {
     
-    public func file(_ filename: String?) throws -> Data {
-        let path = try self.path(of: filename)
-        return try file(atPath: path)
+    public func file(_ filename: String?) -> Result<Data> {
+        let pathResult = self.path(of: filename)
+        return pathResult.flatMap {
+            file(atPath: $0)
+        }
     }
     
-    public func file(atPath path: String) throws -> Data {
-        guard let data = try? Data(contentsOf: URL(fileURLWithPath: path)) else {
-            throw MochaException.genericException(message: "")
+    public func file(atPath path: String) -> Result<Data> {
+        do {
+            let data = try Data(contentsOf: URL(fileURLWithPath: path))
+            return .success(data)
+        } catch(let error) {
+            return .failure(.descriptive(message: error.localizedDescription))
         }
-        return data
     }
 }
 
@@ -75,16 +81,20 @@ public extension DocumentsUtil {
 
 public extension DocumentsUtil {
     
-    public func read(_ filename: String?, withEncoding encoding: String.Encoding = .utf8) throws -> String {
-        let path = try self.path(of: filename, with: .allDomainsMask)
-        return try read(atPath: path, withEncoding: encoding)
+    public func read(_ filename: String?,
+                     withEncoding encoding: String.Encoding = .utf8) -> Result<String> {
+        let pathResult = self.path(of: filename, with: .allDomainsMask)
+        return pathResult.flatMap {
+            read(atPath: $0, withEncoding: encoding)
+        }
     }
     
-    public func read(atPath path: String, withEncoding encoding: String.Encoding = .utf8) throws -> String {
+    public func read(atPath path: String,
+                     withEncoding encoding: String.Encoding = .utf8) -> Result<String> {
         do {
-            return try String(contentsOfFile: path, encoding: encoding)
+            return try .success(String(contentsOfFile: path, encoding: encoding))
         } catch {
-            throw MochaException.fileNotFoundException
+            return .failure(.fileNotFound)
         }
     }
 }
@@ -93,16 +103,23 @@ public extension DocumentsUtil {
 
 public extension DocumentsUtil {
     
-    public func write(_ text: String, in filename: String?, withEncoding encoding: String.Encoding = .utf8) throws {
-        let path = try self.path(of: filename, with: .allDomainsMask)
-        try write(text, atPath: path, withEncoding: encoding)
+    public func write(_ text: String,
+                      in filename: String?,
+                      withEncoding encoding: String.Encoding = .utf8) -> Result<Void> {
+        let pathResult = self.path(of: filename, with: .allDomainsMask)
+        return pathResult.flatMap {
+            write(text, atPath: $0, withEncoding: encoding)
+        }
     }
     
-    public func write(_ text: String, atPath path: String, withEncoding encoding: String.Encoding = .utf8) throws {
+    public func write(_ text: String,
+                      atPath path: String,
+                      withEncoding encoding: String.Encoding = .utf8) -> Result<Void> {
         do {
             try text.write(toFile: path, atomically: false, encoding: encoding)
-        } catch {
-            throw MochaException.genericException(message: "")
+            return .success()
+        } catch let error {
+            return .failure(.descriptive(message: error.localizedDescription))
         }
     }
 }
@@ -110,56 +127,71 @@ public extension DocumentsUtil {
 // MARK: - Append
 
 public extension DocumentsUtil {
-    
-    public func append(_ text: String, in filename: String?, ofType type: String?) throws {
+
+    public func append(_ text: String,
+                       in filename: String?,
+                       ofType type: String?) -> Result<Void> {
         guard let filename = filename, filename.isNotEmpty else {
-            throw MochaException.fileNotFoundException
+            return .failure(.fileNotFound)
         }
-        
+
         var fullFileName = ""
         if let type = type {
             fullFileName = "\(filename).\(type)"
         } else {
             fullFileName = filename
         }
-        
-        let currentText = try read(fullFileName)
-        let newText = "\(currentText)\n\(text)"
-        try write(newText, in: fullFileName)
+
+        let readResult = read(fullFileName)
+        return readResult.flatMap {
+            write("\($0)\n\(text)", in: fullFileName)
+        }
     }
-    
-    public func append(_ text: String, atPath path: String) throws {
-        let currentText = try read(atPath: path)
-        let newText = "\(currentText)\n\(text)"
-        try write(newText, atPath: path)
+
+    public func append(_ text: String, atPath path: String) -> Result<Void> {
+        let readResult = read(atPath: path)
+        return readResult.flatMap {
+            write("\($0)\n\(text)", atPath: path)
+        }
     }
 }
 
 // MARK: - Remove
 
 public extension DocumentsUtil {
-    
-    public func remove(atPath path: String) throws {
+
+    public func remove(atPath path: String) -> Result<Void> {
         do {
             try FileManager.default.removeItem(atPath: path)
-        } catch {
-            throw MochaException.genericException(message: "")
+            return .success()
+        } catch let error {
+            return .failure(.descriptive(message: error.localizedDescription))
         }
     }
-    
-    public func remove(_ filename: String?) throws {
-        let path = try self.path(of: filename)
-        try remove(atPath: path)
+
+    public func remove(_ filename: String?) -> Result<Void> {
+        let pathResult = self.path(of: filename)
+        return pathResult.flatMap {
+            remove(atPath: $0)
+        }
     }
-    
-    public func removeAll(in filenames: [String]) throws {
+
+    public func removeAll(in filenames: [String]) -> Result<Void> {
         if filenames.isEmpty {
-            throw MochaException.fileNotFoundException
+            return .failure(.fileNotFound)
+        }
+
+        for filename in filenames {
+            let removeResult = remove(filename)
+            switch removeResult {
+            case .failure(let error):
+                return .failure(error)
+            default:
+                break
+            }
         }
         
-        for filename in filenames {
-            try remove(filename)
-        }
+        return .success()
     }
 }
 
@@ -167,15 +199,24 @@ public extension DocumentsUtil {
 
 public extension DocumentsUtil {
     
-    public func createDirectories(atPath path: String) throws {
-        guard !fileExists(path) else {
-            return
+    public func createDirectories(atPath path: String) -> Result<Void> {
+        let existsResult = fileExists(path)
+        switch existsResult {
+        case .failure(let error):
+            return .failure(error)
+        case .success(let exists):
+            if !exists {
+                return .failure(.fileNotFound)
+            }
         }
         
         do {
-            try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
-        } catch {
-            throw MochaException.genericException(message: "")
+            try FileManager.default.createDirectory(atPath: path,
+                                                    withIntermediateDirectories: true,
+                                                    attributes: nil)
+            return .success()
+        } catch let error {
+            return .failure(.descriptive(message: error.localizedDescription))
         }
     }
 }
