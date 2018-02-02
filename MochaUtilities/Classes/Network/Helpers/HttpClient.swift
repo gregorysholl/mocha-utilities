@@ -341,69 +341,96 @@ public extension HttpClient {
         
         private var helper : HttpClient
         
-        public init() {
-            helper = HttpClient()
+        // MARK: Variables
+        
+        //Http Properties
+        
+        public var contentType: String {
+            get { return helper.contentType }
+            set { helper.contentType = newValue }
         }
         
-        public func url(_ url: String) -> Builder {
-            helper.url = url
-            return self
+        public var timeout: TimeInterval {
+            get { return helper.timeout }
+            set { helper.timeout = newValue }
         }
         
         public func handler(_ handler: @escaping Handler) -> Builder {
             helper.handler = handler
             return self
         }
-
-        public func parameters(_ parameters: [String: Any]) -> Builder {
-            helper.parameters = parameters
+        
+        public var encoding: String.Encoding {
+            get { return helper.encoding }
+            set { helper.encoding = newValue }
+        }
+        
+        public var header: [String: String] {
+            get { return helper.header }
+            set { helper.header = newValue }
+        }
+        
+        public var parameters: [String: Any] {
+            get { return helper.parameters }
+            set { helper.parameters = newValue }
+        }
+        
+        //Certificates
+        
+        public var trustAllSSL: Bool {
+            get { return helper.trustAllSSL }
+            set { helper.trustAllSSL = newValue }
+        }
+        
+        public var hostDomain: String? {
+            get { return helper.hostDomain }
+            set { helper.hostDomain = newValue }
+        }
+        
+        //Request
+        
+        public var url : String? {
+            get { return helper.url }
+            set { helper.url = newValue }
+        }
+        
+        //Response
+        
+        public var handler  : Handler? {
+            get { return helper.handler }
+            set { helper.handler = newValue }
+        }
+        
+        // MARK: Inits
+        
+        public init() {
+            helper = HttpClient()
+        }
+        
+        public convenience init(build: (Builder) -> Void) {
+            self.init()
+            build(self)
+        }
+        
+        // MARK: Methods
+        
+        public func set(_ build: (Builder) -> Void) -> Builder {
+            build(self)
             return self
         }
-
-        public func contentType(_ contentType: String) -> Builder {
-            helper.contentType = contentType
-            return self
-        }
-
-        public func timeout(_ timeout: TimeInterval) -> Builder {
-            helper.timeout = timeout
-            return self
-        }
-
-        public func encoding(_ encoding: String.Encoding) -> Builder {
-            helper.encoding = encoding
-            return self
-        }
-
-        public func header(_ header: [String: String]) -> Builder {
-            helper.header = header
-            return self
-        }
-
-        public func basicAuth(username: String, password: String) -> Builder {
+        
+        public func basicAuth(username: String, password: String) {
             helper.username = username
             helper.password = password
-            return self
         }
-
-        public func certificate(_ certificate: Data?, with password: String? = nil) -> Builder {
+        
+        public func certificate(_ certificate: Data?, with password: String? = nil) {
             if certificate != nil {
                 helper.certificateMode = .publicKey
             }
-
+            
             helper.certificate = certificate
             helper.certificatePassword = password
-            return self
-        }
-
-        public func trustAll(_ trustAll: Bool) -> Builder {
-            helper.trustAllSSL = trustAll
-            return self
-        }
-
-        public func hostDomain(_ hostDomain: String) -> Builder {
-            helper.hostDomain = hostDomain
-            return self
         }
         
         public func build() -> HttpClient {
