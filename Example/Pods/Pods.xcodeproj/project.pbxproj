@@ -21,7 +21,7 @@
 		0C5ECB8D1F1EF33000ABCD5A /* MochaEmailAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5ECB8C1F1EF33000ABCD5A /* MochaEmailAttachment.swift */; };
 		0C5ECB8F1F1EF48900ABCD5A /* EmailUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5ECB8E1F1EF48900ABCD5A /* EmailUtil.swift */; };
 		0C5ECB921F1EF9EF00ABCD5A /* EmailUtilDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5ECB911F1EF9EF00ABCD5A /* EmailUtilDelegate.swift */; };
-		0C91DD561EE5C93100F9F19D /* HttpHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C91DD551EE5C93100F9F19D /* HttpHelper.swift */; };
+		0C91DD561EE5C93100F9F19D /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C91DD551EE5C93100F9F19D /* HttpClient.swift */; };
 		0C91DD591EE5C99B00F9F19D /* BrowserUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C91DD581EE5C99B00F9F19D /* BrowserUtil.swift */; };
 		0C91DD5C1EE5D48500F9F19D /* UIColor+Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C91DD5B1EE5D48500F9F19D /* UIColor+Images.swift */; };
 		0C91DD601EE5D5FD00F9F19D /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C91DD5F1EE5D5FD00F9F19D /* Preferences.swift */; };
@@ -77,7 +77,7 @@
 		0C5ECB8C1F1EF33000ABCD5A /* MochaEmailAttachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MochaEmailAttachment.swift; sourceTree = "<group>"; };
 		0C5ECB8E1F1EF48900ABCD5A /* EmailUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailUtil.swift; sourceTree = "<group>"; };
 		0C5ECB911F1EF9EF00ABCD5A /* EmailUtilDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailUtilDelegate.swift; sourceTree = "<group>"; };
-		0C91DD551EE5C93100F9F19D /* HttpHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpHelper.swift; sourceTree = "<group>"; };
+		0C91DD551EE5C93100F9F19D /* HttpClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
 		0C91DD581EE5C99B00F9F19D /* BrowserUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowserUtil.swift; sourceTree = "<group>"; };
 		0C91DD5B1EE5D48500F9F19D /* UIColor+Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Images.swift"; sourceTree = "<group>"; };
 		0C91DD5F1EE5D5FD00F9F19D /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
@@ -241,7 +241,7 @@
 		0C91DD541EE5C93100F9F19D /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				0C91DD551EE5C93100F9F19D /* HttpHelper.swift */,
+				0C91DD551EE5C93100F9F19D /* HttpClient.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -606,7 +606,7 @@
 				0C91DD731EE5DC6A00F9F19D /* NotificationUtil.swift in Sources */,
 				0CE1075A1F22D4F300FCE716 /* UIViewController+Core.swift in Sources */,
 				4D9EC6355ECA3869F24600513076B85D /* MochaUtilities-dummy.m in Sources */,
-				0C91DD561EE5C93100F9F19D /* HttpHelper.swift in Sources */,
+				0C91DD561EE5C93100F9F19D /* HttpClient.swift in Sources */,
 				0C91DD641EE5D7C200F9F19D /* StatusBarUtil.swift in Sources */,
 				0C5ECB8D1F1EF33000ABCD5A /* MochaEmailAttachment.swift in Sources */,
 				0C91DD621EE5D71400F9F19D /* TabBarUtil.swift in Sources */,

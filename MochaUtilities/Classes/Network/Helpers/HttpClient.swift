@@ -1,5 +1,5 @@
 //
-//  HttpHelper.swift
+//  HttpClient.swift
 //  Pods
 //
 //  Created by Gregory Sholl e Santos on 05/06/17.
@@ -8,15 +8,11 @@
 
 import UIKit
 
-public typealias HttpCompletionHandler = (_ result: Result<Data>) -> Void
-
-public class HttpHelper: NSObject {
+public class HttpClient: NSObject {
+    
+    public typealias Handler = (_ result: Result<Data>) -> Void
     
     // MARK: Variables
-    
-    static public var builder   : HttpHelper.Builder {
-        return HttpHelper.Builder()
-    }
     
     //Http Properties
     
@@ -49,11 +45,11 @@ public class HttpHelper: NSObject {
     
     //Response
     
-    fileprivate var completionHandler   : HttpCompletionHandler?
+    fileprivate var handler : Handler?
     
     // MARK: Inits
     
-    fileprivate override init() {
+    override fileprivate init() {
         super.init()
         
         contentType = "application/json"
@@ -66,16 +62,26 @@ public class HttpHelper: NSObject {
     
     // MARK: Conversions
     
-    private func convertBasicAuthToBase64(username: String, password: String) throws -> String {
+    private func createBasicAuth() -> Result<String> {
+        guard let username = self.username, username.isNotEmpty else {
+            return .failure(.descriptive(message:
+                "Username not informed for Basic Authorization"))
+        }
+        
+        guard let password = self.password, password.isNotEmpty else {
+            return .failure(.descriptive(message:
+                "Password not informed for Basic Authorization"))
+        }
+        
         let credentials = "\(username):\(password)"
         
         guard let data = credentials.data(using: encoding) else {
-            throw MochaError.descriptive(message: "Error formatting the basic authentication provided.")
+            return .failure(.descriptive(message:
+                "Error formatting the basic authentication provided."))
         }
         
         let base64Credential = data.base64EncodedString(options: .lineLength64Characters)
-        let authValue = "Basic \(base64Credential)"
-        return authValue
+        return .success("Basic \(base64Credential)")
     }
     
     private func string(fromDictionary dictionary: [String: Any]) -> String {
@@ -92,85 +98,104 @@ public class HttpHelper: NSObject {
     // MARK: Requests
     
     public func get() {
-        send(httpMethod: "get")
+        send(method: .get)
     }
     
     public func delete() {
-        send(httpMethod: "delete")
+        send(method: .delete)
     }
     
     public func post() {
-        send(httpMethod: "post")
+        send(method: .post)
     }
     
     public func update() {
-        send(httpMethod: "update")
+        send(method: .update)
     }
     
     private func handleGenericError(with message: String) {
-        completionHandler?(.failure(.descriptive(message: message)))
+        handler?(.failure(.descriptive(message: message)))
     }
     
-    private func send(httpMethod: String) {
+    private func handleError(_ error: MochaError) {
+        handler?(.failure(error))
+    }
+    
+    private func createHttpBody(for method: Method) -> Result<Data> {
+        guard !parameters.isEmpty else {
+            return .failure(.descriptive(message:
+                "HttpClient cannot request (\(method.rawValue.uppercased())) without parameters."))
+        }
         
+        switch contentType {
+        case "application/x-www-form-urlencoded":
+            let form = string(fromDictionary: parameters)
+            return form.data(using: encoding).map {
+                Result.success($0)
+            } ?? .failure(.serialization)
+        default:
+            do {
+                let data = try JSONSerialization.data(withJSONObject: parameters,
+                                                      options: [])
+                return .success(data)
+            } catch {
+                return .failure(.serialization)
+            }
+        }
+    }
+    
+    private func send(method: Method) {
+        
+        //prerequisites
         guard let url = self.url else {
-            handleGenericError(with: "URL cannot be `nil`")
-            return
+            return handleError(.descriptive(message: "URL cannot be `nil`."))
         }
         
         guard let nsurl = URL(string: url) else {
-            handleGenericError(with: "Invalid URL.")
-            return
+            return handleError(.descriptive(message: "Invalid URL."))
         }
         
+        //request
         var request = URLRequest(url: nsurl, cachePolicy: .useProtocolCachePolicy)
-        request.httpMethod = httpMethod
+        request.httpMethod = method.rawValue
         
-        if let username = self.username, username.isNotEmpty, let password = self.password, password.isNotEmpty {
-            do {
-                let encodedBasicAuth = try convertBasicAuthToBase64(username: username, password: password)
-                request.setValue(encodedBasicAuth, forHTTPHeaderField: "Authorization")
-            } catch MochaError.descriptive(let message) {
-                MochaLogger.log(message)
-            } catch {}
+        //basic auth
+        let basicAuthResult = createBasicAuth()
+        switch basicAuthResult {
+        case .success(let basicAuth):
+            request.setValue(basicAuth, forHTTPHeaderField: "Authorization")
+        case .failure(let error):
+            MochaLogger.log(error.description)
         }
         
+        //headers
         if header.count > 0 {
             for (key, value) in header {
                 request.setValue(value, forHTTPHeaderField: key)
             }
         }
         
-        if httpMethod.equalsIgnoreCase("post") || httpMethod.equalsIgnoreCase("update") {
-            if parameters.isEmpty {
-                handleGenericError(with: "Http request (\(httpMethod.lowercased()) without parameters.")
-                return
+        //body
+        switch method {
+        case .post, .update:
+            let httpBodyResult = createHttpBody(for: method)
+            switch httpBodyResult {
+            case .success(let httpBody):
+                request.addValue("\(httpBody.count)", forHTTPHeaderField: "Content-Length")
+                request.httpBody = httpBody
+            case .failure(let error):
+                return handleError(error)
             }
             
-            if request.value(forHTTPHeaderField: "Content-Type") == nil {
-                request.setValue(contentType, forHTTPHeaderField: "Content-Type")
-            }
-            
-            if contentType == "application/x-www-form-urlencoded" {
-                let formString = string(fromDictionary: parameters)
-                let length = "\(formString.length)"
-                
-                request.setValue(length, forHTTPHeaderField: "Content-Length")
-                request.httpBody = formString.data(using: encoding)
-            } else {
-                do {
-                    let data = try JSONSerialization.data(withJSONObject: parameters, options: [])
-                    request.httpBody = data
-                } catch {
-                    completionHandler?(.failure(.serialization))
-                    return
-                }
-            }
+        default:
+            break
         }
         
+        //configuration
         let configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForRequest = timeout
         
+        //session
         let session = URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
         
         let dataTask = session.dataTask(with: request, completionHandler: {
@@ -178,22 +203,20 @@ public class HttpHelper: NSObject {
             
             if let httpResponse = response as? HTTPURLResponse {
                 if httpResponse.statusCode == -1022 {
-                    self.completionHandler?(.failure(.appSecurityTransport))
+                    self.handler?(.failure(.appSecurityTransport))
                 } else if httpResponse.statusCode != 200 {
-                    self.completionHandler?(
-                        .failure(
-                        MochaError.httpResponse(statusCode: httpResponse.statusCode,
-                                                data: nil)))
+                    self.handler?(.failure(.httpResponse(statusCode: httpResponse.statusCode,
+                                                         data: data)))
                 }
             }
             
             if let error = error {
                 MochaLogger.log("Http error: \(error.localizedDescription)")
-                self.completionHandler?(.failure(.error(error: error)))
+                self.handler?(.failure(.error(error: error)))
             }
             
             if let data = data {
-                self.completionHandler?(.success(data))
+                self.handler?(.success(data))
             }
         })
         
@@ -291,88 +314,119 @@ public class HttpHelper: NSObject {
 
 // MARK: - Enums
 
-public extension HttpHelper {
+public extension HttpClient {
     
     public enum CertificateMode {
         case none
         case publicKey
     }
+    
+    public enum Method: String {
+        case get, delete, post, update
+    }
 }
 
 // MARK: - Builder
 
-public extension HttpHelper {
+public extension HttpClient {
     
     public class Builder {
         
-        private var helper : HttpHelper
+        private var helper : HttpClient
+        
+        // MARK: Variables
+        
+        //Http Properties
+        
+        public var contentType: String {
+            get { return helper.contentType }
+            set { helper.contentType = newValue }
+        }
+        
+        public var timeout: TimeInterval {
+            get { return helper.timeout }
+            set { helper.timeout = newValue }
+        }
+        
+        public func handler(_ handler: @escaping Handler) -> Builder {
+            helper.handler = handler
+            return self
+        }
+        
+        public var encoding: String.Encoding {
+            get { return helper.encoding }
+            set { helper.encoding = newValue }
+        }
+        
+        public var header: [String: String] {
+            get { return helper.header }
+            set { helper.header = newValue }
+        }
+        
+        public var parameters: [String: Any] {
+            get { return helper.parameters }
+            set { helper.parameters = newValue }
+        }
+        
+        //Certificates
+        
+        public var trustAllSSL: Bool {
+            get { return helper.trustAllSSL }
+            set { helper.trustAllSSL = newValue }
+        }
+        
+        public var hostDomain: String? {
+            get { return helper.hostDomain }
+            set { helper.hostDomain = newValue }
+        }
+        
+        //Request
+        
+        public var url : String? {
+            get { return helper.url }
+            set { helper.url = newValue }
+        }
+        
+        //Response
+        
+        public var handler  : Handler? {
+            get { return helper.handler }
+            set { helper.handler = newValue }
+        }
+        
+        // MARK: Inits
         
         public init() {
-            helper = HttpHelper()
+            helper = HttpClient()
         }
         
-        public func url(_ url: String) -> Builder {
-            helper.url = url
+        public convenience init(build: (Builder) -> Void) {
+            self.init()
+            build(self)
+        }
+        
+        // MARK: Methods
+        
+        public func set(_ build: (Builder) -> Void) -> Builder {
+            build(self)
             return self
         }
-
-        public func completionHandler(_ handler: @escaping HttpCompletionHandler) -> Builder {
-            helper.completionHandler = handler
-            return self
-        }
-
-        public func parameters(_ parameters: [String: Any]) -> Builder {
-            helper.parameters = parameters
-            return self
-        }
-
-        public func contentType(_ contentType: String) -> Builder {
-            helper.contentType = contentType
-            return self
-        }
-
-        public func timeout(_ timeout: TimeInterval) -> Builder {
-            helper.timeout = timeout
-            return self
-        }
-
-        public func encoding(_ encoding: String.Encoding) -> Builder {
-            helper.encoding = encoding
-            return self
-        }
-
-        public func header(_ header: [String: String]) -> Builder {
-            helper.header = header
-            return self
-        }
-
-        public func basicAuth(username: String, password: String) -> Builder {
+        
+        public func basicAuth(username: String, password: String) {
             helper.username = username
             helper.password = password
-            return self
         }
-
-        public func certificate(_ certificate: Data?, with password: String? = nil) -> Builder {
+        
+        public func certificate(_ certificate: Data?, with password: String? = nil) {
             if certificate != nil {
                 helper.certificateMode = .publicKey
             }
-
+            
             helper.certificate = certificate
             helper.certificatePassword = password
-            return self
-        }
-
-        public func trustAll(_ trustAll: Bool) -> Builder {
-            helper.trustAllSSL = trustAll
-            return self
-        }
-
-        public func hostDomain(_ hostDomain: String) -> Builder {
-            helper.hostDomain = hostDomain
-            return self
         }
         
-        public func build() -> HttpHelper {
+        public func build() -> HttpClient {
             return helper
         }
     }
@@ -380,7 +434,7 @@ public extension HttpHelper {
 
 // MARK: - URL Session Delegate
 
-extension HttpHelper: URLSessionDelegate {
+extension HttpClient: URLSessionDelegate {
     
     public func urlSession(_ session: URLSession, didBecomeInvalidWithError error: Error?) {
         guard let error = error else {
