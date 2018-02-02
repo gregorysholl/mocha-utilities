@@ -72,7 +72,7 @@ public class HttpClient: NSObject {
     
     // MARK: Conversions
     
-    private func createBasicAuthString() -> Result<String> {
+    private func createBasicAuth() -> Result<String> {
         guard let username = self.username, username.isNotEmpty else {
             return .failure(.descriptive(message:
                 "Username not informed for Basic Authorization"))
@@ -107,24 +107,20 @@ public class HttpClient: NSObject {
     
     // MARK: Requests
     
-    @discardableResult
     public func get() -> Result<Data>? {
-        return send(httpMethod: "get")
+        return send(method: .get)
     }
     
-    @discardableResult
     public func delete() -> Result<Data>? {
-        return send(httpMethod: "delete")
+        return send(method: .delete)
     }
     
-    @discardableResult
     public func post() -> Result<Data>? {
-        return send(httpMethod: "post")
+        return send(method: .post)
     }
     
-    @discardableResult
     public func update() -> Result<Data>? {
-        return send(httpMethod: "update")
+        return send(method: .update)
     }
     
     private func handleError(_ error: MochaError) -> Result<Data>? {
@@ -136,21 +132,22 @@ public class HttpClient: NSObject {
         }
     }
     
-    private func createHttpBody(for httpMethod: String) -> Result<Data> {
+    private func createHttpBody(for method: Method) -> Result<Data> {
         guard !parameters.isEmpty else {
             return .failure(.descriptive(message:
-                "Http request (\(httpMethod.uppercased()) without parameters."))
+                "HttpClient cannot request (\(method.rawValue.uppercased())) without parameters."))
         }
         
         switch contentType {
         case "application/x-www-form-urlencoded":
-            let formString = string(fromDictionary: parameters)
-            return formString.data(using: encoding).map {
+            let form = string(fromDictionary: parameters)
+            return form.data(using: encoding).map {
                 Result.success($0)
             } ?? .failure(.serialization)
         default:
             do {
-                let data = try JSONSerialization.data(withJSONObject: parameters, options: [])
+                let data = try JSONSerialization.data(withJSONObject: parameters,
+                                                      options: [])
                 return .success(data)
             } catch {
                 return .failure(.serialization)
@@ -158,7 +155,7 @@ public class HttpClient: NSObject {
         }
     }
     
-    private func send(httpMethod: String) -> Result<Data>? {
+    private func send(method: Method) -> Result<Data>? {
         
         //prerequisites
         guard let url = self.url else {
@@ -171,10 +168,10 @@ public class HttpClient: NSObject {
         
         //request
         var request = URLRequest(url: nsurl, cachePolicy: .useProtocolCachePolicy)
-        request.httpMethod = httpMethod
+        request.httpMethod = method.rawValue
         
         //basic auth
-        let basicAuthResult = createBasicAuthString()
+        let basicAuthResult = createBasicAuth()
         switch basicAuthResult {
         case .success(let basicAuth):
             request.setValue(basicAuth, forHTTPHeaderField: "Authorization")
@@ -189,14 +186,20 @@ public class HttpClient: NSObject {
             }
         }
         
-        //httpBody
-        let httpBodyResult = createHttpBody(for: httpMethod)
-        switch httpBodyResult {
-        case .success(let httpBody):
-            request.addValue("\(httpBody.count)", forHTTPHeaderField: "Content-Length")
-            request.httpBody = httpBody
-        case .failure(let error):
-            return handleError(error)
+        //body
+        switch method {
+        case .post, .update:
+            let httpBodyResult = createHttpBody(for: method)
+            switch httpBodyResult {
+            case .success(let httpBody):
+                request.addValue("\(httpBody.count)", forHTTPHeaderField: "Content-Length")
+                request.httpBody = httpBody
+            case .failure(let error):
+                return handleError(error)
+            }
+            
+        default:
+            break
         }
         
         //configuration
@@ -333,11 +336,22 @@ public extension HttpClient {
     }
 }
 
+// MARK: - Enums
+
+public extension HttpClient {
+    
+    public enum Method: String {
+        case get, delete, post, update
+    }
+}
+
 // MARK: - Builder
 
 public extension HttpClient {
     
     public class Builder {
+        
+        private var helper : HttpClient
         
         // MARK: Variables
         
@@ -405,13 +419,6 @@ public extension HttpClient {
             set { helper.failure = newValue }
         }
         
-        public var sync: Bool {
-            get { return helper.sync }
-            set { helper.sync = newValue }
-        }
-        
-        private var helper : HttpClient!
-        
         // MARK: Inits
         
         public init() {
@@ -429,17 +436,17 @@ public extension HttpClient {
             build(self)
             return self
         }
-
+        
         public func basicAuth(username: String, password: String) {
             helper.username = username
             helper.password = password
         }
-
+        
         public func certificate(_ certificate: Data?, with password: String? = nil) {
             if certificate != nil {
                 helper.certificateMode = .publicKey
             }
-
+            
             helper.certificate = certificate
             helper.certificatePassword = password
         }
