@@ -66,16 +66,26 @@ public class HttpClient: NSObject {
     
     // MARK: Conversions
     
-    private func convertBasicAuthToBase64(username: String, password: String) throws -> String {
+    private func createBasicAuth() -> Result<String> {
+        guard let username = self.username, username.isNotEmpty else {
+            return .failure(.descriptive(message:
+                "Username not informed for Basic Authorization"))
+        }
+        
+        guard let password = self.password, password.isNotEmpty else {
+            return .failure(.descriptive(message:
+                "Password not informed for Basic Authorization"))
+        }
+        
         let credentials = "\(username):\(password)"
         
         guard let data = credentials.data(using: encoding) else {
-            throw MochaError.descriptive(message: "Error formatting the basic authentication provided.")
+            return .failure(.descriptive(message:
+                "Error formatting the basic authentication provided."))
         }
         
         let base64Credential = data.base64EncodedString(options: .lineLength64Characters)
-        let authValue = "Basic \(base64Credential)"
-        return authValue
+        return .success("Basic \(base64Credential)")
     }
     
     private func string(fromDictionary dictionary: [String: Any]) -> String {
@@ -111,8 +121,30 @@ public class HttpClient: NSObject {
         completionHandler?(.failure(.descriptive(message: message)))
     }
     
-    private func send(httpMethod: String) {
+    private func createHttpBody(for method: Method) -> Result<Data> {
+        guard !parameters.isEmpty else {
+            return .failure(.descriptive(message:
+                "HttpClient cannot request (\(method.rawValue.uppercased())) without parameters."))
+        }
         
+        switch contentType {
+        case "application/x-www-form-urlencoded":
+            let form = string(fromDictionary: parameters)
+            return form.data(using: encoding).map {
+                Result.success($0)
+            } ?? .failure(.serialization)
+        default:
+            do {
+                let data = try JSONSerialization.data(withJSONObject: parameters,
+                                                      options: [])
+                return .success(data)
+            } catch {
+                return .failure(.serialization)
+            }
+        }
+    }
+    
+    private func send(httpMethod: String) {
         guard let url = self.url else {
             handleGenericError(with: "URL cannot be `nil`")
             return
@@ -126,15 +158,16 @@ public class HttpClient: NSObject {
         var request = URLRequest(url: nsurl, cachePolicy: .useProtocolCachePolicy)
         request.httpMethod = httpMethod
         
-        if let username = self.username, username.isNotEmpty, let password = self.password, password.isNotEmpty {
-            do {
-                let encodedBasicAuth = try convertBasicAuthToBase64(username: username, password: password)
-                request.setValue(encodedBasicAuth, forHTTPHeaderField: "Authorization")
-            } catch MochaError.descriptive(let message) {
-                MochaLogger.log(message)
-            } catch {}
+        //basic auth
+        let basicAuthResult = createBasicAuth()
+        switch basicAuthResult {
+        case .success(let basicAuth):
+            request.setValue(basicAuth, forHTTPHeaderField: "Authorization")
+        case .failure(let error):
+            MochaLogger.log(error.description)
         }
         
+        //headers
         if header.count > 0 {
             for (key, value) in header {
                 request.setValue(value, forHTTPHeaderField: key)
@@ -168,9 +201,11 @@ public class HttpClient: NSObject {
             }
         }
         
+        //configuration
         let configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForRequest = timeout
         
+        //session
         let session = URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
         
         let dataTask = session.dataTask(with: request, completionHandler: {
