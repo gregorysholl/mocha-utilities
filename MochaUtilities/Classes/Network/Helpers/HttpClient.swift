@@ -98,19 +98,19 @@ public class HttpClient: NSObject {
     // MARK: Requests
     
     public func get() {
-        send(httpMethod: "get")
+        send(method: .get)
     }
     
     public func delete() {
-        send(httpMethod: "delete")
+        send(method: .delete)
     }
     
     public func post() {
-        send(httpMethod: "post")
+        send(method: .post)
     }
     
     public func update() {
-        send(httpMethod: "update")
+        send(method: .update)
     }
     
     private func handleGenericError(with message: String) {
@@ -144,7 +144,7 @@ public class HttpClient: NSObject {
         }
     }
     
-    private func send(httpMethod: String) {
+    private func send(method: Method) {
         
         //prerequisites
         guard let url = self.url else {
@@ -157,7 +157,7 @@ public class HttpClient: NSObject {
         
         //request
         var request = URLRequest(url: nsurl, cachePolicy: .useProtocolCachePolicy)
-        request.httpMethod = httpMethod
+        request.httpMethod = method.rawValue
         
         //basic auth
         let basicAuthResult = createBasicAuth()
@@ -175,31 +175,20 @@ public class HttpClient: NSObject {
             }
         }
         
-        if httpMethod.equalsIgnoreCase("post") || httpMethod.equalsIgnoreCase("update") {
-            if parameters.isEmpty {
-                handleGenericError(with: "Http request (\(httpMethod.lowercased()) without parameters.")
-                return
+        //body
+        switch method {
+        case .post, .update:
+            let httpBodyResult = createHttpBody(for: method)
+            switch httpBodyResult {
+            case .success(let httpBody):
+                request.addValue("\(httpBody.count)", forHTTPHeaderField: "Content-Length")
+                request.httpBody = httpBody
+            case .failure(let error):
+                return handleError(error)
             }
             
-            if request.value(forHTTPHeaderField: "Content-Type") == nil {
-                request.setValue(contentType, forHTTPHeaderField: "Content-Type")
-            }
-            
-            if contentType == "application/x-www-form-urlencoded" {
-                let formString = string(fromDictionary: parameters)
-                let length = "\(formString.length)"
-                
-                request.setValue(length, forHTTPHeaderField: "Content-Length")
-                request.httpBody = formString.data(using: encoding)
-            } else {
-                do {
-                    let data = try JSONSerialization.data(withJSONObject: parameters, options: [])
-                    request.httpBody = data
-                } catch {
-                    completionHandler?(.failure(.serialization))
-                    return
-                }
-            }
+        default:
+            break
         }
         
         //configuration
@@ -330,6 +319,10 @@ public extension HttpClient {
     public enum CertificateMode {
         case none
         case publicKey
+    }
+    
+    public enum Method: String {
+        case get, delete, post, update
     }
 }
 
