@@ -10,7 +10,7 @@
 		0C0376691EEB7A8900F1F8E2 /* BasicStringTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0376681EEB7A8900F1F8E2 /* BasicStringTest.swift */; };
 		0C03766B1EEB7C6B00F1F8E2 /* CoreStringTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C03766A1EEB7C6B00F1F8E2 /* CoreStringTest.swift */; };
 		0C03766D1EEB7CA100F1F8E2 /* ImagesColorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C03766C1EEB7CA100F1F8E2 /* ImagesColorTest.swift */; };
-		0C03766F1EEB7CC100F1F8E2 /* HttpHelperTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C03766E1EEB7CC100F1F8E2 /* HttpHelperTest.swift */; };
+		0C03766F1EEB7CC100F1F8E2 /* HttpClientTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C03766E1EEB7CC100F1F8E2 /* HttpClientTest.swift */; };
 		0C49B5632024EEC6006FF3D8 /* MochaErrorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C49B5622024EEC6006FF3D8 /* MochaErrorTest.swift */; };
 		0C49B56A2024FB49006FF3D8 /* ResultTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C49B5692024FB49006FF3D8 /* ResultTest.swift */; };
 		0C560B331EECFE8A00719807 /* CpfTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C560B321EECFE8A00719807 /* CpfTest.swift */; };
@@ -23,7 +23,7 @@
 		0C0376681EEB7A8900F1F8E2 /* BasicStringTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicStringTest.swift; sourceTree = "<group>"; };
 		0C03766A1EEB7C6B00F1F8E2 /* CoreStringTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreStringTest.swift; sourceTree = "<group>"; };
 		0C03766C1EEB7CA100F1F8E2 /* ImagesColorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagesColorTest.swift; sourceTree = "<group>"; };
-		0C03766E1EEB7CC100F1F8E2 /* HttpHelperTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpHelperTest.swift; sourceTree = "<group>"; };
+		0C03766E1EEB7CC100F1F8E2 /* HttpClientTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpClientTest.swift; sourceTree = "<group>"; };
 		0C49B5622024EEC6006FF3D8 /* MochaErrorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MochaErrorTest.swift; sourceTree = "<group>"; };
 		0C49B5692024FB49006FF3D8 /* ResultTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTest.swift; sourceTree = "<group>"; };
 		0C560B321EECFE8A00719807 /* CpfTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CpfTest.swift; sourceTree = "<group>"; };
@@ -76,7 +76,7 @@
 		0C0376671EEB7A2900F1F8E2 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				0C03766E1EEB7CC100F1F8E2 /* HttpHelperTest.swift */,
+				0C03766E1EEB7CC100F1F8E2 /* HttpClientTest.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -284,7 +284,7 @@
 				0C49B5632024EEC6006FF3D8 /* MochaErrorTest.swift in Sources */,
 				0C03766D1EEB7CA100F1F8E2 /* ImagesColorTest.swift in Sources */,
 				0C49B56A2024FB49006FF3D8 /* ResultTest.swift in Sources */,
-				0C03766F1EEB7CC100F1F8E2 /* HttpHelperTest.swift in Sources */,
+				0C03766F1EEB7CC100F1F8E2 /* HttpClientTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
