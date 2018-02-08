@@ -13,7 +13,14 @@ import UIKit
 public class ConstraintUtil {
     
     static public func changeMultiplier(of constraint: NSLayoutConstraint, to value: CGFloat, in view: UIView?) -> NSLayoutConstraint {
-        let newConstraint = NSLayoutConstraint(item: constraint.firstItem, attribute: constraint.firstAttribute, relatedBy: constraint.relation, toItem: constraint.secondItem, attribute: constraint.secondAttribute, multiplier: value, constant: constraint.constant)
+        
+        let newConstraint = NSLayoutConstraint(item: constraint.firstItem as Any,
+                                               attribute: constraint.firstAttribute,
+                                               relatedBy: constraint.relation,
+                                               toItem: constraint.secondItem,
+                                               attribute: constraint.secondAttribute,
+                                               multiplier: value,
+                                               constant: constraint.constant)
         
         newConstraint.priority = constraint.priority
         
