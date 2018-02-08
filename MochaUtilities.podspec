@@ -40,7 +40,7 @@ MochaUtilities is designed to assist developers with common problems/needs that 
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
 
-  s.default_subspecs = 'Core', 'Images', 'Layout', 'Network', 'Tasks'
+  s.default_subspecs = 'Core', 'Images', 'Layout', 'Network'
 
   s.subspec 'Basic' do |basic|
     basic.source_files = 'MochaUtilities/Classes/Basic/**/*'
@@ -69,11 +69,6 @@ MochaUtilities is designed to assist developers with common problems/needs that 
   s.subspec 'Network' do |network|
     network.dependency 'MochaUtilities/Basic'
     network.source_files = 'MochaUtilities/Classes/Network/**/*'
-  end
-
-  s.subspec 'Tasks' do |tasks|
-    tasks.dependency 'MochaUtilities/Basic'
-    tasks.source_files = 'MochaUtilities/Classes/Tasks/**/*'
   end
 
 end
