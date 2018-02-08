@@ -13,7 +13,7 @@ import Foundation
 public extension String {
     
     public var length: Int {
-        return characters.count
+        return self.count
     }
     
     public var isNotEmpty: Bool {

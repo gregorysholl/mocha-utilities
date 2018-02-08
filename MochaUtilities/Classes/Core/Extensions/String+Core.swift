@@ -37,11 +37,11 @@ public extension String {
     // MARK: Substring
     
     public func substring(from index: Int) -> String {
-        return substring(from: self.index(startIndex, offsetBy: index))
+        return String(self[self.index(startIndex, offsetBy: index)...])
     }
     
     public func substring(to index: Int) -> String {
-        return substring(to: self.index(startIndex, offsetBy: index))
+        return String(self[..<self.index(startIndex, offsetBy: index)])
     }
     
     public func substring(from startIndex: Int, to endIndex: Int) -> String {
@@ -49,7 +49,10 @@ public extension String {
         if endIndex >= length || (endIndex - startIndex) >= length || startIndex > endIndex {
             return ""
         }
-        return self.substring(with: self.index(self.startIndex, offsetBy: startIndex) ..< self.index(self.startIndex, offsetBy: endIndex + 1))
+        return String(self[
+            self.index(self.startIndex, offsetBy: startIndex) ..<
+            self.index(self.startIndex, offsetBy: endIndex + 1)
+        ])
     }
     
     // MARK: Insert
@@ -59,8 +62,8 @@ public extension String {
             return
         }
         
-        let prefix = characters.prefix(index)
-        let suffix = characters.suffix(length - index)
+        let prefix = self.prefix(index)
+        let suffix = self.suffix(length - index)
         
         self = String(prefix) + str + String(suffix)
     }

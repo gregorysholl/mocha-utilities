@@ -94,7 +94,7 @@ public extension CpfUtil {
             }
         }
         
-        let secondLastDigit = cpf.substring(with: cpf.index(cpf.endIndex, offsetBy: -2) ..< cpf.index(cpf.endIndex, offsetBy: -1))
+        let secondLastDigit = String(cpf[cpf.index(cpf.endIndex, offsetBy: -2) ..< cpf.index(cpf.endIndex, offsetBy: -1)])
         if !firstChecksumDigit.equalsIgnoreCase(secondLastDigit) {
             return false
         }
@@ -123,7 +123,7 @@ public extension CpfUtil {
             }
         }
         
-        let lastDigit = cpf.substring(with: cpf.index(cpf.endIndex, offsetBy: -1) ..< cpf.endIndex)
+        let lastDigit = String(cpf[cpf.index(cpf.endIndex, offsetBy: -1) ..< cpf.endIndex])
         if !secondChecksumDigit.equalsIgnoreCase(lastDigit) {
             return false
         }
