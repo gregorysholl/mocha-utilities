@@ -28,7 +28,7 @@ class BasicStringTest: XCTestCase {
     func testLengthWithCharactersCount() {
         let someString = "testingString"
         
-        XCTAssertEqual(someString.characters.count, someString.length)
+        XCTAssertEqual(someString.count, someString.length)
     }
     
     func testEmpty() {
