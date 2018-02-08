@@ -117,7 +117,7 @@ public extension DocumentsUtil {
                       withEncoding encoding: String.Encoding = .utf8) -> Result<Void> {
         do {
             try text.write(toFile: path, atomically: false, encoding: encoding)
-            return .success()
+            return .success(())
         } catch let error {
             return .failure(.descriptive(message: error.localizedDescription))
         }
@@ -163,7 +163,7 @@ public extension DocumentsUtil {
     public func remove(atPath path: String) -> Result<Void> {
         do {
             try FileManager.default.removeItem(atPath: path)
-            return .success()
+            return .success(())
         } catch let error {
             return .failure(.descriptive(message: error.localizedDescription))
         }
@@ -191,7 +191,7 @@ public extension DocumentsUtil {
             }
         }
         
-        return .success()
+        return .success(())
     }
 }
 
@@ -214,7 +214,7 @@ public extension DocumentsUtil {
             try FileManager.default.createDirectory(atPath: path,
                                                     withIntermediateDirectories: true,
                                                     attributes: nil)
-            return .success()
+            return .success(())
         } catch let error {
             return .failure(.descriptive(message: error.localizedDescription))
         }
