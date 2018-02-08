@@ -93,7 +93,7 @@ public class MochaTaskManager: NSObject {
         }
     }
     
-    public func onCancel() {
+    @objc public func onCancel() {
         operation.cancel()
     }
     
@@ -109,7 +109,7 @@ public class MochaTaskManager: NSObject {
         }
     }
     
-    public func updateViewTask() {
+    @objc public func updateViewTask() {
         if operation.isCancelled {
             return
         }
