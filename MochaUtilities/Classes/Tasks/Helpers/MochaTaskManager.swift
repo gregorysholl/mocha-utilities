@@ -244,7 +244,7 @@ extension MochaTaskManager {
         }
         
         let view = UIView(frame: CGRect.zero)
-        view.backgroundColor = UIColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 0.4) //UIColor.colorWithRed(0, green: 0, blue: 0, andAlpha: 0.4)
+        view.backgroundColor = UIColor(rgbWithRed: 0, green: 0, blue: 0, alpha: 0.4)
         view.translatesAutoresizingMaskIntoConstraints = false
         
         if cancellable {
