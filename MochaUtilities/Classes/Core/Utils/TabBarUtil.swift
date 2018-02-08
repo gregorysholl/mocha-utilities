@@ -34,7 +34,7 @@ public class TabBarUtil {
 public extension TabBarUtil {
     
     static public func setTextColor(_ color: UIColor, for state: UIControlState) {
-        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: color], for: state)
+        UITabBarItem.appearance().setTitleTextAttributes([.foregroundColor: color], for: state)
     }
     
     static public func setBackgroundColor(_ color: UIColor){

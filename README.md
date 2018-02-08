@@ -30,7 +30,6 @@ MochaUtilities is divided in subpods which are listed bellow:
 - [Core](#core)
 - [Images](#images)
 - [Network](#network)
-- [Tasks](#tasks)
 
 ### Basic
 
@@ -272,16 +271,6 @@ To open the default browser of the device, use the `openUrl(_: String?)`. If the
 ```
 
 #### EmailUtil
-
-### Tasks
-
-The Tasks subpod contains classes which enable the use of background threads to execute time consuming tasks.
-
-#### MochaTask
-
-#### NSObject+Tasks
-
-#### MochaTaskManager
 
 ## Requirements
 

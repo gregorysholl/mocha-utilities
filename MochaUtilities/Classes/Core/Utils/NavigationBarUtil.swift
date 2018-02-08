@@ -92,10 +92,10 @@ public extension NavigationBarUtil {
     }
     
     static public func setTitleColor(_ color: UIColor, andFont font: UIFont = UIFont.systemFont(ofSize: 17), for viewController: UIViewController) {
-        setTitleAttributes([NSForegroundColorAttributeName: color, NSFontAttributeName: font], for: viewController)
+        setTitleAttributes([.foregroundColor: color, .font: font], for: viewController)
     }
     
-    static public func setTitleAttributes(_ titleAttributes: [String: Any], for viewController: UIViewController) {
+    static public func setTitleAttributes(_ titleAttributes: [NSAttributedStringKey: Any], for viewController: UIViewController) {
         guard let navigationBar = navigationBar(for: viewController) else {
             return
         }
