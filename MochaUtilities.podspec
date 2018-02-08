@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MochaUtilities'
-  s.version          = '0.6.0'
+  s.version          = '0.6.1'
   s.swift_version    = '4.0'
   s.summary          = 'A framework designed to deal with some common iOS needs.'
 
