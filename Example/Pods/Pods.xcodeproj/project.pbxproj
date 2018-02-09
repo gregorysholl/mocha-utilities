@@ -272,13 +272,6 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		0C91DD7B1EE5DEEB00F9F19D /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 		0C91DD7C1EE5E5E600F9F19D /* Basic */ = {
 			isa = PBXGroup;
 			children = (
@@ -450,7 +443,6 @@
 			isa = PBXGroup;
 			children = (
 				6FBAD999031D226740E3C7C7E51123A5 /* Classes */,
-				0C91DD7B1EE5DEEB00F9F19D /* Resources */,
 			);
 			path = MochaUtilities;
 			sourceTree = "<group>";
