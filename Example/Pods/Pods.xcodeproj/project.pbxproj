@@ -364,19 +364,6 @@
 			path = "Target Support Files/Pods-MochaUtilities_Tests";
 			sourceTree = "<group>";
 		};
-		6FBAD999031D226740E3C7C7E51123A5 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				0C91DD7C1EE5E5E600F9F19D /* Basic */,
-				0C560B2D1EECF74700719807 /* Brazil */,
-				0C91DD421EE5BB8500F9F19D /* Core */,
-				0C91DD431EE5BB8500F9F19D /* Images */,
-				0CE107501F22C91700FCE716 /* Layout */,
-				0C91DD441EE5BB8500F9F19D /* Network */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
@@ -442,7 +429,12 @@
 		F99C6062F55A30E19B41DAF230FAC2B1 /* MochaUtilities */ = {
 			isa = PBXGroup;
 			children = (
-				6FBAD999031D226740E3C7C7E51123A5 /* Classes */,
+				0C91DD7C1EE5E5E600F9F19D /* Basic */,
+				0C560B2D1EECF74700719807 /* Brazil */,
+				0C91DD421EE5BB8500F9F19D /* Core */,
+				0C91DD431EE5BB8500F9F19D /* Images */,
+				0CE107501F22C91700FCE716 /* Layout */,
+				0C91DD441EE5BB8500F9F19D /* Network */,
 			);
 			path = MochaUtilities;
 			sourceTree = "<group>";
