@@ -461,9 +461,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		035B1E397F2A2D1E41442B332B82ADC4 /* Pods-MochaUtilities_Tests */ = {
+		035B1E397F2A2D1E41442B332B82ADC4 /* MochaUtilitiesTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4F8EE4F75D372CD331AE26C12A3A5EB0 /* Build configuration list for PBXNativeTarget "Pods-MochaUtilities_Tests" */;
+			buildConfigurationList = 4F8EE4F75D372CD331AE26C12A3A5EB0 /* Build configuration list for PBXNativeTarget "MochaUtilitiesTests" */;
 			buildPhases = (
 				38DA42522F7C3E7361695589F3E64497 /* Sources */,
 				8553680DA2E01463B436D8BD398832AD /* Frameworks */,
@@ -474,7 +474,7 @@
 			dependencies = (
 				AA66BC162907C52BC03A3F791CDEABF3 /* PBXTargetDependency */,
 			);
-			name = "Pods-MochaUtilities_Tests";
+			name = MochaUtilitiesTests;
 			productName = "Pods-MochaUtilities_Tests";
 			productReference = 3F6C2B785C0DC2F80FAF5F7F3ADD7A01 /* Pods_MochaUtilities_Tests.framework */;
 			productType = "com.apple.product-type.framework";
@@ -523,7 +523,7 @@
 			projectRoot = "";
 			targets = (
 				5185C3855D953DE4032662A245DFAEA9 /* MochaUtilities */,
-				035B1E397F2A2D1E41442B332B82ADC4 /* Pods-MochaUtilities_Tests */,
+				035B1E397F2A2D1E41442B332B82ADC4 /* MochaUtilitiesTests */,
 			);
 		};
 /* End PBXProject section */
@@ -870,7 +870,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4F8EE4F75D372CD331AE26C12A3A5EB0 /* Build configuration list for PBXNativeTarget "Pods-MochaUtilities_Tests" */ = {
+		4F8EE4F75D372CD331AE26C12A3A5EB0 /* Build configuration list for PBXNativeTarget "MochaUtilitiesTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E417C29F64F9A848B8035C85B1B99805 /* Debug */,

@@ -29,8 +29,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "607FACE41AFB9204008FA782"
-               BuildableName = "MochaUtilities_Tests.xctest"
-               BlueprintName = "MochaUtilities_Tests"
+               BuildableName = "MochaUtilitiesTests.xctest"
+               BlueprintName = "MochaUtilitiesTests"
                ReferencedContainer = "container:MochaUtilities.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -49,8 +49,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "607FACE41AFB9204008FA782"
-               BuildableName = "MochaUtilities_Tests.xctest"
-               BlueprintName = "MochaUtilities_Tests"
+               BuildableName = "MochaUtilitiesTests.xctest"
+               BlueprintName = "MochaUtilitiesTests"
                ReferencedContainer = "container:MochaUtilities.xcodeproj">
             </BuildableReference>
          </TestableReference>
