@@ -272,13 +272,6 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		0C91DD7B1EE5DEEB00F9F19D /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 		0C91DD7C1EE5E5E600F9F19D /* Basic */ = {
 			isa = PBXGroup;
 			children = (
@@ -371,19 +364,6 @@
 			path = "Target Support Files/Pods-MochaUtilities_Tests";
 			sourceTree = "<group>";
 		};
-		6FBAD999031D226740E3C7C7E51123A5 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				0C91DD7C1EE5E5E600F9F19D /* Basic */,
-				0C560B2D1EECF74700719807 /* Brazil */,
-				0C91DD421EE5BB8500F9F19D /* Core */,
-				0C91DD431EE5BB8500F9F19D /* Images */,
-				0CE107501F22C91700FCE716 /* Layout */,
-				0C91DD441EE5BB8500F9F19D /* Network */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
@@ -449,8 +429,12 @@
 		F99C6062F55A30E19B41DAF230FAC2B1 /* MochaUtilities */ = {
 			isa = PBXGroup;
 			children = (
-				6FBAD999031D226740E3C7C7E51123A5 /* Classes */,
-				0C91DD7B1EE5DEEB00F9F19D /* Resources */,
+				0C91DD7C1EE5E5E600F9F19D /* Basic */,
+				0C560B2D1EECF74700719807 /* Brazil */,
+				0C91DD421EE5BB8500F9F19D /* Core */,
+				0C91DD431EE5BB8500F9F19D /* Images */,
+				0CE107501F22C91700FCE716 /* Layout */,
+				0C91DD441EE5BB8500F9F19D /* Network */,
 			);
 			path = MochaUtilities;
 			sourceTree = "<group>";
@@ -477,9 +461,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		035B1E397F2A2D1E41442B332B82ADC4 /* Pods-MochaUtilities_Tests */ = {
+		035B1E397F2A2D1E41442B332B82ADC4 /* MochaUtilitiesTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4F8EE4F75D372CD331AE26C12A3A5EB0 /* Build configuration list for PBXNativeTarget "Pods-MochaUtilities_Tests" */;
+			buildConfigurationList = 4F8EE4F75D372CD331AE26C12A3A5EB0 /* Build configuration list for PBXNativeTarget "MochaUtilitiesTests" */;
 			buildPhases = (
 				38DA42522F7C3E7361695589F3E64497 /* Sources */,
 				8553680DA2E01463B436D8BD398832AD /* Frameworks */,
@@ -490,7 +474,7 @@
 			dependencies = (
 				AA66BC162907C52BC03A3F791CDEABF3 /* PBXTargetDependency */,
 			);
-			name = "Pods-MochaUtilities_Tests";
+			name = MochaUtilitiesTests;
 			productName = "Pods-MochaUtilities_Tests";
 			productReference = 3F6C2B785C0DC2F80FAF5F7F3ADD7A01 /* Pods_MochaUtilities_Tests.framework */;
 			productType = "com.apple.product-type.framework";
@@ -539,7 +523,7 @@
 			projectRoot = "";
 			targets = (
 				5185C3855D953DE4032662A245DFAEA9 /* MochaUtilities */,
-				035B1E397F2A2D1E41442B332B82ADC4 /* Pods-MochaUtilities_Tests */,
+				035B1E397F2A2D1E41442B332B82ADC4 /* MochaUtilitiesTests */,
 			);
 		};
 /* End PBXProject section */
@@ -886,7 +870,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4F8EE4F75D372CD331AE26C12A3A5EB0 /* Build configuration list for PBXNativeTarget "Pods-MochaUtilities_Tests" */ = {
+		4F8EE4F75D372CD331AE26C12A3A5EB0 /* Build configuration list for PBXNativeTarget "MochaUtilitiesTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E417C29F64F9A848B8035C85B1B99805 /* Debug */,
