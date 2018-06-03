@@ -11,43 +11,37 @@ import UIKit
 // MARK: -
 
 public class MochaEmailAttachment {
-    
+
     // MARK: Variables
-    
-    private var _data    : Data!
-    private var _type    : String!
-    private var _filename: String!
-    
-    public var data : Data {
-        return _data
-    }
-    
-    public var type : String {
-        return _type
-    }
-    
-    public var filename : String {
-        return _filename
-    }
-    
+
+    let data    : Data
+    let type    : String
+    let filename: String
+
     // MARK: Inits
-    
+
     ///compressionQuality is a number between 0.0 and 1.0
-    public init(jpegImage: UIImage, compressionQuality: CGFloat = 1.0, filename: String) {
-        _data = UIImageJPEGRepresentation(jpegImage, compressionQuality)
-        _type = "image/jpeg"
-        _filename = filename
+    public init?(jpegImage: UIImage, compressionQuality: CGFloat = 1.0, filename filenameParam: String) {
+        guard let jpegData = UIImageJPEGRepresentation(jpegImage, compressionQuality) else {
+            return nil
+        }
+        data = jpegData
+        type = "image/jpeg"
+        filename = filenameParam
     }
-    
-    public init(pngImage: UIImage, filename: String) {
-        _data = UIImagePNGRepresentation(pngImage)
-        _type = "image/png"
-        _filename = filename
+
+    public init?(pngImage: UIImage, filename filenameParam: String) {
+        guard let pgnData = UIImagePNGRepresentation(pngImage) else {
+            return nil
+        }
+        data = pgnData
+        type = "image/png"
+        filename = filenameParam
     }
-    
-    public init(data: Data, type: String, filename: String) {
-        _data = data
-        _type = type
-        _filename = filename
+
+    public init(data dataParam: Data, type typeParam: String, filename filenameParam: String) {
+        data = dataParam
+        type = typeParam
+        filename = filenameParam
     }
 }
