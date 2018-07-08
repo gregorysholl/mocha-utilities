@@ -8,6 +8,39 @@
 
 import UIKit
 
+public enum HttpContentType {
+    case json
+    case formUrlencoded
+    case custom(String)
+    case none
+}
+
+extension HttpContentType: RawRepresentable {
+    public typealias RawValue = String
+
+    public init?(rawValue: RawValue) {
+        switch rawValue {
+        case "application/json":
+            self = .json
+        case "application/x-www-form-urlencoded":
+            self = .formUrlencoded
+        case "none":
+            self = .none
+        default:
+            self = .custom(rawValue)
+        }
+    }
+
+    public var rawValue: RawValue {
+        switch self {
+        case .json:     return "application/json"
+        case .formUrlencoded:   return "application/x-www-form-urlencoded"
+        case .custom(let string): return string
+        case .none: return "none"
+        }
+    }
+}
+
 public class HttpClient: NSObject {
     
     public typealias Handler = (_ result: Result<Data>) -> Void
@@ -16,48 +49,59 @@ public class HttpClient: NSObject {
     
     //Http Properties
     
-    fileprivate var contentType : String!
-    fileprivate var timeout     : TimeInterval!
-    fileprivate var encoding    : String.Encoding!
+    private (set) var contentType : HttpContentType {
+        didSet {
+            if contentType == .none {
+                header.removeValue(forKey: "Content-Type")
+            } else {
+                header["Content-Type"] = contentType.rawValue
+            }
+        }
+    }
+    private (set) var timeout     : TimeInterval
+    private (set) var encoding    : String.Encoding
     
-    fileprivate var header      : [String: String]!
-    fileprivate var parameters  : [String: Any]!
+    private (set) var header      : [String: String]
+    private (set) var parameters  : [String: Any]
     
     //Basic Authorization
     
-    fileprivate var username    : String?
-    fileprivate var password    : String?
+    private (set) var username    : String?
+    private (set) var password    : String?
     
     //Certificates
     
-    fileprivate var certificateMode     : CertificateMode = .none
+    private (set) var certificateMode     : CertificateMode
     
-    fileprivate var certificate         : Data?
-    fileprivate var certificatePassword : String?
+    private (set) var certificate         : Data?
+    private (set) var certificatePassword : String?
     
-    fileprivate var trustAllSSL         : Bool = false
+    private (set) var trustAllSSL         : Bool
     
-    fileprivate var hostDomain          : String?
+    private (set) var hostDomain          : String?
     
     //Request
     
-    fileprivate var url : String?
+    private (set) var url : String?
     
     //Response
     
-    fileprivate var handler : Handler?
+    private (set) var handler : Handler?
     
     // MARK: Inits
     
     override fileprivate init() {
-        super.init()
-        
-        contentType = "application/json"
-        timeout = 60
-        encoding = .utf8
-        
         header = [:]
         parameters = [:]
+
+        contentType = .json
+        timeout = 60
+        encoding = .utf8
+
+        certificateMode = .none
+        trustAllSSL = false
+
+        super.init()
     }
     
     // MARK: Conversions
@@ -126,21 +170,23 @@ public class HttpClient: NSObject {
             return .failure(.descriptive(message:
                 "HttpClient cannot request (\(method.rawValue.uppercased())) without parameters."))
         }
-        
+
         switch contentType {
-        case "application/x-www-form-urlencoded":
+        case .formUrlencoded:
             let form = string(fromDictionary: parameters)
+
             return form.data(using: encoding).map {
                 Result.success($0)
-            } ?? .failure(.serialization)
-        default:
-            do {
-                let data = try JSONSerialization.data(withJSONObject: parameters,
-                                                      options: [])
-                return .success(data)
-            } catch {
+                } ?? .failure(.serialization)
+        case .json, .custom:
+            guard let data =  try? JSONSerialization.data(withJSONObject: parameters,
+                                                         options: []) else {
                 return .failure(.serialization)
             }
+
+            return .success(data)
+        case .none:
+            return .failure(.invalidContentType)
         }
     }
     
@@ -338,7 +384,7 @@ public extension HttpClient {
         
         //Http Properties
         
-        public var contentType: String {
+        public var contentType: HttpContentType {
             get { return helper.contentType }
             set { helper.contentType = newValue }
         }

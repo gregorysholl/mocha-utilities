@@ -61,13 +61,40 @@ class HttpClientTest: XCTestCase {
         
         let httpHelper = getDefaultBuilder(url: "/get", handler: handler).build()
         httpHelper.get()
-        
+    }
+
+    func testPost() {
+        let expect = expectation(description: "HttpHelper returns data through closure.")
+        var response : Result<Data>!
+
+        let handler = { (result: Result<Data>) in
+            response = result
+            expect.fulfill()
+        }
+
+        let builder = getDefaultBuilder(url: "/post", handler: handler)
+        builder.parameters = ["obj1": "content1", "obj2": "content2"]
+        builder.contentType = .json
+        builder.build().post()
+
         waitForExpectations(timeout: 5) { error in
             switch response! {
-            case .failure(_):
-                XCTAssert(false)
-            case .success(_):
-                XCTAssert(true)
+            case .failure(let error):
+                XCTAssert(false, error.localizedDescription)
+            case .success(let data):
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+
+                    guard let jsonDict = json as? [String: Any] else {
+                        XCTAssert(false, "'json' is not a dictionary")
+                        return
+                    }
+
+                    print("\(jsonDict)")
+                    XCTAssert(true)
+                } catch let jsonError {
+                    XCTAssert(false, jsonError.localizedDescription)
+                }
             }
         }
     }
