@@ -95,7 +95,7 @@ public extension NavigationBarUtil {
         setTitleAttributes([.foregroundColor: color, .font: font], for: viewController)
     }
     
-    static public func setTitleAttributes(_ titleAttributes: [NSAttributedStringKey: Any], for viewController: UIViewController) {
+    static public func setTitleAttributes(_ titleAttributes: [NSAttributedString.Key: Any], for viewController: UIViewController) {
         guard let navigationBar = navigationBar(for: viewController) else {
             return
         }
@@ -128,7 +128,7 @@ fileprivate extension NavigationBarUtil {
             barButton = UIBarButtonItem(title: title, style: .plain, target: target, action: action)
         } else if let image = object as? UIImage {
             barButton = UIBarButtonItem(image: image, style: .plain, target: target, action: action)
-        } else if let systemItem = object as? UIBarButtonSystemItem {
+        } else if let systemItem = object as? UIBarButtonItem.SystemItem {
             barButton = UIBarButtonItem(barButtonSystemItem: systemItem, target: target, action: action)
         }
         

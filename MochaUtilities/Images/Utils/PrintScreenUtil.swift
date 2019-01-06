@@ -50,7 +50,7 @@ public class PrintScreenUtil {
             filename.append(".jpg")
         }
         
-        if let data = UIImageJPEGRepresentation(image, 1.0) {
+        if let data = image.jpegData(compressionQuality: 1.0) {
             do {
                 try data.write(to: URL(fileURLWithPath: filename), options: .withoutOverwriting)
             } catch {
@@ -69,7 +69,7 @@ public class PrintScreenUtil {
             filename.append(".png")
         }
         
-        if let data = UIImagePNGRepresentation(image) {
+        if let data = image.pngData() {
             do {
                 try data.write(to: URL(fileURLWithPath: filename), options: .withoutOverwriting)
             } catch {

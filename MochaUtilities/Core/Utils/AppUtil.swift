@@ -60,7 +60,7 @@ public class AppUtil {
     
     // MARK: - State
     
-    static public var state: UIApplicationState {
+    static public var state: UIApplication.State {
         return UIApplication.shared.applicationState
     }
     

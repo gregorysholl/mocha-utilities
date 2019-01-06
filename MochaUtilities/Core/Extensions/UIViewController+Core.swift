@@ -24,7 +24,7 @@ public extension UIViewController {
         return alertController
     }
     
-    private func createAlertController(title: String?, message: String?, style: UIAlertControllerStyle, actions: [UIAlertAction]) -> UIAlertController {
+    private func createAlertController(title: String?, message: String?, style: UIAlertController.Style, actions: [UIAlertAction]) -> UIAlertController {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: style)
         
         for action in actions {

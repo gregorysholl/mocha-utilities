@@ -33,7 +33,7 @@ public class DeviceUtil {
     }
     
     static public func openSettings() {
-        guard let url = URL(string: UIApplicationOpenSettingsURLString) else {
+        guard let url = URL(string: UIApplication.openSettingsURLString) else {
             return
         }
         

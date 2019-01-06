@@ -44,7 +44,7 @@ public extension KeyboardUtil {
             return CGSize.zero
         }
         
-        guard let keyboardSize = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size else {
+        guard let keyboardSize = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size else {
             return CGSize.zero
         }
         

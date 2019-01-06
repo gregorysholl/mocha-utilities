@@ -22,7 +22,7 @@ public class MochaEmailAttachment {
 
     ///compressionQuality is a number between 0.0 and 1.0
     public init?(jpegImage: UIImage, compressionQuality: CGFloat = 1.0, filename filenameParam: String) {
-        guard let jpegData = UIImageJPEGRepresentation(jpegImage, compressionQuality) else {
+        guard let jpegData = jpegImage.jpegData(compressionQuality: compressionQuality) else {
             return nil
         }
         data = jpegData
@@ -31,7 +31,7 @@ public class MochaEmailAttachment {
     }
 
     public init?(pngImage: UIImage, filename filenameParam: String) {
-        guard let pgnData = UIImagePNGRepresentation(pngImage) else {
+        guard let pgnData = pngImage.pngData() else {
             return nil
         }
         data = pgnData
