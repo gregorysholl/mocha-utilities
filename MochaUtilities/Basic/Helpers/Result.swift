@@ -16,8 +16,8 @@ public extension Result {
     
     public func map<U>(_ transform: (T) -> U) -> Result<U> {
         switch self {
-        case .failure(let fluigError):
-            return .failure(fluigError)
+        case .failure(let error):
+            return .failure(error)
         case .success(let value):
             return .success(transform(value))
         }
