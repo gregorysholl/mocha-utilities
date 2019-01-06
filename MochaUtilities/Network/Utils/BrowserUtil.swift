@@ -13,14 +13,14 @@ public class BrowserUtil {
     // MARK: - Open
 
     static public func openUrl(_ nullableUrl: String?) {
-        guard let url = nullableUrl else {
+        guard let urlString = nullableUrl else {
             return
         }
         
-        guard let nsurl = URL(string: url) else {
+        guard let url = URL(string: urlString) else {
             return
         }
         
-        UIApplication.shared.openURL(nsurl)
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
 }

@@ -17,7 +17,7 @@ public class PrintScreenUtil {
             return nil
         }
         
-        let screenSize = UIScreen.main.applicationFrame.size
+        let screenSize = UIScreen.main.bounds.size
         let colorSpaceRef = CGColorSpaceCreateDeviceRGB()
         let bitmapInfo = CGImageAlphaInfo.none
         

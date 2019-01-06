@@ -20,7 +20,7 @@ public class DeviceUtil {
             return
         }
         
-        UIApplication.shared.openURL(url)
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
     
     static public func sms(_ phoneNumber: String) {
@@ -29,7 +29,7 @@ public class DeviceUtil {
             return
         }
         
-        UIApplication.shared.openURL(url)
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
     
     static public func openSettings() {
@@ -37,7 +37,7 @@ public class DeviceUtil {
             return
         }
         
-        UIApplication.shared.openURL(url)
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
     
     static public func vibrate() {

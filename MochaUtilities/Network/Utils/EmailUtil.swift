@@ -65,7 +65,7 @@ public extension EmailUtil {
         
         if let addedPercent = email.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) {
             if let url = URL(string: addedPercent) {
-                UIApplication.shared.openURL(url)
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
         }
     }

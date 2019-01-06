@@ -274,7 +274,7 @@ To open the default browser of the device, use the `openUrl(_: String?)`. If the
 
 ## Requirements
 
-- iOS 8.0+
+- iOS 11.0+
 - Xcode 8.1+
 - Swift 4.2+
 

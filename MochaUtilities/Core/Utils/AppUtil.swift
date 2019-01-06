@@ -50,11 +50,11 @@ public class AppUtil {
     static public func openAppStore(appLink: String) {
         let appStorePrefix = "itms://itunes.apple.com/br/app/"
         
-        var url = appLink
-        url = url.replacingOccurrences(of: appStorePrefix, with: "")
+        var urlString = appLink
+        urlString = urlString.replacingOccurrences(of: appStorePrefix, with: "")
         
-        if let nsurl = URL(string: "\(appStorePrefix)\(url)") {
-            UIApplication.shared.openURL(nsurl)
+        if let url = URL(string: "\(appStorePrefix)\(urlString)") {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
     

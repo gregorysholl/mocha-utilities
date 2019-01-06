@@ -17,36 +17,6 @@ public class StatusBarUtil {
     }
 }
 
-// MARK: - Show & Hide
-
-public extension StatusBarUtil {
-    
-    static public func show() {
-        UIApplication.shared.isStatusBarHidden = false
-    }
-    
-    static public func hide() {
-        UIApplication.shared.isStatusBarHidden = true
-    }
-    
-    static public var isHidden: Bool {
-        return UIApplication.shared.isStatusBarHidden
-    }
-}
-
-// MARK: - Text Color
-
-public extension StatusBarUtil {
-    
-    static public func setDefaultTextColor(_ animated: Bool = true) {
-        UIApplication.shared.setStatusBarStyle(.default, animated: animated)
-    }
-    
-    static public func setWhiteTextColor(_ animated: Bool = true) {
-        UIApplication.shared.setStatusBarStyle(.lightContent, animated: animated)
-    }
-}
-
 // MARK: - Background Color
 
 public extension StatusBarUtil {
