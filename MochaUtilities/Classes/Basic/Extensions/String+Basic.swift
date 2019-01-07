@@ -8,19 +8,6 @@
 
 import Foundation
 
-// MARK: - Get-only Properties
-
-public extension String {
-    
-    public var length: Int {
-        return self.count
-    }
-    
-    public var isNotEmpty: Bool {
-        return !isEmpty
-    }
-}
-
 // MARK: - Equals
 
 public extension String {
