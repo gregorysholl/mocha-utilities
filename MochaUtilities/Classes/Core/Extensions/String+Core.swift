@@ -45,8 +45,7 @@ public extension String {
     }
     
     public func substring(from startIndex: Int, to endIndex: Int) -> String {
-        let length = self.length
-        if endIndex >= length || (endIndex - startIndex) >= length || startIndex > endIndex {
+        if endIndex >= count || (endIndex - startIndex) >= count || startIndex > endIndex {
             return ""
         }
         return String(self[
@@ -58,12 +57,12 @@ public extension String {
     // MARK: Insert
     
     public mutating func insert(str: String, at index: Int) {
-        if (length - index) < 0 {
+        if (count - index) < 0 {
             return
         }
         
         let prefix = self.prefix(index)
-        let suffix = self.suffix(length - index)
+        let suffix = self.suffix(count - index)
         
         self = String(prefix) + str + String(suffix)
     }
@@ -96,7 +95,7 @@ public extension String {
     // MARK: Check
     
     public var isNumber: Bool {
-        guard isNotEmpty else {
+        guard !isEmpty else {
             return false
         }
         

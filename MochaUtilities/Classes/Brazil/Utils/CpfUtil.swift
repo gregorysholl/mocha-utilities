@@ -22,12 +22,12 @@ public class CpfUtil {
     }
     
     static public func mask(_ str: String?) -> String {
-        guard let str = str, str.isNotEmpty else {
+        guard let str = str, !str.isEmpty else {
             return ""
         }
         
         let unmasked = unmask(str)
-        if unmasked.length != 11 {
+        if unmasked.count != 11 {
             return ""
         }
         
@@ -39,7 +39,7 @@ public class CpfUtil {
     }
     
     static public func isMasked(_ possibleCpf: String?) -> Bool {
-        guard let string = possibleCpf, string.length == 14 else {
+        guard let string = possibleCpf, string.count == 14 else {
             return false
         }
         
@@ -60,12 +60,12 @@ public class CpfUtil {
 public extension CpfUtil {
     
     static public func isValid(_ str: String?) -> Bool {
-        guard let string = str, string.isNotEmpty else {
+        guard let string = str, !string.isEmpty else {
             return false
         }
         
         let cpf = unmask(string)
-        if cpf.length != 11 || !cpf.isNumber {
+        if cpf.count != 11 || !cpf.isNumber {
             return false
         }
         

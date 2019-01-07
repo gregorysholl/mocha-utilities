@@ -55,11 +55,11 @@ public extension EmailUtil {
         
         var email = "mailto:\(destinationEmail)"
         
-        if subject.isNotEmpty {
+        if !subject.isEmpty {
             email = "\(email)?subject=\(subject)"
         }
         
-        if body.isNotEmpty {
+        if !body.isEmpty {
             email = "\(email)&body=\(body)"
         }
         

@@ -16,7 +16,7 @@ public class DeviceUtil {
     
     static public func call(_ phoneNumber: String) {
         let number = digitsOnly(of: phoneNumber)
-        guard number.isNotEmpty, let url = URL(string: "tel://\(number)") else {
+        guard !number.isEmpty, let url = URL(string: "tel://\(number)") else {
             return
         }
         

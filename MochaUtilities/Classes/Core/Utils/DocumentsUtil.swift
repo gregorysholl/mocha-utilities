@@ -31,7 +31,7 @@ public extension DocumentsUtil {
     
     public func path(of filename: String?,
                      with domainMask: FileManager.SearchPathDomainMask = .userDomainMask) -> Result<String> {
-        guard let filename = filename, filename.isNotEmpty else {
+        guard let filename = filename, !filename.isEmpty else {
             return .failure(.fileNotFound)
         }
         return path(forDomainMask: domainMask).map {
@@ -131,7 +131,7 @@ public extension DocumentsUtil {
     public func append(_ text: String,
                        in filename: String?,
                        ofType type: String?) -> Result<Void> {
-        guard let filename = filename, filename.isNotEmpty else {
+        guard let filename = filename, !filename.isEmpty else {
             return .failure(.fileNotFound)
         }
 

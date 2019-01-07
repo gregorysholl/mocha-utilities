@@ -107,12 +107,12 @@ public class HttpClient: NSObject {
     // MARK: Conversions
     
     private func createBasicAuth() -> Result<String> {
-        guard let username = self.username, username.isNotEmpty else {
+        guard let username = self.username, !username.isEmpty else {
             return .failure(.descriptive(message:
                 "Username not informed for Basic Authorization"))
         }
         
-        guard let password = self.password, password.isNotEmpty else {
+        guard let password = self.password, !password.isEmpty else {
             return .failure(.descriptive(message:
                 "Password not informed for Basic Authorization"))
         }
