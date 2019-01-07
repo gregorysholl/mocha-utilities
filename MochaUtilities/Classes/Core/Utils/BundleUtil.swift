@@ -12,7 +12,7 @@ import UIKit
 
 public class BundleUtil {
     
-    fileprivate var bundle: Bundle!
+    private var bundle: Bundle!
     
     static public var main: BundleUtil {
         return BundleUtil(bundle: .main)

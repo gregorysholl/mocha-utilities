@@ -90,7 +90,7 @@ public class HttpClient: NSObject {
     
     // MARK: Inits
     
-    override fileprivate init() {
+    override private init() {
         header = [:]
         parameters = [:]
 
@@ -273,7 +273,7 @@ public class HttpClient: NSObject {
     
     // MARK: Certificate Handlers
     
-    fileprivate func shoultTrustProtectionSpace(_ protectionSpace: URLProtectionSpace) -> Bool {
+    private func shoultTrustProtectionSpace(_ protectionSpace: URLProtectionSpace) -> Bool {
         
         guard let certificate = certificate else {
             return false
@@ -307,7 +307,7 @@ public class HttpClient: NSObject {
         return trustResult == .unspecified || trustResult == .proceed
     }
     
-    fileprivate func loadCredential() -> URLCredential? {
+    private func loadCredential() -> URLCredential? {
         
         guard let certificate = certificate else {
             return nil

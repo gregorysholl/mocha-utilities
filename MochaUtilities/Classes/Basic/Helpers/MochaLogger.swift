@@ -14,9 +14,9 @@ public final class MochaLogger {
     
     // MARK: - Variables
     
-    static fileprivate let shared = MochaLogger()
+    static private let shared = MochaLogger()
     
-    fileprivate var tag : String?
+    private var tag : String?
     
     // MARK: - Inits
     

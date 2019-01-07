@@ -17,13 +17,13 @@ public class EmailUtil: NSObject {
     
     // MARK: Variables
     
-    static fileprivate var instance : EmailUtil?
+    static private var instance : EmailUtil?
     
-    fileprivate var delegate : EmailUtilDelegate?
+    private var delegate : EmailUtilDelegate?
     
     // MARK: Inits
     
-    fileprivate override init() {
+    private override init() {
         super.init()
     }
 }

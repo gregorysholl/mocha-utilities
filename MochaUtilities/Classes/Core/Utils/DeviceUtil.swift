@@ -52,9 +52,9 @@ public class DeviceUtil {
 
 // MARK: - Helpers
 
-fileprivate extension DeviceUtil {
+private extension DeviceUtil {
     
-    static fileprivate func digitsOnly(of phoneNumber: String) -> String {
+    static private func digitsOnly(of phoneNumber: String) -> String {
         let numberArray = phoneNumber.components(separatedBy: CharacterSet.decimalDigits.inverted)
         let number = numberArray.joined(separator: "")
         return number

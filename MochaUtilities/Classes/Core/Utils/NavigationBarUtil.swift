@@ -119,9 +119,9 @@ public extension NavigationBarUtil {
 
 // MARK: - Bar Button
 
-fileprivate extension NavigationBarUtil {
+private extension NavigationBarUtil {
     
-    static fileprivate func barButton(with object: Any?, action: Selector, for target: UIViewController) -> UIBarButtonItem? {
+    static private func barButton(with object: Any?, action: Selector, for target: UIViewController) -> UIBarButtonItem? {
         var barButton : UIBarButtonItem?
         
         if let title = object as? String {
