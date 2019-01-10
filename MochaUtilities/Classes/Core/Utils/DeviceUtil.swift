@@ -14,7 +14,7 @@ import AudioToolbox
 
 public class DeviceUtil {
     
-    static public func call(_ phoneNumber: String) {
+    public static func call(_ phoneNumber: String) {
         let number = digitsOnly(of: phoneNumber)
         guard !number.isEmpty, let url = URL(string: "tel://\(number)") else {
             return
@@ -23,7 +23,7 @@ public class DeviceUtil {
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
     
-    static public func sms(_ phoneNumber: String) {
+    public static func sms(_ phoneNumber: String) {
         let number = digitsOnly(of: phoneNumber)
         guard let url = URL(string: "sms://\(number)") else {
             return
@@ -32,7 +32,7 @@ public class DeviceUtil {
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
     
-    static public func openSettings() {
+    public static func openSettings() {
         guard let url = URL(string: UIApplication.openSettingsURLString) else {
             return
         }
@@ -40,11 +40,11 @@ public class DeviceUtil {
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
     
-    static public func vibrate() {
+    public static func vibrate() {
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
     }
     
-    static public func copyToClipboard(_ string: String?) {
+    public static func copyToClipboard(_ string: String?) {
         let pasteboard = UIPasteboard.general
         pasteboard.string = string
     }
@@ -54,7 +54,7 @@ public class DeviceUtil {
 
 private extension DeviceUtil {
     
-    static private func digitsOnly(of phoneNumber: String) -> String {
+    private static func digitsOnly(of phoneNumber: String) -> String {
         let numberArray = phoneNumber.components(separatedBy: CharacterSet.decimalDigits.inverted)
         let number = numberArray.joined(separator: "")
         return number
@@ -65,11 +65,11 @@ private extension DeviceUtil {
 
 public extension DeviceUtil {
     
-    static public var uuid: String {
+    public static var uuid: String {
         return NSUUID().uuidString
     }
     
-    static public var platformCode: String {
+    public static var platformCode: String {
         var systemInfo = utsname()
         uname(&systemInfo)
         
@@ -82,11 +82,11 @@ public extension DeviceUtil {
         return platform
     }
     
-    static public var version: Float {
+    public static var version: Float {
         return NumberUtil.toFloat(UIDevice.current.systemVersion)
     }
     
-    static public var name: String {
+    public static var name: String {
         var name = "\(platformCode)_\(version)_\(uuid)"
         name = name.replacingOccurrences(of: ",", with: ".")
         name = name.replacingOccurrences(of: "-", with: "_")
@@ -98,15 +98,15 @@ public extension DeviceUtil {
 
 public extension DeviceUtil {
     
-    static public var screenSize: CGSize {
+    public static var screenSize: CGSize {
         return UIScreen.main.bounds.size
     }
     
-    static public var screenWidth: CGFloat {
+    public static var screenWidth: CGFloat {
         return screenSize.width
     }
     
-    static public var screenHeight: CGFloat {
+    public static var screenHeight: CGFloat {
         return screenSize.height
     }
 }
@@ -115,25 +115,25 @@ public extension DeviceUtil {
 
 public extension DeviceUtil {
     
-    static public var screenScale: CGFloat {
+    public static var screenScale: CGFloat {
         return UIScreen.main.scale
     }
     
-    static public func isNormalDisplay() -> Bool {
+    public static func isNormalDisplay() -> Bool {
         if version < 4.0 {
             return false
         }
         return screenScale == 1.0
     }
     
-    static public func isRetinaDisplay() -> Bool {
+    public static func isRetinaDisplay() -> Bool {
         if version < 4.0 {
             return false
         }
         return screenScale == 2.0
     }
     
-    static public func isHdDisplay() -> Bool {
+    public static func isHdDisplay() -> Bool {
         if version < 4.0 {
             return false
         }
@@ -145,46 +145,46 @@ public extension DeviceUtil {
 
 public extension DeviceUtil {
     
-    static public var model: String  {
+    public static var model: String  {
         return UIDevice.current.model
     }
     
-    static public func isSimulator() -> Bool {
+    public static func isSimulator() -> Bool {
         return TARGET_OS_SIMULATOR != 0
     }
     
-    static public func isPhone() -> Bool {
+    public static func isPhone() -> Bool {
         let idiom = UIDevice.current.userInterfaceIdiom
         return idiom == .phone
     }
     
-    static public func isPad() -> Bool {
+    public static func isPad() -> Bool {
         let idiom = UIDevice.current.userInterfaceIdiom
         return idiom == .pad
     }
     
-    static public func isIphone4() -> Bool {
+    public static func isIphone4() -> Bool {
         if isPad() {
             return false
         }
         return screenHeight == 480.0
     }
     
-    static public func isIphone5() -> Bool {
+    public static func isIphone5() -> Bool {
         if isPad() {
             return false
         }
         return screenHeight == 568.0
     }
     
-    static public func isIphone6() -> Bool {
+    public static func isIphone6() -> Bool {
         if isPad() {
             return false
         }
         return screenHeight == 667.0
     }
     
-    static public func isIphone6Plus() -> Bool {
+    public static func isIphone6Plus() -> Bool {
         if isPad() {
             return false
         }

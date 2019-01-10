@@ -14,7 +14,7 @@ public final class MochaLogger {
     
     // MARK: - Variables
     
-    static private let shared = MochaLogger()
+    private static let shared = MochaLogger()
     
     private var tag : String?
     
@@ -29,14 +29,14 @@ public final class MochaLogger {
 
 public extension MochaLogger {
     
-    static public func changeTag(to newTag: String) {
+    public static func changeTag(to newTag: String) {
         if newTag.isEmpty {
             return
         }
         shared.tag = newTag
     }
     
-    static public func removeTag() {
+    public static func removeTag() {
         shared.tag = nil
     }
 }
@@ -45,7 +45,7 @@ public extension MochaLogger {
 
 public extension MochaLogger {
     
-    static public func log(_ nullableMessage: String?) {
+    public static func log(_ nullableMessage: String?) {
         guard let message = nullableMessage else {
             return
         }

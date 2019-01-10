@@ -12,32 +12,32 @@ public class AppUtil {
     
     // MARK: - Information
     
-    static public func object(forInfoDictionaryKey key: String) -> Any? {
+    public static func object(forInfoDictionaryKey key: String) -> Any? {
         return Bundle.main.object(forInfoDictionaryKey: key)
     }
     
-    static public var name: String {
+    public static var name: String {
         guard let displayName = object(forInfoDictionaryKey: "CFBundleDisplayName") as? String else {
             return ""
         }
         return displayName
     }
     
-    static public var version: String {
+    public static var version: String {
         guard let shortVersion = object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String else {
             return ""
         }
         return shortVersion
     }
     
-    static public var bundleNumber: String {
+    public static var bundleNumber: String {
         guard let bundleVersion = object(forInfoDictionaryKey: "CFBundleVersion") as? String else {
             return ""
         }
         return bundleVersion
     }
     
-    static public var viewControllerBasedStatusBarAppearance: Bool {
+    public static var viewControllerBasedStatusBarAppearance: Bool {
         guard let vcBased = object(forInfoDictionaryKey: "UIViewControllerBasedStatusBarAppearance") as? Bool else {
             MochaLogger.log("The attribute 'UIViewControllerBasedStatusBarAppearance' was not found in project's Info.plist.")
             return false
@@ -47,7 +47,7 @@ public class AppUtil {
     
     // MARK: - App Store
     
-    static public func openAppStore(appLink: String) {
+    public static func openAppStore(appLink: String) {
         let appStorePrefix = "itms://itunes.apple.com/br/app/"
         
         var urlString = appLink
@@ -60,15 +60,15 @@ public class AppUtil {
     
     // MARK: - State
     
-    static public var state: UIApplication.State {
+    public static var state: UIApplication.State {
         return UIApplication.shared.applicationState
     }
     
-    static public var active: Bool {
+    public static var active: Bool {
         return state == .active
     }
     
-    static public var inBackground: Bool {
+    public static var inBackground: Bool {
         return state == .background
     }
 }

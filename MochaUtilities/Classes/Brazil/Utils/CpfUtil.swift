@@ -12,7 +12,7 @@ import UIKit
 
 public class CpfUtil {
     
-    static public func unmask(_ str: String?) -> String {
+    public static func unmask(_ str: String?) -> String {
         guard var str = str else {
             return ""
         }
@@ -21,7 +21,7 @@ public class CpfUtil {
         return str
     }
     
-    static public func mask(_ str: String?) -> String {
+    public static func mask(_ str: String?) -> String {
         guard let str = str, !str.isEmpty else {
             return ""
         }
@@ -38,7 +38,7 @@ public class CpfUtil {
         return masked
     }
     
-    static public func isMasked(_ possibleCpf: String?) -> Bool {
+    public static func isMasked(_ possibleCpf: String?) -> Bool {
         guard let string = possibleCpf, string.count == 14 else {
             return false
         }
@@ -59,7 +59,7 @@ public class CpfUtil {
 
 public extension CpfUtil {
     
-    static public func isValid(_ str: String?) -> Bool {
+    public static func isValid(_ str: String?) -> Bool {
         guard let string = str, !string.isEmpty else {
             return false
         }

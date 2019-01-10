@@ -14,21 +14,21 @@ public class OrientationUtil {
     
     // MARK: Get
     
-    static public var orientation: UIInterfaceOrientation {
+    public static var orientation: UIInterfaceOrientation {
         return UIApplication.shared.statusBarOrientation
     }
     
     // MARK: Validation
     
-    static public var portrait: Bool {
+    public static var portrait: Bool {
         return orientation == .portrait
     }
     
-    static public var upsideDown: Bool {
+    public static var upsideDown: Bool {
         return orientation == .portraitUpsideDown
     }
     
-    static public var landscape: Bool {
+    public static var landscape: Bool {
         return orientation == .landscapeLeft || orientation == .landscapeRight
     }
 }

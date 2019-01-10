@@ -14,7 +14,7 @@ public class NumberUtil {
     
     // MARK: Int
     
-    static public func toInteger(_ string: String?, with defaultValue: Int = 0) -> Int {
+    public static func toInteger(_ string: String?, with defaultValue: Int = 0) -> Int {
         guard let s = string, !s.isEmpty else {
             return defaultValue
         }
@@ -28,7 +28,7 @@ public class NumberUtil {
     
     // MARK: Float
     
-    static public func toFloat(_ string: String?, with defaultValue: Float = 0.0) -> Float {
+    public static func toFloat(_ string: String?, with defaultValue: Float = 0.0) -> Float {
         guard let s = string, !s.isEmpty else {
             return defaultValue
         }
@@ -42,7 +42,7 @@ public class NumberUtil {
     
     // MARK: Double
     
-    static public func toDouble(_ string: String?, with defaultValue: Double = 0.0) -> Double {
+    public static func toDouble(_ string: String?, with defaultValue: Double = 0.0) -> Double {
         guard let s = string, !s.isEmpty else {
             return defaultValue
         }
@@ -56,7 +56,7 @@ public class NumberUtil {
     
     // MARK: Number
     
-    static public func toNumber(_ string: String?, with defaultValue: Double = 0.0) -> NSNumber {
+    public static func toNumber(_ string: String?, with defaultValue: Double = 0.0) -> NSNumber {
         guard let s = string, !s.isEmpty else {
             return NSNumber(floatLiteral: defaultValue)
         }

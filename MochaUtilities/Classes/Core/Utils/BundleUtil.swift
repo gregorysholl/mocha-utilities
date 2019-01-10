@@ -14,11 +14,11 @@ public class BundleUtil {
     
     private var bundle: Bundle!
     
-    static public var main: BundleUtil {
+    public static var main: BundleUtil {
         return BundleUtil(bundle: .main)
     }
     
-    static public func custom(_ bundle: Bundle) -> BundleUtil {
+    public static func custom(_ bundle: Bundle) -> BundleUtil {
         return BundleUtil(bundle: bundle)
     }
     

@@ -12,7 +12,7 @@ import UIKit
 
 public class NotificationUtil {
     
-    static public func registerName(_ name: Notification.Name, with selector: Selector, for observer: Any) {
+    public static func registerName(_ name: Notification.Name, with selector: Selector, for observer: Any) {
         NotificationCenter.default.addObserver(observer, selector: selector, name: name, object: nil)
     }
 }
@@ -21,11 +21,11 @@ public class NotificationUtil {
 
 public extension NotificationUtil {
     
-    static public func unregisterName(_ name: Notification.Name, from observer: Any) {
+    public static func unregisterName(_ name: Notification.Name, from observer: Any) {
         NotificationCenter.default.removeObserver(observer, name: name, object: nil)
     }
     
-    static public func unregisterAllNotifications(from observer: Any) {
+    public static func unregisterAllNotifications(from observer: Any) {
         NotificationCenter.default.removeObserver(observer)
     }
 }
@@ -34,11 +34,11 @@ public extension NotificationUtil {
 
 public extension NotificationUtil {
     
-    static public func post(_ name: Notification.Name, with object: Any? = nil) {
+    public static func post(_ name: Notification.Name, with object: Any? = nil) {
         NotificationCenter.default.post(name: name, object: object)
     }
     
-    static public func post(_ notification: Notification) {
+    public static func post(_ notification: Notification) {
         NotificationCenter.default.post(notification)
     }
 }

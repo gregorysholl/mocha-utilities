@@ -12,7 +12,7 @@ import UIKit
 
 public class ConstraintUtil {
     
-    static public func changeMultiplier(of constraint: NSLayoutConstraint, to value: CGFloat, in view: UIView?) -> NSLayoutConstraint {
+    public static func changeMultiplier(of constraint: NSLayoutConstraint, to value: CGFloat, in view: UIView?) -> NSLayoutConstraint {
         
         let newConstraint = NSLayoutConstraint(item: constraint.firstItem as Any,
                                                attribute: constraint.firstAttribute,

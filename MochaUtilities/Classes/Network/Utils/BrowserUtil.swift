@@ -12,7 +12,7 @@ public class BrowserUtil {
     
     // MARK: - Open
 
-    static public func openUrl(_ nullableUrl: String?) {
+    public static func openUrl(_ nullableUrl: String?) {
         guard let urlString = nullableUrl else {
             return
         }

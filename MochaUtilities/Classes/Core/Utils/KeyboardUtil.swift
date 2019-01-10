@@ -12,7 +12,7 @@ import UIKit
 
 public class KeyboardUtil {
     
-    static public func show(at view: UIKeyInput?) {
+    public static func show(at view: UIKeyInput?) {
         guard let view = view as? UIView else {
             return
         }
@@ -26,7 +26,7 @@ public class KeyboardUtil {
         view.perform(selector)
     }
     
-    static public func hide(_ view: UIView?) {
+    public static func hide(_ view: UIView?) {
         guard let view = view else {
             return
         }
@@ -39,7 +39,7 @@ public class KeyboardUtil {
 
 public extension KeyboardUtil {
     
-    static public func size(from notification: Notification) -> CGSize {
+    public static func size(from notification: Notification) -> CGSize {
         guard let userInfo = notification.userInfo else {
             return CGSize.zero
         }
@@ -51,12 +51,12 @@ public extension KeyboardUtil {
         return keyboardSize
     }
     
-    static public func width(from notification: Notification) -> CGFloat {
+    public static func width(from notification: Notification) -> CGFloat {
         let size = self.size(from: notification)
         return size.width
     }
     
-    static public func height(from notification: Notification) -> CGFloat {
+    public static func height(from notification: Notification) -> CGFloat {
         let size = self.size(from: notification)
         return size.height
     }

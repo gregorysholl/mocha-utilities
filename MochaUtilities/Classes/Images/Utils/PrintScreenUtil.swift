@@ -12,7 +12,7 @@ public class PrintScreenUtil {
     
     // MARK: - Get
     
-    static public func get(of view: UIView?) -> UIImage? {
+    public static func get(of view: UIView?) -> UIImage? {
         guard let view = view else {
             return nil
         }
@@ -40,7 +40,7 @@ public class PrintScreenUtil {
     
     // MARK: - Save
     
-    static public func save(toJpgFile filename: String, of view: UIView?) {
+    public static func save(toJpgFile filename: String, of view: UIView?) {
         guard let image = get(of: view) else {
             return
         }
@@ -59,7 +59,7 @@ public class PrintScreenUtil {
         }
     }
     
-    static public func save(toPngFile filename: String, of view: UIView?) {
+    public static func save(toPngFile filename: String, of view: UIView?) {
         guard let image = get(of: view) else {
             return
         }

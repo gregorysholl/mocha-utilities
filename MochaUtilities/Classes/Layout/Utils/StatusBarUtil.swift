@@ -12,7 +12,7 @@ import UIKit
 
 public class StatusBarUtil {
     
-    static public var height: CGFloat {
+    public static var height: CGFloat {
         return UIApplication.shared.statusBarFrame.size.height
     }
 }
@@ -21,7 +21,7 @@ public class StatusBarUtil {
 
 public extension StatusBarUtil {
     
-    static public func setBackgroundColor(_ color: UIColor) {
+    public static func setBackgroundColor(_ color: UIColor) {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: DeviceUtil.screenWidth, height: 20))
         view.backgroundColor = color
         

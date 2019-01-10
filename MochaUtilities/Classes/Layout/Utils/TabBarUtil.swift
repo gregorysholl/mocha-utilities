@@ -13,14 +13,14 @@ import UIKit
 public class TabBarUtil {
     
     ///Returns the `UITabBar` of the given `UIViewController` if possible, or `nil` otherwise.
-    static public func tabBar(for viewController: UIViewController) -> UITabBar? {
+    public static func tabBar(for viewController: UIViewController) -> UITabBar? {
         guard let tabBarController = viewController.tabBarController else {
             return nil
         }
         return tabBarController.tabBar
     }
     
-    static public func height(for viewController:UIViewController) -> CGFloat {
+    public static func height(for viewController:UIViewController) -> CGFloat {
         guard let tabBar = tabBar(for: viewController) else {
             return 0.0
         }
@@ -33,11 +33,11 @@ public class TabBarUtil {
 
 public extension TabBarUtil {
     
-    static public func setTextColor(_ color: UIColor, for state: UIControl.State) {
+    public static func setTextColor(_ color: UIColor, for state: UIControl.State) {
         UITabBarItem.appearance().setTitleTextAttributes([.foregroundColor: color], for: state)
     }
     
-    static public func setBackgroundColor(_ color: UIColor){
+    public static func setBackgroundColor(_ color: UIColor){
         UITabBar.appearance().barTintColor = color
     }
 }

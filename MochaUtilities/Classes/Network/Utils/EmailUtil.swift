@@ -17,7 +17,7 @@ public class EmailUtil: NSObject {
     
     // MARK: Variables
     
-    static private var instance : EmailUtil?
+    private static var instance : EmailUtil?
     
     private var delegate : EmailUtilDelegate?
     
@@ -32,7 +32,7 @@ public class EmailUtil: NSObject {
 
 public extension EmailUtil {
     
-    static public func isValid(_ string: String?, strictRules strict: Bool = false) -> Bool {
+    public static func isValid(_ string: String?, strictRules strict: Bool = false) -> Bool {
         let emailRegex = strict ? "^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$" : "^.+@.+\\.[A-Za-z]{2}[A-Za-z]*$"
         let emailTest = NSPredicate(format: "SELF MATCHES %@", emailRegex)
         return emailTest.evaluate(with: string)
@@ -43,11 +43,11 @@ public extension EmailUtil {
 
 public extension EmailUtil {
     
-    static public func canSend() -> Bool {
+    public static func canSend() -> Bool {
         return MFMailComposeViewController.canSendMail()
     }
     
-    static public func send(to destinationEmail: String, withSubject subject: String = "", andBody body: String = "") {
+    public static func send(to destinationEmail: String, withSubject subject: String = "", andBody body: String = "") {
         
         if !canSend() {
             return
@@ -70,7 +70,7 @@ public extension EmailUtil {
         }
     }
     
-    static public func open(with delegate: EmailUtilDelegate, on viewController: UIViewController, withRecipients recipients: [String] = [], subject: String = "", body: String = "", isBodyHtml: Bool = false, andAttachments attachments: [MochaEmailAttachment] = []) -> EmailUtil? {
+    public static func open(with delegate: EmailUtilDelegate, on viewController: UIViewController, withRecipients recipients: [String] = [], subject: String = "", body: String = "", isBodyHtml: Bool = false, andAttachments attachments: [MochaEmailAttachment] = []) -> EmailUtil? {
         
         if !canSend() {
             return nil
