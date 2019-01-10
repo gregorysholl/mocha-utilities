@@ -242,12 +242,8 @@
 				0C56FE541F2013EE000B15C2 /* DocumentsUtil.swift */,
 				0C56FE501F2012CD000B15C2 /* FileUtil.swift */,
 				0C91DD6E1EE5DBA600F9F19D /* KeyboardUtil.swift */,
-				0C91DD701EE5DC0F00F9F19D /* NavigationBarUtil.swift */,
 				0C91DD721EE5DC6A00F9F19D /* NotificationUtil.swift */,
 				0C91DD6A1EE5DA4100F9F19D /* NumberUtil.swift */,
-				0C91DD741EE5DD4D00F9F19D /* OrientationUtil.swift */,
-				0C91DD631EE5D7C200F9F19D /* StatusBarUtil.swift */,
-				0C91DD611EE5D71400F9F19D /* TabBarUtil.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -341,6 +337,10 @@
 			isa = PBXGroup;
 			children = (
 				0CE107551F22CCF700FCE716 /* ConstraintUtil.swift */,
+				0C91DD701EE5DC0F00F9F19D /* NavigationBarUtil.swift */,
+				0C91DD741EE5DD4D00F9F19D /* OrientationUtil.swift */,
+				0C91DD631EE5D7C200F9F19D /* StatusBarUtil.swift */,
+				0C91DD611EE5D71400F9F19D /* TabBarUtil.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
