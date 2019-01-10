@@ -108,8 +108,7 @@ public class HttpClient: NSObject {
     
     private func createBasicAuth() -> Result<String> {
         guard let username = self.username, !username.isEmpty else {
-            return .failure(.descriptive(message:
-                "Username not informed for Basic Authorization"))
+            return .failure(.notImplemented)
         }
         
         guard let password = self.password, !password.isEmpty else {
@@ -211,7 +210,12 @@ public class HttpClient: NSObject {
         case .success(let basicAuth):
             request.setValue(basicAuth, forHTTPHeaderField: "Authorization")
         case .failure(let error):
-            MochaLogger.log(error.description)
+            switch error {
+            case .notImplemented:
+                break
+            default:
+                MochaLogger.log(error.description)
+            }
         }
         
         //headers
